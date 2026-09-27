@@ -1,18 +1,18 @@
 name: Sync price
 
-# Automatic fetching is OFF on purpose.
+# Runs every 4h and scrapes the public amazon.eg product page.
 #
-# This repo used to run on a 4h cron scraping amazon.eg. It was stopped at the
-# owner's request — the affiliate account is not involved in any way (the fetch
-# URL carries no tracking tag and no credentials are used), but repeated
-# automated requests to Amazon from a datacenter IP aren't worth the ambiguity.
-#
-# price.json is now edited by hand, one step at a time:
-#   https://github.com/zelzalcybershield-collab/g309-landing/edit/main/price.json
-#
-# `workflow_dispatch` is kept for occasional one-off checks when you want one,
-# knowing it is you pressing the button, not a schedule.
+# On affiliate-account safety: the fetch URL is a bare /dp/<ASIN> link with no
+# tracking tag, no credentials are used, and nothing is ever sent to Associates
+# Central — so this cannot affect the affiliate account. What it *can* do is get
+# blocked by Amazon for repeated requests from a datacenter IP, which would
+# silently freeze the price. price.json keeps the last good value and flips
+# `stale: true` in that case, so the page never shows a wrong or zero price.
 on:
+  schedule:
+    # Minute 17, not 0 — the top of the hour is the busiest slot on all of
+    # GitHub Actions and the queue is noticeably slower there.
+    - cron: '17 */4 * * *'
   workflow_dispatch:
 
 permissions:
