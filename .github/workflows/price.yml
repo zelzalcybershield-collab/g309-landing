@@ -5,9 +5,6 @@ on:
     # كل 4 ساعات. الدقيقة 17 عشان ما نصدمش على الدقيقة 0 مع باقي الـ workflows.
     - cron: '17 */4 * * *'
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: [scripts/update-price.mjs, .github/workflows/price.yml]
 
 permissions:
   contents: write
@@ -22,6 +19,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -44,5 +43,8 @@ jobs:
             echo "No price change — nothing to commit."
           else
             git commit -m 'chore: sync price.json'
+            # Rebase first: Pages deploys and manual pushes can land between the
+            # checkout and here, which makes a plain push get rejected.
+            git pull --rebase --autostash origin main
             git push
           fi
