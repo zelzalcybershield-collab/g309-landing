@@ -35,6 +35,16 @@ const dict = {
     'hero.chip2l': 'الحساسية',
     'hero.chip2v': '25,000 DPI',
 
+    'gal.eyebrow': 'من المنتج',
+    'gal.title': 'شوفه عن قرب',
+    'gal.sub': 'الصور من صفحة المنتج الرسمية على أمازون مصر — اضغط أي صورة لتكبيرها.',
+    'gal.zoomLabel': 'تكبير',
+    'gal.zoom': 'تكبير الصورة',
+    'gal.prev': 'الصورة السابقة',
+    'gal.next': 'الصورة التالية',
+    'gal.close': 'إغلاق',
+    'gal.label': 'صورة من المنتج',
+
     'trust.cod': 'الدفع عند الاستلام',
     'trust.codSub': 'ادفع كاش عند الباب',
     'trust.delivery': 'شحن مجاني',
@@ -214,6 +224,16 @@ const dict = {
     'hero.chip1v': '86 g',
     'hero.chip2l': 'Sensitivity',
     'hero.chip2v': '25,000 DPI',
+
+    'gal.eyebrow': 'The product',
+    'gal.title': 'See it up close',
+    'gal.sub': 'Images from the official product page on Amazon Egypt — tap any one to enlarge.',
+    'gal.zoomLabel': 'Enlarge',
+    'gal.zoom': 'Enlarge image',
+    'gal.prev': 'Previous image',
+    'gal.next': 'Next image',
+    'gal.close': 'Close',
+    'gal.label': 'Product image',
 
     'trust.cod': 'Cash on delivery',
     'trust.codSub': 'Pay cash at your door',
@@ -402,6 +422,7 @@ function applyLang(next) {
 
   document.getElementById('langLabel').textContent = lang === 'ar' ? 'EN' : 'ع';
   renderMode(currentMode);
+  renderGallery();
   renderLive();
 }
 
@@ -610,6 +631,101 @@ function initScroll() {
   });
 }
 
+/* ---------- gallery ----------
+   Real product shots pulled from the Amazon listing and served from ./img, so
+   the page never hotlinks Amazon. Amazon hands these over in the order the
+   seller listed them, so the order is kept as-is. */
+const GAL_FILES = Array.from({ length: 9 }, (_, i) => `img/g309-${String(i).padStart(2, '0')}.jpg`);
+let galItems = [];
+
+function renderGallery() {
+  galItems.forEach((b, k) => {
+    b.setAttribute('aria-label', `${t('gal.label')} ${k + 1}`);
+  });
+}
+
+function initGallery() {
+  const main = document.querySelector('[data-gal-main]');
+  const thumbs = document.querySelector('[data-gal-thumbs]');
+  const idxEl = document.querySelector('[data-gal-idx]');
+  if (!main || !thumbs) return;
+
+  const total = GAL_FILES.length;
+  const box = document.querySelector('[data-gal-box]');
+  const boxImg = box?.querySelector('[data-gal-box-img]');
+  let i = 0;
+  let opener = null;
+
+  const totalEl = document.querySelector('[data-gal-total]');
+  if (totalEl) totalEl.textContent = total;
+
+  galItems = GAL_FILES.map((src, n) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className =
+      'h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 bg-white transition ' +
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 sm:h-24 sm:w-24';
+    b.innerHTML =
+      `<img src="${src}" alt="" width="1200" height="1200" loading="lazy" decoding="async" ` +
+      'class="h-full w-full object-contain">';
+    b.addEventListener('click', () => go(n));
+    thumbs.appendChild(b);
+    return b;
+  });
+
+  function go(n) {
+    i = (n + total) % total;
+    main.src = GAL_FILES[i];
+    if (boxImg) boxImg.src = GAL_FILES[i];
+    if (idxEl) idxEl.textContent = i + 1;
+    galItems.forEach((b, k) => {
+      const on = k === i;
+      b.classList.toggle('border-cyan-400', on);
+      b.classList.toggle('border-white/15', !on);
+      if (on) {
+        b.setAttribute('aria-current', 'true');
+        b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+      } else {
+        b.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function openBox() {
+    if (!box) return;
+    opener = document.activeElement;
+    box.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    box.querySelector('[data-gal-box-close]')?.focus();
+  }
+  function closeBox() {
+    if (!box) return;
+    box.classList.add('hidden');
+    document.body.style.overflow = '';
+    opener?.focus();
+  }
+
+  document.querySelector('[data-gal-prev]')?.addEventListener('click', () => go(i - 1));
+  document.querySelector('[data-gal-next]')?.addEventListener('click', () => go(i + 1));
+  document.querySelector('[data-gal-zoom]')?.addEventListener('click', openBox);
+  main.addEventListener('click', openBox);
+  box?.querySelector('[data-gal-box-close]')?.addEventListener('click', closeBox);
+  box?.querySelector('[data-gal-box-prev]')?.addEventListener('click', () => go(i - 1));
+  box?.querySelector('[data-gal-box-next]')?.addEventListener('click', () => go(i + 1));
+  box?.addEventListener('click', (e) => { if (e.target === box) closeBox(); });
+
+  document.addEventListener('keydown', (e) => {
+    const open = box && !box.classList.contains('hidden');
+    if (!open) return;
+    if (e.key === 'Escape') closeBox();
+    else if (e.key === 'ArrowLeft') go(i - 1);
+    else if (e.key === 'ArrowRight') go(i + 1);
+  });
+
+  renderGallery();
+  go(0);
+}
+
 /* ---------- init ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   applyLang(localStorage.getItem(STORE_KEY) || 'ar');
@@ -626,5 +742,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopy();
   initCounters();
   initScroll();
+  initGallery();
   initLivePrice();
 });
