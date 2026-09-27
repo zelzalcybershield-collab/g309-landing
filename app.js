@@ -38,8 +38,6 @@ const dict = {
     'gal.eyebrow': 'من المنتج',
     'gal.title': 'شوفه عن قرب',
     'gal.sub': 'الصور من صفحة المنتج الرسمية على أمازون مصر — اضغط أي صورة لتكبيرها.',
-    'gal.zoomLabel': 'تكبير',
-    'gal.zoom': 'تكبير الصورة',
     'gal.prev': 'الصورة السابقة',
     'gal.next': 'الصورة التالية',
     'gal.close': 'إغلاق',
@@ -227,9 +225,7 @@ const dict = {
 
     'gal.eyebrow': 'The product',
     'gal.title': 'See it up close',
-    'gal.sub': 'Images from the official product page on Amazon Egypt — tap any one to enlarge.',
-    'gal.zoomLabel': 'Enlarge',
-    'gal.zoom': 'Enlarge image',
+    'gal.sub': 'Images from the official product page on Amazon Egypt — click any one to enlarge.',
     'gal.prev': 'Previous image',
     'gal.next': 'Next image',
     'gal.close': 'Close',
@@ -645,10 +641,8 @@ function renderGallery() {
 }
 
 function initGallery() {
-  const main = document.querySelector('[data-gal-main]');
-  const thumbs = document.querySelector('[data-gal-thumbs]');
-  const idxEl = document.querySelector('[data-gal-idx]');
-  if (!main || !thumbs) return;
+  const grid = document.querySelector('[data-gal-grid]');
+  if (!grid) return;
 
   const total = GAL_FILES.length;
   const box = document.querySelector('[data-gal-box]');
@@ -656,44 +650,36 @@ function initGallery() {
   let i = 0;
   let opener = null;
 
-  const totalEl = document.querySelector('[data-gal-total]');
-  if (totalEl) totalEl.textContent = total;
-
   galItems = GAL_FILES.map((src, n) => {
     const b = document.createElement('button');
     b.type = 'button';
     b.className =
-      'h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 bg-white transition ' +
-      'focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 sm:h-24 sm:w-24';
+      'group relative overflow-hidden rounded-2xl border border-white/10 bg-white shadow-lg shadow-black/30 ' +
+      'transition duration-300 hover:-translate-y-1 hover:border-cyan-400/60 hover:shadow-2xl ' +
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400';
     b.innerHTML =
       `<img src="${src}" alt="" width="1200" height="1200" loading="lazy" decoding="async" ` +
-      'class="h-full w-full object-contain">';
-    b.addEventListener('click', () => go(n));
-    thumbs.appendChild(b);
+      'class="aspect-square w-full select-none object-contain">' +
+      '<span class="pointer-events-none absolute inset-0 grid place-items-center bg-ink-950/0 ' +
+      'opacity-0 transition duration-300 group-hover:bg-ink-950/25 group-hover:opacity-100">' +
+      '<span class="grid h-11 w-11 place-items-center rounded-full bg-white/90 text-ink-950 shadow-lg">' +
+      '<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+      'stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg>' +
+      '</span></span>';
+    b.addEventListener('click', () => { i = n; show(n); });
+    grid.appendChild(b);
     return b;
   });
 
-  function go(n) {
+  function show(n) {
     i = (n + total) % total;
-    main.src = GAL_FILES[i];
     if (boxImg) boxImg.src = GAL_FILES[i];
-    if (idxEl) idxEl.textContent = i + 1;
-    galItems.forEach((b, k) => {
-      const on = k === i;
-      b.classList.toggle('border-cyan-400', on);
-      b.classList.toggle('border-white/15', !on);
-      if (on) {
-        b.setAttribute('aria-current', 'true');
-        b.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
-      } else {
-        b.removeAttribute('aria-current');
-      }
-    });
   }
 
   function openBox() {
     if (!box) return;
     opener = document.activeElement;
+    show(i);
     box.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
     box.querySelector('[data-gal-box-close]')?.focus();
@@ -705,25 +691,20 @@ function initGallery() {
     opener?.focus();
   }
 
-  document.querySelector('[data-gal-prev]')?.addEventListener('click', () => go(i - 1));
-  document.querySelector('[data-gal-next]')?.addEventListener('click', () => go(i + 1));
-  document.querySelector('[data-gal-zoom]')?.addEventListener('click', openBox);
-  main.addEventListener('click', openBox);
   box?.querySelector('[data-gal-box-close]')?.addEventListener('click', closeBox);
-  box?.querySelector('[data-gal-box-prev]')?.addEventListener('click', () => go(i - 1));
-  box?.querySelector('[data-gal-box-next]')?.addEventListener('click', () => go(i + 1));
+  box?.querySelector('[data-gal-box-prev]')?.addEventListener('click', () => show(i - 1));
+  box?.querySelector('[data-gal-box-next]')?.addEventListener('click', () => show(i + 1));
   box?.addEventListener('click', (e) => { if (e.target === box) closeBox(); });
 
   document.addEventListener('keydown', (e) => {
     const open = box && !box.classList.contains('hidden');
     if (!open) return;
     if (e.key === 'Escape') closeBox();
-    else if (e.key === 'ArrowLeft') go(i - 1);
-    else if (e.key === 'ArrowRight') go(i + 1);
+    else if (e.key === 'ArrowLeft') show(i - 1);
+    else if (e.key === 'ArrowRight') show(i + 1);
   });
 
   renderGallery();
-  go(0);
 }
 
 /* ---------- init ---------- */
