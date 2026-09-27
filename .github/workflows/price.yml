@@ -1,9 +1,18 @@
 name: Sync price
 
+# Automatic fetching is OFF on purpose.
+#
+# This repo used to run on a 4h cron scraping amazon.eg. It was stopped at the
+# owner's request — the affiliate account is not involved in any way (the fetch
+# URL carries no tracking tag and no credentials are used), but repeated
+# automated requests to Amazon from a datacenter IP aren't worth the ambiguity.
+#
+# price.json is now edited by hand, one step at a time:
+#   https://github.com/zelzalcybershield-collab/g309-landing/edit/main/price.json
+#
+# `workflow_dispatch` is kept for occasional one-off checks when you want one,
+# knowing it is you pressing the button, not a schedule.
 on:
-  schedule:
-    # كل 4 ساعات. الدقيقة 17 عشان ما نصدمش على الدقيقة 0 مع باقي الـ workflows.
-    - cron: '17 */4 * * *'
   workflow_dispatch:
 
 permissions:
