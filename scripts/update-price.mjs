@@ -32,7 +32,12 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const OUT = path.join(ROOT, 'price.json');
+
+// PRODUCT_DIR selects which page's price.json to write. Empty means the
+// site root (the original G309 page); set it to a slug to update a generated
+// product page instead, e.g. PRODUCT_DIR=g309 node scripts/update-price.mjs
+const PRODUCT_DIR = (process.env.PRODUCT_DIR || '').replace(/^[/\\]+|[/\\]+$/g, '');
+const OUT = path.join(ROOT, PRODUCT_DIR, 'price.json');
 
 const ASIN = process.env.ASIN || 'B0D5WNNTZP';
 const PRODUCT_URL = process.env.PRODUCT_URL || `https://www.amazon.eg/dp/${ASIN}`;

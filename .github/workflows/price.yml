@@ -1,6 +1,7 @@
 name: Sync price
 
-# Runs every 4h and scrapes the public amazon.eg product page.
+# Runs every 4h and scrapes the public amazon.eg product page for every product
+# in products/*.json.
 #
 # On affiliate-account safety: the fetch URL is a bare /dp/<ASIN> link with no
 # tracking tag, no credentials are used, and nothing is ever sent to Associates
@@ -8,6 +9,9 @@ name: Sync price
 # blocked by Amazon for repeated requests from a datacenter IP, which would
 # silently freeze the price. price.json keeps the last good value and flips
 # `stale: true` in that case, so the page never shows a wrong or zero price.
+#
+# Products are fetched one after another on purpose. A matrix would run them in
+# parallel, and every job would then race to git push the same branch.
 on:
   schedule:
     # Minute 17, not 0 — the top of the hour is the busiest slot on all of
@@ -25,7 +29,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,23 +39,47 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Fetch price and write price.json
+      - name: Update every product price
         env:
-          ASIN: ${{ vars.AMZN_ASIN }}
           AMZN_CLIENT_ID: ${{ secrets.AMZN_CLIENT_ID }}
           AMZN_CLIENT_SECRET: ${{ secrets.AMZN_CLIENT_SECRET }}
           AMZN_PARTNER_TAG: ${{ secrets.AMZN_PARTNER_TAG }}
-        run: node scripts/update-price.mjs
+        run: |
+          set -uo pipefail
+          shopt -s nullglob
+          files=(products/*.json)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No products found — nothing to do."
+            exit 0
+          fi
+          failed=0
+          for f in "${files[@]}"; do
+            slug=$(node -p "require('./$f').slug")
+            asin=$(node -p "require('./$f').asin")
+            dir=$(node -p "require('./$f').dir")
+            echo "::group::$slug ($asin) -> ${dir:-.}price.json"
+            if PRODUCT_DIR="$dir" ASIN="$asin" node scripts/update-price.mjs; then
+              echo "  ok"
+            else
+              echo "  FAILED (keeping the last known price)" >&2
+              failed=$((failed + 1))
+            fi
+            echo "::endgroup::"
+            sleep 8   # be gentle; one page per product is plenty for a 4h cadence
+          done
+          if [ "$failed" -gt 0 ]; then
+            echo "::warning::$failed product(s) could not be refreshed"
+          fi
 
       - name: Commit if changed
         run: |
           git config user.name  'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add price.json
+          git add -A -- 'price.json' '*/price.json'
           if git diff --staged --quiet; then
             echo "No price change — nothing to commit."
           else
-            git commit -m 'chore: sync price.json'
+            git commit -m 'chore: sync prices'
             # Rebase first: Pages deploys and manual pushes can land between the
             # checkout and here, which makes a plain push get rejected.
             git pull --rebase --autostash origin main
