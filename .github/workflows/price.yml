@@ -1,0 +1,48 @@
+name: Sync price
+
+on:
+  schedule:
+    # كل 4 ساعات. الدقيقة 17 عشان ما نصدمش على الدقيقة 0 مع باقي الـ workflows.
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [scripts/update-price.mjs, .github/workflows/price.yml]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: price-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch price and write price.json
+        env:
+          ASIN: ${{ vars.AMZN_ASIN }}
+          AMZN_CLIENT_ID: ${{ secrets.AMZN_CLIENT_ID }}
+          AMZN_CLIENT_SECRET: ${{ secrets.AMZN_CLIENT_SECRET }}
+          AMZN_PARTNER_TAG: ${{ secrets.AMZN_PARTNER_TAG }}
+        run: node scripts/update-price.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add price.json
+          if git diff --staged --quiet; then
+            echo "No price change — nothing to commit."
+          else
+            git commit -m 'chore: sync price.json'
+            git push
+          fi
