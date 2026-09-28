@@ -9,7 +9,7 @@
   "title": null,
   "availability": null,
   "updatedAt": "2026-09-28T01:29:24.211Z",
-  "checkedAt": "2026-09-28T01:29:24.211Z",
-  "stale": false,
-  "lastError": null
+  "checkedAt": "2026-09-28T01:37:33.183Z",
+  "stale": true,
+  "lastError": "asin is not defined"
 }
