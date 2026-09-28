@@ -115,5 +115,21 @@ for (const p of all) {
   check('app.js parses', parsed);
 }
 
+// A product flagged syncToRoot is published at / too, so the two copies must
+// not drift - the root is otherwise a hand-maintained file that quietly falls
+// behind (it sat there without the affiliate tag while /g309 had it).
+for (const p of all) {
+  if (!p.syncToRoot) continue;
+  console.log(`\n=== root sync (${p.slug}) ===`);
+  for (const f of ['index.html', 'app.js']) {
+    const a = readFileSync(f, 'utf8');
+    const b = readFileSync(join(p.dir, f), 'utf8');
+    check(`root ${f} matches ${p.dir}/${f}`, a === b);
+  }
+  const rootJs = readFileSync('app.js', 'utf8');
+  const url = rootJs.match(/PRODUCT_URL\s*=\s*'([^']+)'/)?.[1] ?? '';
+  check('root buy link carries the affiliate tag', /[?&]tag=/.test(url), url);
+}
+
 console.log(failures ? `\n${failures} FAILURES` : '\nall good');
 process.exit(failures ? 1 : 0);

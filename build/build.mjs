@@ -146,6 +146,18 @@ function render(p) {
     }, null, 2) + '\n', 'utf8');
   }
 
+  // The site root is served from /, and it is the same product as g309. Rather
+  // than leave a hand-maintained copy at the root that drifts, publish the
+  // generated files there too. Relative img/ paths still resolve because the
+  // root keeps the shared img/ directory.
+  if (p.syncToRoot) {
+    writeFileSync('index.html', html, 'utf8');
+    writeFileSync('app.js', js, 'utf8');
+    if (!existsSync('price.json')) {
+      writeFileSync('price.json', readFileSync(pricePath, 'utf8'), 'utf8');
+    }
+  }
+
   return { dir, keys: Object.keys(p.dict.ar).length, images: copied, bytes: html.length + js.length };
 }
 
