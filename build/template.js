@@ -94,7 +94,11 @@ function renderLive() {
   }
   if (live.rating != null) {
     document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
+    document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
   }
+  // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
+  // the markup, so every product that had no rating of its own quietly showed the
+  // G309 score. A product with no reviews should show no stars.
   if (live.updatedAt) {
     const label = document.querySelector('[data-bind="updatedAt"]');
     if (label) label.textContent = fmtDate(live.updatedAt) + (live.stale ? ' ' + t('offer.syncStale') : '');

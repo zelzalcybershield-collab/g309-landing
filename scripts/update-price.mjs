@@ -257,18 +257,36 @@ function parsePage(html) {
     /a-price-whole[^>]*>([\d,]+)/,
   ]);
 
-  const rating = pick(html, [
+  // Both the rating and the review count are read out of anchors that link to
+  // THIS product's review page (/product-reviews/<asin>). Scoping on the asin
+  // rather than on "out of 5 stars" is the important part: Amazon's
+  // recommendation carousels are full of other products with their own star
+  // ratings, and a whole-page search borrowed a 3.0-from-4-ratings off a
+  // neighbouring listing and filed it under the MSI Thin 15.
+  // The averageCustomerReviews div is no help as a scope - it comes back empty
+  // on listings that do have a rating, because Amazon fills it in later. As a
+  // fallback, take a fixed window around that div: acrPopover's title lands
+  // ~500 chars in, and the acrCustomerReviewText link ~1700.
+  const ownAnchors = [...html.matchAll(
+    /<a\b[^>]*href="[^"]*product-reviews\/(\w{10})[^"]*"[^>]*>/gi,
+  )].filter((m) => !asin || m[1].toUpperCase() === asin.toUpperCase())
+    .map((m) => m[0]);
+  const widgetAt = html.search(/id="averageCustomerReviews"/i);
+  const ratingBlock = ownAnchors.length
+    ? ownAnchors.join(' ')
+    : (widgetAt < 0 ? '' : html.slice(widgetAt, widgetAt + 2000));
+  const rating = pick(ratingBlock, [
+    /aria-label="([\d.,]+)\s*out of\s*5\s*stars/i,
     /"ratingValue"\s*:\s*"?([\d.,]+)"?/,
-    /([\d.,]+)\s*out of\s*5\s*stars/i,
-    /([\d.,]+)\s*n\s*out of\s*5/i,
+    /([\d.,]+)\s*n?\s*out of\s*5\s*stars/i,
   ]);
 
-  // Scoped to the rating widget on purpose — a loose /(\d+) ratings?/ also matches
-  // the related-products carousel, which reports completely different numbers.
-  const reviews = pick(html, [
+  const reviews = pick(ratingBlock, [
     /acrCustomerReviewText"[^>]*>\s*\(?([\d.,]+)/,
-    /aria-label="([\d.,]+)\s+Reviews?"/,
+    /aria-label="([\d.,]+)\s*global\s+ratings?/i,
+    /aria-label="([\d.,]+)\s*Reviews?"/i,
     /([\d.,]+)\s*global\s+ratings?\b/i,
+    /([\d.,]+)\s*ratings?\b/i,
   ]);
 
   // Stock is read from the availability block itself. Testing the whole page

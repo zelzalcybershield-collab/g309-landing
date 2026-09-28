@@ -125,14 +125,14 @@ tailwind.config = {
         <!-- rating -->
         <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
           <div class="flex items-center gap-1.5">
-            <span class="flex gap-0.5 text-amber-400">
+            <span class="flex gap-0.5 text-amber-400" data-needs-rating hidden>
               <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.8L10 1.5Z"/></svg>
               <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.8L10 1.5Z"/></svg>
               <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.8L10 1.5Z"/></svg>
               <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.8L10 1.5Z"/></svg>
               <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.8L10 1.5Z"/></svg>
             </span>
-            <span class="text-sm font-extrabold text-white num" data-bind="rating">4.9</span>
+            <span class="text-sm font-extrabold text-white num" data-bind="rating" data-needs-rating hidden></span>
             <span class="text-sm text-slate-500" data-i18n="hero.reviews"></span>
           </div>
           <span class="hidden h-4 w-px bg-white/10 sm:block"></span>
@@ -593,9 +593,9 @@ tailwind.config = {
     </div>
 
     <div class="mx-auto mt-10 flex max-w-md items-center justify-center gap-4 rounded-2xl border border-white/10 bg-ink-950 px-6 py-5">
-      <p class="text-5xl font-black text-white num" data-bind="rating">4.9</p>
+      <p class="text-5xl font-black text-white num" data-bind="rating" data-needs-rating hidden></p>
       <div>
-        <div class="flex gap-0.5 text-amber-400">
+        <div class="flex gap-0.5 text-amber-400" data-needs-rating hidden>
           <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.8L10 1.5Z"/></svg>
           <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.8L10 1.5Z"/></svg>
           <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="m10 1.5 2.6 5.4 5.9.8-4.3 4.1 1 5.8L10 14.9 4.8 17.6l1-5.8L1.5 7.7l5.9-.8L10 1.5Z"/></svg>
