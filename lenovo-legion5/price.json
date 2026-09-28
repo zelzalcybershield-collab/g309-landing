@@ -1,15 +1,15 @@
 {
-  "asin": "B0H9S4JPML",
-  "url": "https://www.amazon.eg/dp/B0H9S4JPML",
-  "price": 89999,
+  "asin": "B0D5WNNTZP",
+  "url": "https://www.amazon.eg/dp/B0D5WNNTZP",
+  "price": 2799,
   "currency": "EGP",
   "inStock": true,
-  "rating": 4,
-  "reviews": null,
+  "rating": 4.9,
+  "reviews": 18,
   "title": null,
   "availability": null,
-  "updatedAt": "2026-09-28T00:55:16.617Z",
-  "checkedAt": "2026-09-28T00:55:16.617Z",
+  "updatedAt": "2026-09-28T00:57:12.777Z",
+  "checkedAt": "2026-09-28T00:57:12.777Z",
   "stale": false,
   "lastError": null
 }
