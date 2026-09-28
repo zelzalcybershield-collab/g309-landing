@@ -3,13 +3,13 @@
   "url": "https://www.amazon.eg/dp/B0751D11BL",
   "price": 769,
   "currency": "EGP",
-  "inStock": false,
+  "inStock": true,
   "rating": 4.4,
   "reviews": 8879,
   "title": null,
   "availability": null,
-  "updatedAt": "2026-09-28T01:16:43.074Z",
-  "checkedAt": "2026-09-28T01:16:43.074Z",
+  "updatedAt": "2026-09-28T01:19:20.211Z",
+  "checkedAt": "2026-09-28T01:19:20.211Z",
   "stale": false,
   "lastError": null
 }
