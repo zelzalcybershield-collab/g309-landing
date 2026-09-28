@@ -203,7 +203,11 @@
       "footer.l3": "لماذا Legion 5",
       "footer.disclaimer": "الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون. المواصفات كما وردت في صفحة المنتج.",
       "footer.madeBy": "صفحة هبوط · AR / EN",
-      "t.size": "مقاس الشاشة"
+      "t.size": "مقاس الشاشة",
+      "offer.copy": "نسخ",
+      "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
+      "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
+      "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني)."
     },
     "en": {
       "nav.tagline": "LEGION 5 · Black",
@@ -372,7 +376,17 @@
       "footer.l3": "Why the Legion 5",
       "footer.disclaimer": "Prices and figures can change with availability on Amazon. Specifications as listed on the product page.",
       "footer.madeBy": "Landing page · AR / EN",
-      "t.size": "Screen size"
+      "t.size": "Screen size",
+      "offer.copy": "Copy",
+      "offer.couponTitle": "10% off with NBE cards",
+      "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
+      "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second."
     }
+  },
+  "coupon": {
+    "codes": [
+      "NBESEP500",
+      "NBESEP250"
+    ]
   }
 }

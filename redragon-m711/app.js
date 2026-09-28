@@ -177,7 +177,11 @@ const dict = {
     "footer.l2": "محتويات العلبة",
     "footer.l3": "لماذا M711",
     "footer.disclaimer": "الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون. المواصفات كما وردت في صفحة المنتج.",
-    "footer.madeBy": "صفحة هبوط · AR / EN"
+    "footer.madeBy": "صفحة هبوط · AR / EN",
+    "offer.copy": "نسخ",
+    "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
+    "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
+    "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني)."
   },
   "en": {
     "nav.tagline": "M711 · Black",
@@ -346,7 +350,11 @@ const dict = {
     "footer.l2": "In the box",
     "footer.l3": "Why the M711",
     "footer.disclaimer": "Prices and figures can change with availability on Amazon. Specifications as listed on the product page.",
-    "footer.madeBy": "Landing page · AR / EN"
+    "footer.madeBy": "Landing page · AR / EN",
+    "offer.copy": "Copy",
+    "offer.couponTitle": "10% off with NBE cards",
+    "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
+    "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second."
   }
 };
 
