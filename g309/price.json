@@ -4,12 +4,12 @@
   "price": 2799,
   "currency": "EGP",
   "inStock": true,
-  "rating": 4.9,
-  "reviews": 18,
+  "rating": null,
+  "reviews": null,
   "title": null,
   "availability": null,
-  "updatedAt": "2026-09-28T02:13:54.736Z",
-  "checkedAt": "2026-09-28T02:13:54.736Z",
+  "updatedAt": "2026-09-28T05:32:30.337Z",
+  "checkedAt": "2026-09-28T05:32:30.337Z",
   "stale": false,
   "lastError": null
 }
