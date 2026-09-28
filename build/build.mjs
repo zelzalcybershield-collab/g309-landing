@@ -10,6 +10,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, copyFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const tplHtml = readFileSync('build/template.html', 'utf8');
 const tplJs = readFileSync('build/template.js', 'utf8');
@@ -146,18 +147,6 @@ function render(p) {
     }, null, 2) + '\n', 'utf8');
   }
 
-  // The site root is served from /, and it is the same product as g309. Rather
-  // than leave a hand-maintained copy at the root that drifts, publish the
-  // generated files there too. Relative img/ paths still resolve because the
-  // root keeps the shared img/ directory.
-  if (p.syncToRoot) {
-    writeFileSync('index.html', html, 'utf8');
-    writeFileSync('app.js', js, 'utf8');
-    if (!existsSync('price.json')) {
-      writeFileSync('price.json', readFileSync(pricePath, 'utf8'), 'utf8');
-    }
-  }
-
   return { dir, keys: Object.keys(p.dict.ar).length, images: copied, bytes: html.length + js.length };
 }
 
@@ -171,4 +160,9 @@ for (const f of targets) {
   const r = render(p);
   if (r.err) { console.log(`FAIL  ${f}`); fail(r.err); }
   else console.log(`OK    ${f}  ->  ${r.dir}/  (${r.keys} keys, ${r.images} images, ${r.bytes} bytes)`);
+}
+
+// The root index lists every product, so it is only correct after a full build.
+if (!only) {
+  execFileSync(process.execPath, ['build/hub.mjs'], { stdio: 'inherit' });
 }

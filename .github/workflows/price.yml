@@ -71,11 +71,16 @@ jobs:
             echo "::warning::$failed product(s) could not be refreshed"
           fi
 
+      - name: Rebuild the root index
+        # The hub quotes whatever is in each price.json, so it has to be
+        # regenerated after the prices change or it keeps showing old numbers.
+        run: node build/hub.mjs
+
       - name: Commit if changed
         run: |
           git config user.name  'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A -- 'price.json' '*/price.json'
+          git add -A -- 'price.json' '*/price.json' 'index.html'
           if git diff --staged --quiet; then
             echo "No price change — nothing to commit."
           else

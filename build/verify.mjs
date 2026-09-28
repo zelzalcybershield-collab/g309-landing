@@ -115,20 +115,45 @@ for (const p of all) {
   check('app.js parses', parsed);
 }
 
-// A product flagged syncToRoot is published at / too, so the two copies must
-// not drift - the root is otherwise a hand-maintained file that quietly falls
-// behind (it sat there without the affiliate tag while /g309 had it).
-for (const p of all) {
-  if (!p.syncToRoot) continue;
-  console.log(`\n=== root sync (${p.slug}) ===`);
-  for (const f of ['index.html', 'app.js']) {
-    const a = readFileSync(f, 'utf8');
-    const b = readFileSync(join(p.dir, f), 'utf8');
-    check(`root ${f} matches ${p.dir}/${f}`, a === b);
+// The root is a generated hub (build/hub.mjs), not a second copy of a product
+// page. It must reach every product exactly once and must not carry a
+// product's own buy link, which is what would make the root a duplicate of it.
+console.log('\n=== root hub ===');
+{
+  const hubPath = 'index.html';
+  check('root index.html exists', existsSync(hubPath));
+  const hub = existsSync(hubPath) ? readFileSync(hubPath, 'utf8') : '';
+  if (hub) {
+    check('root has no corrupt arabic (U+FFFD)', !hub.includes('\uFFFD'));
+    check('root is a product index, not a product page', !/PRODUCT_URL/.test(hub) && !/data-i18n=/.test(hub));
+    check('root has no affiliate buy link', !/tag=zoq-21/.test(hub));
+
+    const hrefs = [...hub.matchAll(/<a[^>]+href="([^"]+)"/g)].map((m) => m[1]);
+    for (const p of all) {
+      const hits = hrefs.filter((h) => h === `${p.dir}/`).length;
+      check(`root links to ${p.dir}/ exactly once`, hits === 1, `found ${hits}`);
+    }
+    check('root links to nothing but products', hrefs.every((h) => all.some((p) => h === `${p.dir}/`)), hrefs.join(', '));
+
+    for (const t of ['section', 'div', 'a', 'header', 'footer']) {
+      const o = (hub.match(new RegExp(`<${t}[\\s>]`, 'g')) || []).length;
+      const c = (hub.match(new RegExp(`</${t}>`, 'g')) || []).length;
+      check(`root <${t}> balanced ${o}/${c}`, o === c);
+    }
   }
-  const rootJs = readFileSync('app.js', 'utf8');
-  const url = rootJs.match(/PRODUCT_URL\s*=\s*'([^']+)'/)?.[1] ?? '';
-  check('root buy link carries the affiliate tag', /[?&]tag=/.test(url), url);
+  // leftovers from when the root was a copy of the g309 page. img/ is not in
+  // this list: it is the shared source directory the build copies from, so it
+  // belongs in the repo even though nothing deployed references it.
+  for (const stale of ['app.js', 'price.json']) {
+    check(`no stale root ${stale}`, !existsSync(stale));
+  }
+  check('root hub references no images', !/<img\b/.test(hub));
+  // the source images must still be there, or the next build breaks
+  for (const p of all) {
+    const src = p.images?.from || 'img';
+    const gone = [p.meta.heroImg, ...(p.images?.gallery || [])].filter((f) => !existsSync(join(src, f)));
+    check(`source images present in ${src}/`, gone.length === 0, gone.slice(0, 3).join(', '));
+  }
 }
 
 console.log(failures ? `\n${failures} FAILURES` : '\nall good');

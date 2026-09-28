@@ -1,14 +1,22 @@
-# Logitech G309 — Landing Page
+# Landing Pages — منتجات أمازون مصر
 
-صفحة هبوط لمنتج Logitech G309 LIGHTSPEED، عربي/إنجليزي، مع **سعر يتحدّث تلقائياً** من صفحة أمازون.
+موقع صفحات هبوط لمنتجات على أمازون مصر، عربي/إنجليزي، مع **سعر يتحدّث تلقائياً** من
+صفحة المنتج. خمس منتجات حالياً، وكل منتج في رابط واحد فقط.
 
 ```
-index.html            الصفحة
-app.js                الترجمة + الوضع التفاعلي + قراءة السعر
-price.json            السعر/التقييم/التوفر (بيتحدّث أوتوماتيك)
-scripts/update-price.mjs   Creators API، مع fallback لقراءة الصفحة
+index.html                فهرس الجذر — مولّد، بيقائمة كل المنتجات
+products/*.json           مصدر الحقيقة لكل منتج (النص، المواصفات، الصورة)
+build/build.mjs           يولّد مجلد لكل منتج
+build/hub.mjs             يولّد فهرس الجذر من المنتجات
+build/template.{html,js}  القالب المشترك — صفر نص منتجات
+build/verify.mjs          فحص بعد التوليد
+img/                      صور المصدر، تُنسخ لكل مجلد منتج
+scripts/update-price.mjs  سعر/تقييم/توفر، مع fallback لقراءة الصفحة
 .github/workflows/price.yml  يجدول التشغيل كل 4 ساعات
 ```
+
+**الجذر `/` فهرس، مش صفحة منتج.** كان قبل كده نسخة تانية من صفحة G309
+(`syncToRoot`)، وده كان معناه رابطين لنفس المنتج. كل منتج دلوقتي في `/<dir>/` واحد بس.
 
 ## التشغيل
 
@@ -23,25 +31,26 @@ FORCE_STALE=1 node scripts/update-price.mjs
 ```bash
 git init -b main
 git add .
-git commit -m "landing page"
+git commit -m "landing pages"
 git branch -M main
 git remote add origin https://github.com/<user>/<repo>.git
 git push -u origin main
 ```
 
-بعدها من **Settings → Pages → Source: Deploy from a branch → `main` / `root`**.
+ بعدها من **Settings → Pages → Source: Deploy from a branch → `main` / `root`**.
 
 ### تفعيل التحديث التلقائي
 
 1. **Settings → Actions → General → Workflow permissions → Read and write**
-2. **Settings → Secrets and variables → Actions → New repository variable**
-   - الاسم: `AMZN_ASIN` · القيمة: `B0D5WNNTZP`
-   - (اختياري: لو غيّرت الدومين غيّر `PRODUCT_URL` في `scripts/update-price.mjs`)
+2. **Settings → Secrets and variables → Actions → New repository secret**
+   - `AMZN_CLIENT_ID` · `AMZN_CLIENT_SECRET` · `AMZN_PARTNER_TAG`
 
-الـworkflow بيشتغل كل 4 ساعات، وبيعمل commit لـ`price.json` بس لو السعر اتغيّر.
+الـworkflow بيمرّ على كل ملف في `products/*.json`، ويقرأ منه `asin` و`dir` — مفيش
+متغير `AMZN_ASIN` ولا `PRODUCT_URL` ثابت. بيشتغل كل 4 ساعات، وبيعمل commit لملفات
+`price.json` و`index.html` بس لو حاجة اتغيّرت.
 
 > **مش بيأثر على حساب الأفيليت.** رابط الجلب `amazon.eg/dp/<ASIN>` من غير أي
-> `tag=`، ومفيش credentials ولا تسجيل دخول، ومفيش أي طلب لـAssociates Central.
+> `tag=`، ومفيش credentials ولا تسجيل دخول للمتصفح، ومفيش أي طلب لـAssociates Central.
 > الخطر الوحيد الحقيقي إن أمازون تحجب الـIP بعد طلبات متكررة من سيرفر، وده
 > يوقف التحديث **مش** يأذي الحساب. لو `stale: true` في `price.json`، ده معناه
 > إن أمازون بدأت تحجب — ساعتها إما تغيّر الـIP، وإما ترجع للتحديث اليدوي.
@@ -51,23 +60,17 @@ git push -u origin main
 الصفحات بتتولّد من `products/<slug>.json` — مفيش نسخ ولصق.
 
 ```bash
-node build/build.mjs            # كل المنتجات
-node build/build.mjs g309       # منتج واحد
+node build/build.mjs            # كل المنتجات + فهرس الجذر
+node build/build.mjs g309       # منتج واحد (من غير تحديث الفهرس)
 node build/verify.mjs           # فحص الصفحات بعد التوليد
 ```
 
-`build/template.html` و `build/template.js` هما **نفس** ملفات الصفحة الحالية بعد ما
-تبعتَّلهم المواضع الخاصة بالمنتج بـ markers. عشان كده لو عدّلت في التصميم، لازم
-تعملها مرتين: في `index.html` وفي القالب.
+`build/template.html` و `build/template.js` فيهما **صفر** نص منتجات — أي نص في
+القالب بيتنسخ لكل المنتجات، وده اللي كان بيخلّي صفحة لابتوب تطلع فيها كلام ماوس.
+`verify.mjs` بيتأكد من ده صريح.
 
-**مهم:** إعادة توليد `g309` لازم تطلع **نفس** `index.html` الحالية حرف بحرف. لو
-اختلفت، يبقى القالب اتقسم عن_ROOT. مفيش اختبار تلقائي للمقارنة دي — لو غيّرت
-التصميم، نفّذ:
-
-```powershell
-node build/build.mjs g309
-Compare-Object (Get-Content index.html) (Get-Content g309/index.html)
-```
+`verify.mjs` كمان بيتأكد إن الجذر فهرس لا صفحة منتج: بيوصل لكل منتج مرة واحدة
+بالظبط، ومفيهوش رابط شرائي بتاج الأفيليت.
 
 ### شكل ملف المنتج
 
@@ -75,7 +78,7 @@ Compare-Object (Get-Content index.html) (Get-Content g309/index.html)
 {
   "slug": "g309",
   "asin": "B0D5WNNTZP",     // لازم يبدأ بـ B0 و 8 خانات
-  "dir": "g309",            // "" يعني جذر الموقع
+  "dir": "g309",            // المجلد اللي هيتولّد فيه — "/" بيجيب فهرس الجذر
   "images": {
     "from": "img",          // مجلد الصور المصدر
     "hero": "g309-00.jpg",
