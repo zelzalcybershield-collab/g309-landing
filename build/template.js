@@ -75,11 +75,19 @@ function fmtDate(iso) {
 /* substitutes {n} reviews / {r} rating inside i18n strings */
 function applyTokens() {
   if (!live) return;
+  // A string that interpolates the rating is only meaningful when there is one
+  // to interpolate. Substituting 0 instead printed "0 reviews - 0.0 out of 5"
+  // on every product whose rating the scraper could not read, which reads as a
+  // broken page rather than as an absent rating. Hide the element instead; it
+  // comes back with renderLive's data-needs-rating pass when a rating lands.
+  const hasRating = live.rating != null;
   const n = Number(live.reviews) || 0;
   const r = Number(live.rating) || 0;
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const raw = t(el.dataset.i18n);
     if (!raw.includes('{')) return;
+    if (!hasRating) { el.classList.add('hidden'); return; }
+    el.classList.remove('hidden');
     el.textContent = raw
       .replace(/\{n\}/g, n.toLocaleString('en-US'))
       .replace(/\{r\}/g, r.toFixed(1));

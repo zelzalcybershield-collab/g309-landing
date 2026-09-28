@@ -142,19 +142,19 @@ const dict = {
     "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
     "offer.copy": "نسخ",
     "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني).",
-    "rev.eyebrow": "آراء العملاء",
-    "rev.title": "تقييم 4.9 من 5 على أمازون",
-    "rev.sub": "بناءً على تقييمات 18 عميل على صفحة المنتج",
-    "rev.count": "{n} تقييم · {r} من 5",
-    "rev.q1": "حساسات ماوس بصراحة ممتازة. G309 خفيف جداً وأنا ألعب عليه من غير مشكلة. البطارية ما بتخلصش أبداً.",
-    "rev.n1": "مشتري موثّق",
-    "rev.v1": "★ مثالي",
-    "rev.q2": "سعر ممتاز مقابل المواصفات. المستشعر دقيق ووزنه خفيف — أتمنى يفضل متاح أكتر.",
-    "rev.n2": "مشتري موثّق",
-    "rev.v2": "★ مثالي",
-    "rev.q3": "بصراحة مفاجأتني. جربته في Valorant والماوس زي ما هو بالظبط. التوصيل كان سريع والدفع عند الاستلام مريح.",
-    "rev.n3": "مشتري موثّق",
-    "rev.v3": "★ مثالي",
+    "rev.eyebrow": "ليه تختاره",
+    "rev.title": "أسباب تخليك تختاره",
+    "rev.sub": "مبني على مواصفات المنتج كما وردت من الشركة المصنّعة",
+    "rev.count": "86 جرام · 25,000 DPI · لاسلكي",
+    "rev.q1": "86 جرام فقط — والبطارية محسوبة في الوزن",
+    "rev.n1": "الوزن",
+    "rev.v1": "خفيف جداً",
+    "rev.q2": "حساس HERO بدقة 25,000 نقطة",
+    "rev.n2": "الحساس",
+    "rev.v2": "دقة عالية",
+    "rev.q3": "بطارية AA واحدة تكفي أكثر من 300 ساعة لعب",
+    "rev.n3": "البطارية",
+    "rev.v3": "من غير شحن",
     "faq.eyebrow": "أسئلة شائعة",
     "faq.title": "أسئلة يسألها المشترين",
     "faq.q1": "إيه الفرق بين LIGHTSPEED والبلوتوث؟",
@@ -315,19 +315,19 @@ const dict = {
     "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
     "offer.copy": "Copy",
     "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second.",
-    "rev.eyebrow": "Customer reviews",
-    "rev.title": "Rated 4.9 out of 5 on Amazon",
-    "rev.sub": "Based on 18 customer ratings on the product page",
-    "rev.count": "{n} ratings · {r} out of 5",
-    "rev.q1": "Honestly one of the best sensors out there. The G309 is so light and I can game on it forever — the battery never seems to die.",
-    "rev.n1": "Verified purchase",
-    "rev.v1": "★ Excellent",
-    "rev.q2": "Great value for the specs. The sensor is accurate and it is so light — I just wish it stayed in stock more often.",
-    "rev.n2": "Verified purchase",
-    "rev.v2": "★ Excellent",
-    "rev.q3": "It genuinely surprised me. I tried it in Valorant and the mouse feels exactly as good as the price suggests. Fast delivery and COD made it easy.",
-    "rev.n3": "Verified purchase",
-    "rev.v3": "★ Excellent",
+    "rev.eyebrow": "Why choose it",
+    "rev.title": "Reasons to choose it",
+    "rev.sub": "Based on the product specifications as published by the manufacturer",
+    "rev.count": "86 g · 25,000 DPI · wireless",
+    "rev.q1": "Only 86 g — and that includes the battery",
+    "rev.n1": "Weight",
+    "rev.v1": "Very light",
+    "rev.q2": "HERO sensor at 25,000 DPI",
+    "rev.n2": "Sensor",
+    "rev.v2": "High precision",
+    "rev.q3": "One AA battery runs 300+ hours of play",
+    "rev.n3": "Battery",
+    "rev.v3": "No charging",
     "faq.eyebrow": "FAQ",
     "faq.title": "Questions buyers ask",
     "faq.q1": "What is the difference between LIGHTSPEED and Bluetooth?",
@@ -422,11 +422,19 @@ function fmtDate(iso) {
 /* substitutes {n} reviews / {r} rating inside i18n strings */
 function applyTokens() {
   if (!live) return;
+  // A string that interpolates the rating is only meaningful when there is one
+  // to interpolate. Substituting 0 instead printed "0 reviews - 0.0 out of 5"
+  // on every product whose rating the scraper could not read, which reads as a
+  // broken page rather than as an absent rating. Hide the element instead; it
+  // comes back with renderLive's data-needs-rating pass when a rating lands.
+  const hasRating = live.rating != null;
   const n = Number(live.reviews) || 0;
   const r = Number(live.rating) || 0;
   document.querySelectorAll('[data-i18n]').forEach((el) => {
     const raw = t(el.dataset.i18n);
     if (!raw.includes('{')) return;
+    if (!hasRating) { el.classList.add('hidden'); return; }
+    el.classList.remove('hidden');
     el.textContent = raw
       .replace(/\{n\}/g, n.toLocaleString('en-US'))
       .replace(/\{r\}/g, r.toFixed(1));

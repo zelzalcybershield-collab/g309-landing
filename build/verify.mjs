@@ -113,6 +113,26 @@ for (const p of all) {
   try { execFileSync(process.execPath, ['--check', jsPath], { stdio: 'pipe' }); }
   catch { parsed = false; }
   check('app.js parses', parsed);
+
+  // A review card must never claim to be a customer quote unless the string is
+  // an actual spec. The g309 dict shipped three quotes attributed to "verified
+  // buyer" with star ratings that were not on the Amazon page - fabricated
+  // social proof. Attribution wording plus a star score is the shape to catch.
+  for (const lang of ['ar', 'en']) {
+    const fake = Object.entries(p.dict[lang])
+      .filter(([, v]) => /مشترٍ|مشتري موثّق|verified buyer|verified purchase/i.test(String(v)))
+      .map(([k]) => k);
+    check(`no fabricated buyer attribution (${lang})`, fake.length === 0, fake.join(', '));
+    const stars = Object.entries(p.dict[lang])
+      .filter(([, v]) => /★/.test(String(v)))
+      .map(([k]) => k);
+    check(`no hardcoded star scores (${lang})`, stars.length === 0, stars.join(', '));
+  }
+
+  // any string that interpolates the rating must be one the template can hide
+  const tokenised = Object.keys(p.dict.ar).filter((k) => /\{[nr]\}/.test(p.dict.ar[k]));
+  check('rating-dependent strings are the expected set',
+    tokenised.every((k) => /^hero\.reviews$|^rev\.count$/.test(k)), tokenised.join(', '));
 }
 
 // The root is a generated hub (build/hub.mjs), not a second copy of a product
