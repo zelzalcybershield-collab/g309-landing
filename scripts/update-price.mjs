@@ -28,6 +28,7 @@
  */
 
 import { writeFile, readFile } from 'node:fs/promises';
+import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
@@ -269,7 +270,7 @@ function parsePage(html) {
   // ~500 chars in, and the acrCustomerReviewText link ~1700.
   const ownAnchors = [...html.matchAll(
     /<a\b[^>]*href="[^"]*product-reviews\/(\w{10})[^"]*"[^>]*>/gi,
-  )].filter((m) => !asin || m[1].toUpperCase() === asin.toUpperCase())
+  )].filter((m) => m[1].toUpperCase() === ASIN.toUpperCase())
     .map((m) => m[0]);
   const widgetAt = html.search(/id="averageCustomerReviews"/i);
   const ratingBlock = ownAnchors.length
@@ -280,6 +281,11 @@ function parsePage(html) {
     /"ratingValue"\s*:\s*"?([\d.,]+)"?/,
     /([\d.,]+)\s*n?\s*out of\s*5\s*stars/i,
   ]);
+
+  if (process.env.DEBUG_RATING) {
+    writeFileSync(process.env.DEBUG_RATING, html);
+    console.error(`[debug] anchors=${ownAnchors.length} widgetAt=${widgetAt}`);
+  }
 
   const reviews = pick(ratingBlock, [
     /acrCustomerReviewText"[^>]*>\s*\(?([\d.,]+)/,
@@ -333,7 +339,7 @@ async function collect() {
     try {
       const data = await fetchFromApi();
       console.log('source: creators-api');
-      return data;
+      return { data, fromApi: true };
     } catch (err) {
       if (!wantScrape) throw err;
       console.error(`WARN  creators api failed: ${err.message}`);
@@ -345,7 +351,7 @@ async function collect() {
   const html = await fetchPage();
   const data = parsePage(html);
   console.log('source: product-page');
-  return data;
+  return { data, fromApi: false };
 }
 
 async function main() {
@@ -363,8 +369,11 @@ async function main() {
     data = { ...previous, checkedAt: now, stale: true, lastError: 'forced failure (test mode)' };
   } else {
     let found;
+    let fromApi = false;
     try {
-      found = await collect();
+      const collected = await collect();
+      found = collected.data;
+      fromApi = collected.fromApi;
     } catch (err) {
       console.error(`WARN  fetch failed: ${err.message}`);
       if (!previous) {
@@ -376,13 +385,19 @@ async function main() {
     }
 
     if (found) {
-      // the API has no reviews resource, so carry the last scraped values forward
+      // The Creators API has no CustomerReviews resource, so when that source
+      // wins the rating comes back null and the last scraped value is carried
+      // forward. A successful page scrape is different: a null rating there is
+      // a real answer ("this listing has no ratings"), and carrying the old one
+      // forward is how the MSI Thin 15 stayed pinned at a 3.0 that a
+      // recommendation carousel had lent it long after the scraping was fixed.
+      const carried = fromApi ? previous : null;
       data = {
         asin: ASIN,
         url: `https://www.amazon.eg/dp/${ASIN}`,
         ...found,
-        rating: found.rating ?? previous?.rating ?? null,
-        reviews: found.reviews ?? previous?.reviews ?? null,
+        rating: found.rating ?? carried?.rating ?? null,
+        reviews: found.reviews ?? carried?.reviews ?? null,
         updatedAt: now,
         checkedAt: now,
         stale: false,

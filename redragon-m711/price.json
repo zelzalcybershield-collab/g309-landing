@@ -8,8 +8,8 @@
   "reviews": 8879,
   "title": null,
   "availability": null,
-  "updatedAt": "2026-09-28T01:29:43.411Z",
-  "checkedAt": "2026-09-28T01:37:52.754Z",
-  "stale": true,
-  "lastError": "asin is not defined"
+  "updatedAt": "2026-09-28T01:47:12.203Z",
+  "checkedAt": "2026-09-28T01:47:12.203Z",
+  "stale": false,
+  "lastError": null
 }
