@@ -6,15 +6,15 @@ import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { readdirSync } from 'node:fs';
 
-const dirs = readdirSync('products').filter((f) => f.endsWith('.json'));
+const files = readdirSync('products').filter((f) => f.endsWith('.json'));
+const all = files.map((f) => JSON.parse(readFileSync(join('products', f), 'utf8')));
 let failures = 0;
 const check = (name, cond, extra = '') => {
   if (!cond) failures++;
   console.log(`  ${cond ? 'PASS' : 'FAIL'}  ${name}${cond ? '' : '  ' + extra}`);
 };
 
-for (const f of dirs) {
-  const p = JSON.parse(readFileSync(join('products', f), 'utf8'));
+for (const p of all) {
   console.log(`\n=== ${p.slug} (${p.dir}) ===`);
 
   const htmlPath = join(p.dir, 'index.html');
@@ -46,6 +46,40 @@ for (const f of dirs) {
   // the buy link must point at this product's ASIN
   check('PRODUCT_URL carries the right asin', js.includes(`/dp/${p.asin}`));
   check('no other asin leaked in', !/\/dp\/(B0[A-Z0-9]{8})/.test(js.replace(new RegExp(`/dp/${p.asin}`), '')));
+
+  // Nothing from another product may survive in the output. This is the check
+  // that would have caught the hardcoded G309 dictionary, which shipped a
+  // laptop page full of mouse copy.
+  const otherSlugs = all.filter((o) => o.slug !== p.slug).map((o) => o.slug);
+  const foreignSlugs = otherSlugs.filter((s) => html.includes(s) || js.includes(s));
+  check('no other product slug leaked in', foreignSlugs.length === 0, foreignSlugs.join(', '));
+
+  const dictStart = js.indexOf('const dict =');
+  const dictText = dictStart < 0 ? '' : js.slice(dictStart, js.indexOf('\n};', dictStart) + 3);
+  // JSON.stringify emits "key": "value", so match either quote style
+  const hasKey = (k) => dictText.includes(`"${k}":`) || dictText.includes(`'${k}':`);
+  const missingKeys = Object.keys(p.dict.ar).filter((k) => !hasKey(k));
+  check('every dict key made it into the page', missingKeys.length === 0, missingKeys.slice(0, 5).join(', '));
+  const extraKeys = [...dictText.matchAll(/["']([a-z]+\.[A-Za-z0-9]+)["']\s*:/g)]
+    .map((m) => m[1]).filter((k) => !(k in p.dict.ar));
+  check('page has no dict keys from another product', extraKeys.length === 0, [...new Set(extraKeys)].slice(0, 5).join(', '));
+  // A value from this product appears in the page
+  check('page carries this product copy', dictText.includes(JSON.stringify(p.dict.ar['hero.title1']).slice(1, -1).slice(0, 18)));
+
+  // The templates must contain ZERO product copy. This is the invariant that
+  // matters: a hardcoded dictionary in the template once shipped a laptop page
+  // full of mouse text, and comparing values between products cannot catch that
+  // (copied text is byte-identical, so it looks "consistent"). Checking the
+  // template directly is both simpler and immune to that.
+  const tplHtml = readFileSync('build/template.html', 'utf8');
+  const tplJs = readFileSync('build/template.js', 'utf8');
+  const tplCopy = [...new Set(all.flatMap((o) => [
+    ...Object.values(o.dict.ar), ...Object.values(o.dict.en),
+    o.meta.titleAr, o.meta.titleEn, o.meta.descAr, o.meta.descEn,
+  ]).map(String).filter((v) => v.length >= 20))]
+    .filter((v) => tplHtml.includes(v) || tplJs.includes(v));
+  check('templates contain no product copy', tplCopy.length === 0,
+    tplCopy.map((v) => `"${v.slice(0, 40)}"`).slice(0, 3).join(' | '));
 
   // dict completeness
   const keys = Object.keys(p.dict.ar);
