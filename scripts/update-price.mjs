@@ -271,8 +271,16 @@ function parsePage(html) {
     /([\d.,]+)\s*global\s+ratings?\b/i,
   ]);
 
+  // Stock is read from the availability block itself. Testing the whole page
+  // for "Currently unavailable" was wrong: Amazon ships that phrase in its
+  // JavaScript as an a11y string, and it matched 4 times on the M711 listing
+  // whose availability element plainly says "In Stock" — so the page would have
+  // rendered as unavailable while showing a price.
+  const availBlock = (html.match(/id="availability"[\s\S]{0,600}?<\/div>/i) || [''])[0];
   let inStock = true;
-  if (/Currently unavailable/i.test(html) || /"availability"\s*:\s*"?https?:[^"]*OutOfStock/i.test(html)) {
+  if (availBlock) {
+    inStock = !/currently unavailable|out of stock|temporarily out of stock/i.test(availBlock);
+  } else if (/class="[^"]*a-button-disabled[^"]*"[^>]*>\s*Currently unavailable/i.test(html)) {
     inStock = false;
   }
 
