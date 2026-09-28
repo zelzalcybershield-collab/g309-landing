@@ -114,6 +114,31 @@ for (const p of all) {
   catch { parsed = false; }
   check('app.js parses', parsed);
 
+  // Payment-method claims are the one thing here that is set per product and
+  // easy to get wrong: three pages advertised cash on delivery that Amazon's
+  // own listing refuses ("Electronic Payment Only ... not eligible for COD").
+  // The flag is the source of truth, so the copy has to agree with it.
+  check('payments.cod is set', typeof p.payments?.cod === 'boolean');
+  if (typeof p.payments?.cod === 'boolean') {
+    check('payments.cod records where it was verified', Boolean(p.payments.verifiedOn),
+      'add payments.verifiedOn with the Amazon wording you checked');
+    // Mentioning cash on delivery is not the same as offering it: the honest
+    // answer is "no, this item is not eligible for COD". Only an *offer* counts
+    // as a claim, so a denial has to be allowed to name the method.
+    const denial = /not eligible|is not available|isn'?t|غير\s*مؤهل|غير\s*متاح|(^|[.،\s])لأ[.،\s]/;
+    for (const lang of ['ar', 'en']) {
+      const offers = Object.entries(p.dict[lang])
+        // a question cannot make a claim - "can I pay cash on delivery?" is fine
+        // whatever the answer is. The paired faq.aN is where the substance is.
+        .filter(([k]) => !/\.q\d+$/.test(k))
+        .filter(([, v]) => /الدفع عند الاستلام|كاش عند الباب|الدفع عند الباب|cash on delivery|at the door|pay cash/i.test(String(v)))
+        .filter(([, v]) => !denial.test(String(v)))
+        .map(([k]) => k);
+      check(`cod offer matches payments.cod (${lang})`, offers.length > 0 === p.payments.cod,
+        `copy offers cod at [${offers.join(', ')}] but payments.cod=${p.payments.cod}`);
+    }
+  }
+
   // A review card must never claim to be a customer quote unless the string is
   // an actual spec. The g309 dict shipped three quotes attributed to "verified
   // buyer" with star ratings that were not on the Amazon page - fabricated

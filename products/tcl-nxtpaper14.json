@@ -69,8 +69,8 @@
       "gal.next": "الصورة التالية",
       "gal.close": "إغلاق",
       "gal.label": "صورة من المنتج",
-      "trust.cod": "الدفع عند الاستلام",
-      "trust.codSub": "ادفع كاش عند الباب",
+      "trust.cod": "بطاقة أو تقسيط",
+      "trust.codSub": "دفع إلكتروني — من غير كاش",
       "trust.delivery": "تنفيذ من أمازون",
       "trust.deliverySub": "Fulfilled by Amazon",
       "trust.returns": "إرجاع مرن",
@@ -190,8 +190,8 @@
       "faq.a3": "الشاشة 14.3 بوصة بدقة 2400×1600 وسطوع 400 نيت، والشاشة حاصلة على جائزة التصميم منخفض الأزرق 2024. الشاشة دي مصممة أساساً للقراءة.",
       "faq.q4": "البطارية بتكمّل كام؟",
       "faq.a4": "البطارية 10,000mAh، والشركة بتقول لحد 9 ساعات استخدام. الرقم ده بيختلف حسب إيه اللي بتعمله على الجهاز وإيه سطوع الشاشة.",
-      "faq.q5": "ينفع ألعاب؟",
-      "faq.a5": "معالج MTK G99 ورام 8 جيجا — يعني ألعاب خفيفة وتطبيقات وفيديو. مش موديل موجه للألعاب التقيلة.",
+      "faq.q5": "ينفع أدفع كاش عند الاستلام؟",
+      "faq.a5": "لأ. صفحة المنتج على أمازون مصر مكتوب عليها «Electronic Payment Only» — المنتج ده غير مؤهل للدفع عند الاستلام. ادفع ببطاقة أو اقسط على عدة شهور مع بنوك مختارة.",
       "faq.q6": "أقدر أرجّعه لو مش عاجبني؟",
       "faq.a6": "الإرجاع حسب سياسة أمازون مصر المطبّقة على المنتج. راجع سياسة الإرجاع على صفحة المنتج قبل ما تشتري.",
       "cta.title": "جاهز تجربته؟",
@@ -242,8 +242,8 @@
       "gal.next": "Next image",
       "gal.close": "Close",
       "gal.label": "Product photo",
-      "trust.cod": "Cash on delivery",
-      "trust.codSub": "Pay at the door",
+      "trust.cod": "Card or instalments",
+      "trust.codSub": "Electronic payment — no cash",
       "trust.delivery": "Fulfilled by Amazon",
       "trust.deliverySub": "Dispatched by Amazon.eg",
       "trust.returns": "Flexible returns",
@@ -363,8 +363,8 @@
       "faq.a3": "The screen is 14.3 inches at 2400×1600 and 400 nits, and it won the 2024 Low Blue Light design award. The display was built with reading in mind.",
       "faq.q4": "How long does the battery last?",
       "faq.a4": "The battery is 10,000mAh and the manufacturer quotes up to 9 hours of use. Real numbers vary with what you're running and the screen brightness.",
-      "faq.q5": "Is it good for games?",
-      "faq.a5": "An MTK G99 with 8GB of RAM — so light games, apps and video. It isn't aimed at heavy titles.",
+      "faq.q5": "Can I pay cash on delivery?",
+      "faq.a5": "No. The Amazon Egypt product page marks this item \"Electronic Payment Only\" — it is not eligible for cash on delivery. Pay by card, or split the payment over several months with select banks.",
       "faq.q6": "Can I return it if I don't like it?",
       "faq.a6": "Returns follow the Amazon.eg policy that applies to this product. Check the return policy on the product page before you buy.",
       "cta.title": "Ready to try it?",
@@ -385,5 +385,9 @@
       "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
       "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second."
     }
+  },
+  "payments": {
+    "cod": false,
+    "verifiedOn": "amazon.eg delivery strip: \"Electronic Payment Only ... not eligible for Cash on Delivery (COD)\""
   }
 }

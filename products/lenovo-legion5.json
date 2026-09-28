@@ -66,8 +66,8 @@
       "gal.next": "الصورة التالية",
       "gal.close": "إغلاق",
       "gal.label": "صورة من المنتج",
-      "trust.cod": "الدفع عند الاستلام",
-      "trust.codSub": "ادفع كاش عند الباب",
+      "trust.cod": "بطاقة أو تقسيط",
+      "trust.codSub": "دفع إلكتروني — من غير كاش",
       "trust.delivery": "شحن من أمازون",
       "trust.deliverySub": "يُشحن بواسطة Amazon.eg مباشرة",
       "trust.returns": "إرجاع مرن",
@@ -186,8 +186,8 @@
       "faq.a3": "لأ، فيه كرت شاشة مستقل NVIDIA GeForce RTX 5060 بـ8 جيجا GDDR7، وده اللي بيخلّي الألعاب تمشي بإعدادات أعلى.",
       "faq.q4": "أقدر أرجّعه لو مش عاجبني؟",
       "faq.a4": "إرجاع حسب سياسة أمازون مصر المطبّقة على المنتج. راجع سياسة الإرجاع على صفحة المنتج قبل ما تشتري.",
-      "faq.q5": "ينفع أدفع عند الاستلام؟",
-      "faq.a5": "الدفع عند الاستلام متاح على أمازون مصر للمنتج. كمان ممكن تدفع أونلاين أو بالتقسيط حسب البنك.",
+      "faq.q5": "ينفع أدفع كاش عند الاستلام؟",
+      "faq.a5": "لأ. صفحة المنتج على أمازون مصر مكتوب عليها «Electronic Payment Only» — المنتج ده غير مؤهل للدفع عند الاستلام. ادفع ببطاقة أو اقسط على عدة شهور مع بنوك مختارة.",
       "faq.q6": "المنتج أصلي وبضمان؟",
       "faq.a6": "المنتج معروض للبيع على أمازون مصر ويُشحن من Amazon.eg، وبذلك بياخد ضمان أمازون. راجع شروط الضمان على صفحة المنتج.",
       "cta.title": "جاهز تلعب على Legion 5؟",
@@ -239,8 +239,8 @@
       "gal.next": "Next image",
       "gal.close": "Close",
       "gal.label": "Product photo",
-      "trust.cod": "Cash on delivery",
-      "trust.codSub": "Pay at the door",
+      "trust.cod": "Card or instalments",
+      "trust.codSub": "Electronic payment — no cash",
       "trust.delivery": "Ships from Amazon",
       "trust.deliverySub": "Dispatched directly by Amazon.eg",
       "trust.returns": "Flexible returns",
@@ -360,7 +360,7 @@
       "faq.q4": "Can I return it if I don't like it?",
       "faq.a4": "Returns follow the Amazon.eg policy that applies to this product. Check the return policy on the product page before you buy.",
       "faq.q5": "Can I pay cash on delivery?",
-      "faq.a5": "Cash on delivery is available on Amazon.eg for this item. You can also pay online or in instalments depending on your bank.",
+      "faq.a5": "No. The Amazon Egypt product page marks this item \"Electronic Payment Only\" — it is not eligible for cash on delivery. Pay by card, or split the payment over several months with select banks.",
       "faq.q6": "Is it genuine and under warranty?",
       "faq.a6": "The product is sold on Amazon.eg and ships from Amazon.eg, so it carries Amazon's warranty. Check the warranty terms on the product page.",
       "cta.title": "Ready to game on the Legion 5?",
@@ -388,5 +388,9 @@
       "NBESEP500",
       "NBESEP250"
     ]
+  },
+  "payments": {
+    "cod": false,
+    "verifiedOn": "amazon.eg delivery strip: \"Electronic Payment Only ... not eligible for Cash on Delivery (COD)\""
   }
 }
