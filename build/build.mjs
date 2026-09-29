@@ -34,14 +34,14 @@ const couponBlock = (p) => {
   const copy = p.dict.ar['offer.copy'];
   const buttons = codes.map((c) => `
             <button type="button" data-copy="${esc(c)}"
-              class="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-start transition hover:border-amber-400/40">
+              class="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-start transition hover:border-cyan-400/40">
               <span class="num text-sm font-black tracking-wider text-white">${esc(c)}</span>
-              <span class="text-[11px] font-bold text-slate-500 transition group-hover:text-amber-300" data-i18n="offer.copy"></span>
+              <span class="text-[11px] font-bold text-slate-500 transition group-hover:text-cyan-300" data-i18n="offer.copy"></span>
             </button>`).join('');
   return `
-        <div class="rounded-3xl border border-amber-400/25 bg-amber-500/[0.06] p-8">
+        <div class="rounded-3xl border border-cyan-400/25 bg-cyan-500/[0.06] p-8">
           <h3 class="flex items-center gap-2 text-base font-extrabold text-white">
-            <svg class="h-5 w-5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 8h20v4H2zM12 3v5M12 3l-2.5 2.5M12 3l2.5 2.5"/></svg>
+            <svg class="h-5 w-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 8h20v4H2zM12 3v5M12 3l-2.5 2.5M12 3l2.5 2.5"/></svg>
             <span data-i18n="offer.couponTitle"></span>
           </h3>
           <p class="mt-2 text-sm text-slate-400" data-i18n="offer.couponSub"></p>
@@ -144,7 +144,15 @@ function render(p) {
     .replaceAll('{{HERO_IMG}}', esc(m.heroImg))
     .replaceAll('{{HERO_ALT}}', esc(m.heroAlt))
     .replaceAll('{{COUPON_BLOCK}}', couponBlock(p))
-    .replaceAll('{{STATS_TILES}}', statsTiles(p));
+    .replaceAll('{{STATS_TILES}}', statsTiles(p))
+    // The buy anchor ships with the tagged URL already in the href. It used to
+    // ship as href="#" and be pointed at the product by app.js at load, which
+    // meant a blocked, slow or failed app.js turned every buy button into a
+    // dead "#" - the click still looked like it worked and the commission was
+    // simply lost. The href is now correct in the HTML and app.js only re-asserts
+    // it. Amazon's operating agreement also requires rel="sponsored" on affiliate
+    // links, which the anchors now carry.
+    .replaceAll('{{BUY_URL}}', esc(url));
 
   const js = tplJs
     .replaceAll('{{PRODUCT_URL}}', url)

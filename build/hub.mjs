@@ -19,6 +19,18 @@ const esc = (s) => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
 
+// The hub used to brand itself "AMAZON.EG" in the header eyebrow, which put a
+// brand the site does not own above its own name, and pushed visitors toward
+// thinking this is an Amazon property. It is not, and the affiliate disclosure
+// below is clearer when the site's own name is what they see. The identity
+// lives here rather than inline so the header, the footer credit and the
+// facebook link cannot drift apart.
+const SITE = {
+  name: 'نظبطهالك',
+  latin: 'NEZABTHALAK',
+  facebook: 'https://www.facebook.com/nezabthalak',
+};
+
 const files = readdirSync('products').filter((f) => f.endsWith('.json'));
 const products = files.map((f) => JSON.parse(readFileSync(`products/${f}`, 'utf8')));
 
@@ -45,18 +57,21 @@ const card = ({ p, price, rating, reviews, inStock, stale }) => {
   const flags = [];
   if (inStock === false) flags.push('<span class="rounded-full border border-rose-400/30 bg-rose-500/10 px-2.5 py-1 text-[11px] font-bold text-rose-300">غير متوفر حالياً</span>');
   else if (inStock === true) flags.push('<span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>');
-  if (stale) flags.push('<span class="rounded-full border border-amber-400/30 bg-amber-500/10 px-2.5 py-1 text-[11px] font-bold text-amber-300">السعر قد يكون متأخر</span>');
+  if (stale) flags.push('<span class="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">السعر قد يكون متأخر</span>');
 
   const rate = rating === null
     ? ''
+    // Gold stars are left gold. A rating is the one thing on the page where
+    // amber reads as a universal signal rather than as brand colour, and
+    // recolouring it to the accent just makes the score look like decoration.
     : `<span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ ${rating.toFixed(1)}</span>`
       + (reviews === null ? '' : `<span class="text-xs text-slate-500">(${reviews.toLocaleString('en-US')})</span>`);
 
   return `
-        <a href="${esc(p.dir)}/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-amber-400/40 hover:bg-ink-800">
+        <a href="${esc(p.dir)}/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
-              <p class="text-[11px] font-bold tracking-widest text-amber-400/80">${esc(cat)}</p>
+              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">${esc(cat)}</p>
               <h2 class="mt-1.5 text-lg font-extrabold text-white">${esc(p.meta.brand)}</h2>
               <p class="text-sm text-slate-400">${esc(p.meta.model)}</p>
             </div>
@@ -66,7 +81,7 @@ const card = ({ p, price, rating, reviews, inStock, stale }) => {
             </span>
           </div>
           <div class="flex flex-wrap items-center gap-2">${flags.join('')}${rate}</div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-amber-300 transition group-hover:gap-2.5">
+          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
             اعرف التفاصيل <span aria-hidden="true">←</span>
           </p>
         </a>`;
@@ -107,14 +122,14 @@ tailwind.config = {
       linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
     background-size: 60px 60px;
   }
-  ::selection { background: #7c3aed; color: #fff; }
+  ::selection { background: #0e7490; color: #fff; }
 </style>
 </head>
 <body class="min-h-screen bg-ink-950 text-slate-200 antialiased">
   <main class="gridlines">
     <div class="mx-auto max-w-5xl px-6 py-16 sm:py-24">
       <header class="mb-12">
-        <p class="text-xs font-bold tracking-[0.3em] text-amber-400">AMAZON.EG</p>
+        <p class="text-xs font-bold tracking-[0.3em] text-cyan-400">${esc(SITE.latin)}</p>
         <h1 class="mt-4 text-3xl font-black leading-tight text-white sm:text-5xl">
           كل المنتجات في مكان واحد
         </h1>
@@ -122,6 +137,11 @@ tailwind.config = {
           ${rows.length} منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة وأكواد خصم
           بطاقات البنك الأهلي. الأسعار متزامنة من أمازون مصر كل 4 ساعات.
         </p>
+        <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer"
+           class="mt-6 inline-flex items-center gap-2.5 rounded-2xl border border-cyan-400/25 bg-cyan-500/10 px-5 py-3 text-sm font-extrabold text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+          تابع صفحة ${esc(SITE.name)} على فيسبوك
+        </a>
       </header>
 
       <div class="grid gap-5 sm:grid-cols-2">
@@ -130,8 +150,12 @@ ${rows.map(card).join('\n')}
 
       <footer class="mt-14 border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
         <p>
- الأسعار والمخزون مأخوذة من صفحات أمازون مصر وقد تتغير في أي وقت — وكل صفحة تعرض
- آخر قيمة تم جلبها ومتى تم تحديثها. أكواد الخصم تعمل على بطاقات NBE المؤهلة فقط.
+  الأسعار والمخزون مأخوذة من صفحات أمازون مصر وقد تتغير في أي وقت — وكل صفحة تعرض
+  آخر قيمة تم جلبها ومتى تم تحديثها. أكواد الخصم تعمل على بطاقات NBE المؤهلة فقط.
+        </p>
+        <p class="mt-4">
+  الموقع ده من إعداد <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer" class="font-bold text-cyan-400 transition hover:text-cyan-300">${esc(SITE.name)}</a>.
+  المنتجات المعروضة من أمازون مصر،   وأنا مش مسؤول عن أي بيعة بتتم على أمازون.
         </p>
       </footer>
     </div>

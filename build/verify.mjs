@@ -139,6 +139,44 @@ for (const p of all) {
     }
   }
 
+  // ---- affiliate wiring ----
+  // The commission is the entire point of these pages, so the tag must survive
+  // on the HTML itself, not only in the JS that rewrites the anchors at load.
+  // A blocked or slow app.js used to leave every buy button pointing at "#":
+  // the click still looked like it worked and the order was simply lost.
+  {
+    const url = p.affiliateTag
+      ? `https://www.amazon.eg/dp/${p.asin}?tag=${encodeURIComponent(p.affiliateTag)}`
+      : `https://www.amazon.eg/dp/${p.asin}`;
+    const anchors = [...html.matchAll(/<a\b[^>]*data-buy[^>]*>/g)].map((m) => m[0]);
+    check('page has buy anchors', anchors.length > 0, 'no data-buy anchor found');
+    const noHref = anchors.filter((a) => !/href="https?:\/\//.test(a));
+    check('every buy anchor has a real http href in the HTML', noHref.length === 0,
+      `${noHref.length} anchor(s) still ship a placeholder href, e.g. ${noHref[0]?.slice(0, 70)}`);
+    const untagged = anchors.filter((a) => p.affiliateTag && !a.includes(p.affiliateTag));
+    check('every buy anchor carries the affiliate tag', untagged.length === 0,
+      `${untagged.length} anchor(s) have no tag=${p.affiliateTag}`);
+    const wrongAsin = anchors.filter((a) => /amazon\.eg\/dp\//.test(a) && !a.includes(`/dp/${p.asin}`));
+    check('every buy anchor points at this product', wrongAsin.length === 0,
+      `${wrongAsin.length} anchor(s) point at another ASIN`);
+    // Amazon's operating agreement requires rel="sponsored" on affiliate links.
+    const noRel = anchors.filter((a) => !/rel="[^"]*\bsponsored\b/.test(a));
+    check('every buy anchor has rel="sponsored"', noRel.length === 0,
+      `${noRel.length} anchor(s) missing it - required by Amazon Associates`);
+    const noBlank = anchors.filter((a) => !/target="_blank"/.test(a));
+    check('every buy anchor opens in a new tab', noBlank.length === 0, `${noBlank.length} anchor(s) missing target="_blank"`);
+    // A visitor must not be able to reach Amazon by a route that skips the tag.
+    const untaggedAmazon = [...html.matchAll(/href="(https?:\/\/[^"]*amazon\.eg[^"]*)"/gi)]
+      .map((m) => m[1])
+      .filter((h) => !h.includes('tag='));
+    check('no untagged amazon link anywhere on the page', untaggedAmazon.length === 0,
+      untaggedAmazon.slice(0, 3).join(', '));
+    // The scraper must stay tag-free or our own refreshes would be attributed
+    // to the account and could look like self-referral.
+    const pj = JSON.parse(readFileSync(join(p.dir, 'price.json'), 'utf8'));
+    check('price.json url carries no affiliate tag', !/tag=/.test(pj.url || ''), pj.url);
+  }
+
   // A review card must never claim to be a customer quote unless the string is
   // an actual spec. The g309 dict shipped three quotes attributed to "verified
   // buyer" with star ratings that were not on the Amazon page - fabricated
@@ -178,7 +216,16 @@ console.log('\n=== root hub ===');
       const hits = hrefs.filter((h) => h === `${p.dir}/`).length;
       check(`root links to ${p.dir}/ exactly once`, hits === 1, `found ${hits}`);
     }
-    check('root links to nothing but products', hrefs.every((h) => all.some((p) => h === `${p.dir}/`)), hrefs.join(', '));
+    // The hub now carries the site's own facebook link in the header and in the
+    // footer credit, so "only products" is no longer the whole rule. The point
+    // of the original check was that a stray internal link would make a product
+    // unreachable or a dead path linger; off-site links are legitimate. Allow
+    // them, but still reject any internal href that is not a real product.
+    const external = hrefs.filter((h) => /^(https?:)?\/\//.test(h));
+    check('root external links are safe', external.every((h) => /^https:\/\//.test(h) && !/tag=zoq-21/.test(h)), external.join(', '));
+    const internal = hrefs.filter((h) => !/^(https?:)?\/\//.test(h) && !h.startsWith('#'));
+    check('root internal links are only products', internal.every((h) => all.some((p) => h === `${p.dir}/`)), internal.join(', '));
+    check('root has no affiliate tag on any link', !/tag=zoq-21/.test(hub));
 
     for (const t of ['section', 'div', 'a', 'header', 'footer']) {
       const o = (hub.match(new RegExp(`<${t}[\\s>]`, 'g')) || []).length;
