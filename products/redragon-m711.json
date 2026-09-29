@@ -38,6 +38,7 @@
       "nav.tagline": "M711 · أسود",
       "nav.specs": "المواصفات",
       "nav.connect": "سلكي ولا لاسلكي",
+      "nav.aud": "مين ليه",
       "nav.offer": "السعر والشراء",
       "nav.faq": "أسئلة شائعة",
       "nav.buy": "اشترِ الآن",
@@ -205,12 +206,24 @@
       "offer.copy": "نسخ",
       "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
       "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
-      "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني)."
+      "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني).",
+      "aud.eyebrow": "مين الجهاز ده ليه",
+      "aud.title": "اللي هيفيد معاه M711",
+      "aud.sub": "سبعة أزرار وإضاءة RGB بسعر أقل من 800 جنيه، لكل من عايز يتحكم أكتر",
+      "aud.a1t": "اللي بيلعب ألعاب الاستراتيجية",
+      "aud.a1b": "الألعاب اللي فيها أوامر كتير محتاجة أزرار جانبية. السبعة أزرار بتوفّر عليك الرجوع للكيبورد في نص الجولة وبتديك تحكم أدق.",
+      "aud.a2t": "اللي بيتعلم ماوس جديد",
+      "aud.a2b": "لو بتتنقل لماوس جديد، هتلاقي سبعة أزرار تقدر تربطها بوظائف مختلفة من غير ما تدفع سعر الماوسات المتخصصة.",
+      "aud.a3t": "اللي على لابتوب",
+      "aud.a3b": "سلكي عبر USB وبيشتغل على أي لابتوب فيه منفذ عادي. وبما إنه سلكي، ما فيش بطارية بتنتهي ولا انت بتستنى الشحن في نص الشغل.",
+      "aud.a4t": "اللي عايز شكل مميز على مكتبه",
+      "aud.a4b": "إضاءة RGB قابلة للتخصيص بتدي شكل مميز على المكتب وبتكمّل أي تجهيز، سواء في جولة أو في صورة على السوشيال ميديا."
     },
     "en": {
       "nav.tagline": "M711 · Black",
       "nav.specs": "Specs",
       "nav.connect": "Wired vs Wireless",
+      "nav.aud": "Who for",
       "nav.offer": "Price & Buy",
       "nav.faq": "FAQ",
       "nav.buy": "Buy Now",
@@ -378,7 +391,18 @@
       "offer.copy": "Copy",
       "offer.couponTitle": "10% off with NBE cards",
       "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
-      "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second."
+      "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second.",
+      "aud.eyebrow": "Who it is for",
+      "aud.title": "Who the M711 suits",
+      "aud.sub": "Seven buttons and RGB backlighting under EGP 800, for anyone who wants more control",
+      "aud.a1t": "Strategy game players",
+      "aud.a1b": "Games with a lot of commands need side buttons. The seven keys save you reaching for the keyboard mid-round and give you tighter control.",
+      "aud.a2t": "People moving to a new mouse",
+      "aud.a2b": "Switching to a new mouse, you get seven mappable buttons to assign real functions without paying specialist prices.",
+      "aud.a3t": "Laptop users",
+      "aud.a3b": "Wired over USB, it works with any laptop that has a normal port. Being wired, there is no battery to die and no waiting on a charge mid-session.",
+      "aud.a4t": "Anyone who wants a distinctive desk",
+      "aud.a4b": "Customisable RGB backlighting gives the setup some character, whether it is a match or a photo for social."
     }
   },
   "coupon": {
@@ -390,5 +414,21 @@
   "payments": {
     "cod": true,
     "verifiedOn": "amazon.eg delivery strip: \"Cash on Delivery\""
-  }
+  },
+  "stats": [
+    {
+      "v": "12400",
+      "comma": true
+    },
+    {
+      "v": "7",
+      "suffix": " أزرار"
+    },
+    {
+      "text": "USB"
+    },
+    {
+      "text": "RGB"
+    }
+  ]
 }

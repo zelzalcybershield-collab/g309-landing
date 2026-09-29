@@ -14,6 +14,7 @@ const dict = {
     "nav.tagline": "THIN 15 · رمادي",
     "nav.specs": "المواصفات",
     "nav.connect": "الشاشة والأداء",
+    "nav.aud": "مين ليه",
     "nav.offer": "السعر والشراء",
     "nav.faq": "أسئلة شائعة",
     "nav.buy": "اشترِ الآن",
@@ -181,12 +182,24 @@ const dict = {
     "offer.copy": "نسخ",
     "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
     "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
-    "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني)."
+    "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني).",
+    "aud.eyebrow": "مين الجهاز ده ليه",
+    "aud.title": "اللي هيفيد معاه Thin 15",
+    "aud.sub": "كارت شاشة مستقل وشاشة 144 هرتز في لابتوب خفيف، نقطة التوازن بين الألعاب والشغل",
+    "aud.a1t": "اللي بيلعب وبيتعلم",
+    "aud.a1b": "كارت RTX 3050 مستقل يعني الألعاب بتشتغل بإعدادات أعلى من الكروت المدمجة. وشاشة 144 هرتز بتخلي الحركة أنعم بشكل واضح في أي لعبة.",
+    "aud.a2t": "اللي بيشتغل على محتوى خفيف",
+    "aud.a2b": "معالج i7 بعشرة نوى ورام 16 جيجا كفاية لتعديل الصور والفيديوهات القصير، ولتشغيل تطبيقات كتير في نفس الوقت.",
+    "aud.a3t": "الطالب اللي عايز جهاز واحد",
+    "aud.a3b": "جهاز واحد بيعمل الحاجة: بياخد معاك زي اللابتوب، ويلعب برضه بعد ما تخلص شغلك أو محاضراتك.",
+    "aud.a4t": "اللي بيدور على 144 هرتز بسعر معقول",
+    "aud.a4b": "شاشة بتردد عالي وكارت مستقل في نفس الفئة السعرية. لو بتلعب وشاشتك 60 هرتز، الانتقال لـ144 هرتز أوضح فرق ممكن تشوفه."
   },
   "en": {
     "nav.tagline": "THIN 15 · Gray",
     "nav.specs": "Specs",
     "nav.connect": "Display & Performance",
+    "nav.aud": "Who for",
     "nav.offer": "Price & Buy",
     "nav.faq": "FAQ",
     "nav.buy": "Buy Now",
@@ -354,7 +367,18 @@ const dict = {
     "offer.copy": "Copy",
     "offer.couponTitle": "10% off with NBE cards",
     "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
-    "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second."
+    "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second.",
+    "aud.eyebrow": "Who it is for",
+    "aud.title": "Who the Thin 15 suits",
+    "aud.sub": "A discrete GPU and a 144Hz panel in a light laptop, the balance point between gaming and work",
+    "aud.a1t": "Players who also study",
+    "aud.a1b": "A discrete RTX 3050 runs games at higher settings than integrated graphics. The 144Hz panel makes motion visibly smoother in any game.",
+    "aud.a2t": "Light content creation",
+    "aud.a2b": "A 10-core i7 with 16GB of RAM is enough for photo edits, short video, and running a lot of apps at once.",
+    "aud.a3t": "Students who want one machine",
+    "aud.a3b": "One device that does both jobs: it carries like a laptop, and it still games once the work or lectures are done.",
+    "aud.a4t": "Anyone after 144Hz at a fair price",
+    "aud.a4b": "A high-refresh panel and a discrete GPU in the same price band. If you game on a 60Hz screen, moving to 144Hz is the clearest upgrade you can see."
   }
 };
 

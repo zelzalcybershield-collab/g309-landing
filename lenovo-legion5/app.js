@@ -14,6 +14,7 @@ const dict = {
     "nav.tagline": "LEGION 5 · أسود",
     "nav.specs": "المواصفات",
     "nav.connect": "الأداء الرسومي",
+    "nav.aud": "مين ليه",
     "nav.offer": "السعر والشراء",
     "nav.faq": "أسئلة شائعة",
     "nav.buy": "اشترِ الآن",
@@ -181,12 +182,24 @@ const dict = {
     "offer.copy": "نسخ",
     "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
     "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
-    "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني)."
+    "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني).",
+    "aud.eyebrow": "مين الجهاز ده ليه",
+    "aud.title": "اللي هيفيد معاه Legion 5",
+    "aud.sub": "عشرين نواة وكارت 8 جيجا GDDR7 ورام 32 جيجا، لمن محتاج أعلى مستوى في فئته",
+    "aud.a1t": "اللي بيلعب ألعاب 2025 و2026",
+    "aud.a1b": "كارت RTX 5060 بـ8 جيجا GDDR7 مش كارت إعدادات منخفضة. ده بيخلي الألعاب الحديثة تشتغل على إعدادات عالية مع معدل إطارات ثابت.",
+    "aud.a2t": "اللي بيعمل مونتاج أو شغل بيحتاج كارت شاشة",
+    "aud.a2b": "نفس الكارت بيقوّي شغل المونتاج والتصميم والمعالجة. وقبل كده، عشرين نواة ورام 32 جيجا معناها برامج كتير مع بعض من غير ما الجهاز يهنج.",
+    "aud.a3t": "اللي بيعمل شغل ويلعب",
+    "aud.a3b": "لو شغلك بياخد يوم كامل وعايز تلعب بعده، الجهاز ده بيعمل الاتنين: أداء عالي في الشغل، ونفس الأداء في الألعاب بعدين.",
+    "aud.a4t": "اللي عايز جهاز يخدمه سنين",
+    "aud.a4b": "رام 32 جيجا وهارد 1 تيرا مواصفات مش بتخلص بسرعة. جهاز واحد يقدر يغطي الشغل والدراسة والألعاب مع بعض."
   },
   "en": {
     "nav.tagline": "LEGION 5 · Black",
     "nav.specs": "Specs",
     "nav.connect": "Graphics",
+    "nav.aud": "Who for",
     "nav.offer": "Price & Buy",
     "nav.faq": "FAQ",
     "nav.buy": "Buy Now",
@@ -354,7 +367,18 @@ const dict = {
     "offer.copy": "Copy",
     "offer.couponTitle": "10% off with NBE cards",
     "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
-    "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second."
+    "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second.",
+    "aud.eyebrow": "Who it is for",
+    "aud.title": "Who the Legion 5 suits",
+    "aud.sub": "20 cores, 8GB of GDDR7 graphics and 32GB of RAM, for whoever needs the top of this class",
+    "aud.a1t": "Players on 2025 and 2026 titles",
+    "aud.a1b": "An RTX 5060 with 8GB of GDDR7 is not a low-settings card. It keeps modern games at high settings with a steady frame rate.",
+    "aud.a2t": "Anyone doing video or GPU work",
+    "aud.a2b": "The same GPU speeds up editing, design and rendering. Before that, 20 cores and 32GB of RAM mean a lot of programs can run at once without the machine stalling.",
+    "aud.a3t": "People who work then play",
+    "aud.a3b": "If work takes the whole day and you still want to game after, this does both: full performance on the job, and the same performance on the games.",
+    "aud.a4t": "Anyone who wants one machine for years",
+    "aud.a4b": "32GB of RAM and a 1TB SSD are not specs that run out quickly. One machine can cover work, study and gaming together."
   }
 };
 

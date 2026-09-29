@@ -14,6 +14,7 @@ const dict = {
     "nav.tagline": "NXTPAPER · رمادي",
     "nav.specs": "المواصفات",
     "nav.connect": "العلبة والمحتويات",
+    "nav.aud": "مين ليه",
     "nav.offer": "السعر والشراء",
     "nav.faq": "أسئلة شائعة",
     "nav.buy": "اشترِ الآن",
@@ -181,12 +182,24 @@ const dict = {
     "offer.copy": "نسخ",
     "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
     "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
-    "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني)."
+    "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني).",
+    "aud.eyebrow": "مين الجهاز ده ليه",
+    "aud.title": "اللي هيفيد معاه Nxtpaper 14",
+    "aud.sub": "تابلت بمواصفات لابتوب وحاجات في العلبة، مصمم للقراءة والدراسة والفيديو",
+    "aud.a1t": "اللي بيذاكر وبيقرا كتير",
+    "aud.a1b": "شاشة 2.4K وسطوع 400 نيت وتصميم يقلل الضوء الأزرق. الفايدة الحقيقية إن النص بيبقى واضح من غير إجهاد، وده بيفرق في جلسة مذاكرة طويلة.",
+    "aud.a2t": "الطلاب",
+    "aud.a2b": "في العلبة كيبورد لاسلكي وقلم نشط، فالجهاز بيشتغل زي لابتوب صغير من غير ما تدفع ثمن لابتوب كامل. للملاحظات وملفات PDF والعروض التقديمية هيكفي جداً.",
+    "aud.a3t": "اللي محتاج جهاز للدراسة والكورسات",
+    "aud.a3b": "بطارية 10,000 مللي أمبير لحد 9 ساعات استخدام، فتقدر تاخده معاك في الكلية أو في سفرة من غير ما تفضل تطالع البطارية.",
+    "aud.a4t": "اللي عايز جهاز للعائلة",
+    "aud.a4b": "مفيش شريحة اتصالات، فأسهل في الاستخدام مع الأطفال، وفي نفس الوقت بيشتغل كويس للفيديو والكورسات. وشاشته ضد الانعكاس بتريح العين."
   },
   "en": {
     "nav.tagline": "NXTPAPER · Gray",
     "nav.specs": "Specs",
     "nav.connect": "What's in the box",
+    "nav.aud": "Who for",
     "nav.offer": "Price & Buy",
     "nav.faq": "FAQ",
     "nav.buy": "Buy Now",
@@ -354,7 +367,18 @@ const dict = {
     "offer.copy": "Copy",
     "offer.couponTitle": "10% off with NBE cards",
     "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
-    "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second."
+    "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second.",
+    "aud.eyebrow": "Who it is for",
+    "aud.title": "Who the Nxtpaper 14 suits",
+    "aud.sub": "A tablet with laptop specs and the accessories in the box, built for reading, study and video",
+    "aud.a1t": "Heavy readers and studiers",
+    "aud.a1b": "A 2.4K screen at 400 nits with a low-blue-light design. The real gain is text that stays readable without strain, which shows up over a long study session.",
+    "aud.a2t": "Students",
+    "aud.a2b": "The box includes a wireless keyboard and an active pen, so it behaves like a small laptop without the price of one. Plenty for notes, PDFs and presentations.",
+    "aud.a3t": "Anyone who needs a study or course device",
+    "aud.a3b": "A 10,000mAh battery for up to 9 hours of use means you can carry it to class or on a trip without watching the battery the whole time.",
+    "aud.a4t": "A family device",
+    "aud.a4b": "There is no SIM tray, which makes it easier to hand to children, and it still handles video and courses well. The anti-glare screen is easier on the eyes too."
   }
 };
 

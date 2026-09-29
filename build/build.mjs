@@ -53,6 +53,25 @@ const couponBlock = (p) => {
 
 const jstr = (s) => JSON.stringify(String(s));
 
+// Renders the four quick-stat tiles. A stat with `v` counts up like before; a
+// stat with `text` (Wi-Fi 6E, USB, RGB, 2.4K) is printed as-is, because
+// countUp() would paint NaN on a non-numeric value.
+const statsTiles = (p) => {
+  const labels = ['k.weight', 'k.dpi', 'k.batt', 'k.btns'];
+  const subs = ['k.weightSub', 'k.dpiSub', 'k.battSub', 'k.btnsSub'];
+  return p.stats.map((s, i) => {
+    const num = 'text' in s
+      ? `<span class="num">${esc(s.text)}</span>`
+      : `<span class="num" data-count="${esc(s.v)}"${s.suffix ? ` data-suffix="${esc(s.suffix)}"` : ''}${s.comma ? ' data-format="comma"' : ''}>0</span>`;
+    return `
+      <div class="rounded-2xl border border-white/10 bg-gradient-to-b from-ink-850 to-ink-900 p-7 text-center">
+        <p class="text-4xl font-black text-white">${num}</p>
+        <p class="mt-2 text-sm font-bold text-slate-300" data-i18n="${labels[i]}"></p>
+        <p class="mt-1 text-xs text-slate-500" data-i18n="${subs[i]}"></p>
+      </div>`;
+  }).join('\n');
+};
+
 function fail(msg) { console.error(`  ERROR: ${msg}`); process.exitCode = 1; }
 
 function render(p) {
@@ -82,6 +101,25 @@ function render(p) {
   const imgs = p.images?.gallery || [];
   if (!imgs.length) return { err: 'images.gallery is empty' };
 
+  // The four big quick-stat numbers used to be hardcoded in template.html as
+  // 86g / 25000 / 300+ / 6 - the G309 mouse's weight, DPI, battery hours and
+  // button count. Every other page inherited them, so the laptop pages shipped
+  // "86g" above a 15.6" screen and "25,000" above a 1-year warranty. The
+  // numbers are now data like the labels beside them.
+  const stats = p.stats || [];
+  if (stats.length !== 4) return { err: `stats must have exactly 4 entries, got ${stats.length}` };
+  const badStat = stats.find((s) => !s || (!('text' in s) && !('v' in s)));
+  if (badStat) return { err: `each stat needs a "v" (number) or "text" (literal): ${JSON.stringify(badStat)}` };
+  // a stat that animates must be a real number, or countUp() paints NaN
+  const badNum = stats.find((s) => 'v' in s && !Number.isFinite(Number(s.v)));
+  if (badNum) return { err: `stat.v must be numeric, or use "text" instead: ${JSON.stringify(badNum)}` };
+  // labels come from these keys positionally, so the two must stay in step
+  const statLabels = ['k.weight', 'k.dpi', 'k.batt', 'k.btns'];
+  const statSubs = ['k.weightSub', 'k.dpiSub', 'k.battSub', 'k.btnsSub'];
+  for (const key of [...statLabels, ...statSubs]) {
+    if (!p.dict.ar?.[key]) return { err: `dict.ar.${key} is required — the stat tiles label themselves with it` };
+  }
+
   // The buy button carries the affiliate tag; the price scraper deliberately
   // does not (see scripts/update-price.mjs), so scraping never touches the
   // affiliate account.
@@ -105,7 +143,8 @@ function render(p) {
     .replaceAll('{{SIZE}}', esc(m.size))
     .replaceAll('{{HERO_IMG}}', esc(m.heroImg))
     .replaceAll('{{HERO_ALT}}', esc(m.heroAlt))
-    .replaceAll('{{COUPON_BLOCK}}', couponBlock(p));
+    .replaceAll('{{COUPON_BLOCK}}', couponBlock(p))
+    .replaceAll('{{STATS_TILES}}', statsTiles(p));
 
   const js = tplJs
     .replaceAll('{{PRODUCT_URL}}', url)

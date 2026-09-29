@@ -14,6 +14,7 @@ const dict = {
     "nav.tagline": "LIGHTSPEED · أبيض",
     "nav.specs": "المواصفات",
     "nav.connect": "الاتصال",
+    "nav.aud": "مين ليه",
     "nav.offer": "السعر والشراء",
     "nav.faq": "أسئلة شائعة",
     "nav.buy": "اشترِ الآن",
@@ -181,12 +182,24 @@ const dict = {
     "footer.l2": "محتويات العلبة",
     "footer.l3": "تقييمات العملاء",
     "footer.disclaimer": "الأسعار والأرقام قابلة للتغيير حسب التوفر والعروض. شعار Logitech علامة تجارية مسجلة.",
-    "footer.madeBy": "صفحة هبوط · AR / EN"
+    "footer.madeBy": "صفحة هبوط · AR / EN",
+    "aud.eyebrow": "مين الجهاز ده ليه",
+    "aud.title": "اللي هيفيد معاه G309",
+    "aud.sub": "ماوس واحد بيخدم أكتر من حالة، من الجولة التنافسية لجلسة الشغل الطويلة",
+    "aud.a1t": "اللي بيلعب كل يوم",
+    "aud.a1b": "لو الجولة عندك يومية، الفارق الحقيقي هو البطارية: 300 ساعة على بطارية AA واحدة يعني ما فيش استراحة للشحن. وبوزن 86 جرام بتلاقي إيدك مرتاحة من أول ساعة لآخر ساعة.",
+    "aud.a2t": "اللي بيشتغل على الكمبيوتر",
+    "aud.a2b": "ماوس لاسلكي نضيف على المكتب من غير كابل، ومقاسه مناسب للاستخدام الطويل. لو شغلك على الكمبيوتر يوم كامل، دي راحة حقيقية مش رفاهية.",
+    "aud.a3t": "اللي على لابتوب متنقل",
+    "aud.a3b": "يشتغل لاسلكي عبر منفذ USB، فتفضل الماوس على المكتب وتفضل انت متحرك من غير ما تشيل الكابل. وبنفس الماوس على الكمبيوتر والماك ولينكس.",
+    "aud.a4t": "اللي بيدور على أول ماوس محترم",
+    "aud.a4b": "25,000 نقطة حساسية ومحرك Lightforce هيدوك تحكم أدق من أي ماوس مبتدئ. لو بتتعلم تهدق، ده قفزة محسوسة من أول يوم."
   },
   "en": {
     "nav.tagline": "LIGHTSPEED · White",
     "nav.specs": "Specs",
     "nav.connect": "Connectivity",
+    "nav.aud": "Who for",
     "nav.offer": "Price & Buy",
     "nav.faq": "FAQ",
     "nav.buy": "Buy now",
@@ -354,7 +367,18 @@ const dict = {
     "footer.l2": "What's in the box",
     "footer.l3": "Customer reviews",
     "footer.disclaimer": "Prices and figures may change with availability and offers. Logitech is a registered trademark.",
-    "footer.madeBy": "Landing page · AR / EN"
+    "footer.madeBy": "Landing page · AR / EN",
+    "aud.eyebrow": "Who it is for",
+    "aud.title": "Who the G309 suits",
+    "aud.sub": "One mouse covering more than one case, from competitive matches to long work sessions",
+    "aud.a1t": "Daily players",
+    "aud.a1b": "If you play every day the real difference is the battery: 300 hours on a single AA cell means no charging breaks. At 86g your hand stays comfortable from the first hour to the last.",
+    "aud.a2t": "People who work on a computer",
+    "aud.a2b": "A clean wireless mouse with no cable across the desk, in a shape built for long sessions. If your computer work runs all day, that comfort is real, not a luxury.",
+    "aud.a3t": "Laptop users on the move",
+    "aud.a3b": "It runs wirelessly over USB, so the mouse stays on the desk while you move around untethered. The same mouse works on PC, Mac and Linux.",
+    "aud.a4t": "Anyone buying a first serious mouse",
+    "aud.a4b": "25,000 DPI and a Lightforce sensor give you noticeably finer control than a beginner mouse. If you are still learning to aim, this is a step up you feel on day one."
   }
 };
 

@@ -77,6 +77,7 @@ tailwind.config = {
       <div class="hidden items-center gap-1 lg:flex">
         <a href="#specs"   data-i18n="nav.specs"   class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/5 hover:text-white"></a>
         <a href="#connect" data-i18n="nav.connect" class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/5 hover:text-white"></a>
+      <a href="#aud"     data-i18n="nav.aud"     class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/5 hover:text-white"></a>
         <a href="#offer"   data-i18n="nav.offer"   class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/5 hover:text-white"></a>
         <a href="#faq"     data-i18n="nav.faq"     class="rounded-lg px-3 py-2 text-sm font-semibold text-slate-300 transition hover:bg-white/5 hover:text-white"></a>
       </div>
@@ -260,23 +261,27 @@ tailwind.config = {
 <section class="py-20 sm:py-24">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="grid grid-cols-2 gap-6 lg:grid-cols-4">
+
       <div class="rounded-2xl border border-white/10 bg-gradient-to-b from-ink-850 to-ink-900 p-7 text-center">
-        <p class="text-4xl font-black text-white"><span class="num" data-count="86" data-suffix="g">0</span></p>
+        <p class="text-4xl font-black text-white"><span class="num" data-count="20" data-suffix=" نواة">0</span></p>
         <p class="mt-2 text-sm font-bold text-slate-300" data-i18n="k.weight"></p>
         <p class="mt-1 text-xs text-slate-500" data-i18n="k.weightSub"></p>
       </div>
+
       <div class="rounded-2xl border border-white/10 bg-gradient-to-b from-ink-850 to-ink-900 p-7 text-center">
-        <p class="text-4xl font-black text-white"><span class="num" data-count="25000" data-format="comma">0</span></p>
+        <p class="text-4xl font-black text-white"><span class="num" data-count="32" data-suffix="GB DDR5">0</span></p>
         <p class="mt-2 text-sm font-bold text-slate-300" data-i18n="k.dpi"></p>
         <p class="mt-1 text-xs text-slate-500" data-i18n="k.dpiSub"></p>
       </div>
+
       <div class="rounded-2xl border border-white/10 bg-gradient-to-b from-ink-850 to-ink-900 p-7 text-center">
-        <p class="text-4xl font-black text-white"><span class="num" data-count="300" data-suffix="+">0</span></p>
+        <p class="text-4xl font-black text-white"><span class="num" data-count="8" data-suffix="GB GDDR7">0</span></p>
         <p class="mt-2 text-sm font-bold text-slate-300" data-i18n="k.batt"></p>
         <p class="mt-1 text-xs text-slate-500" data-i18n="k.battSub"></p>
       </div>
+
       <div class="rounded-2xl border border-white/10 bg-gradient-to-b from-ink-850 to-ink-900 p-7 text-center">
-        <p class="text-4xl font-black text-white"><span class="num" data-count="6">0</span></p>
+        <p class="text-4xl font-black text-white"><span class="num" data-count="1" data-suffix="TB SSD">0</span></p>
         <p class="mt-2 text-sm font-bold text-slate-300" data-i18n="k.btns"></p>
         <p class="mt-1 text-xs text-slate-500" data-i18n="k.btnsSub"></p>
       </div>
@@ -728,6 +733,48 @@ tailwind.config = {
   </div>
 </section>
 
+<!-- ===================== WHO IS IT FOR ===================== -->
+<section id="aud" class="scroll-mt-28 border-y border-white/5 bg-ink-900/40 py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-cyan-400" data-i18n="aud.eyebrow"></p>
+      <h2 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl" data-i18n="aud.title"></h2>
+      <p class="mt-4 text-lg text-slate-400" data-i18n="aud.sub"></p>
+    </div>
+
+    <div class="mt-16 grid gap-5 sm:grid-cols-2">
+      <div class="rounded-2xl border border-white/10 bg-ink-950 p-7 transition hover:border-cyan-400/30">
+        <div class="grid h-11 w-11 place-items-center rounded-xl bg-cyan-500/15 text-cyan-400">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-extrabold text-white" data-i18n="aud.a1t"></h3>
+        <p class="mt-2.5 leading-relaxed text-slate-400" data-i18n="aud.a1b"></p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-950 p-7 transition hover:border-cyan-400/30">
+        <div class="grid h-11 w-11 place-items-center rounded-xl bg-emerald-500/15 text-emerald-400">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-extrabold text-white" data-i18n="aud.a2t"></h3>
+        <p class="mt-2.5 leading-relaxed text-slate-400" data-i18n="aud.a2b"></p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-950 p-7 transition hover:border-cyan-400/30">
+        <div class="grid h-11 w-11 place-items-center rounded-xl bg-violet-500/15 text-violet-400">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-extrabold text-white" data-i18n="aud.a3t"></h3>
+        <p class="mt-2.5 leading-relaxed text-slate-400" data-i18n="aud.a3b"></p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-ink-950 p-7 transition hover:border-cyan-400/30">
+        <div class="grid h-11 w-11 place-items-center rounded-xl bg-amber-500/15 text-amber-400">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg>
+        </div>
+        <h3 class="mt-5 text-lg font-extrabold text-white" data-i18n="aud.a4t"></h3>
+        <p class="mt-2.5 leading-relaxed text-slate-400" data-i18n="aud.a4b"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== FINAL CTA ===================== -->
 <section class="px-4 pb-24 sm:px-6 sm:pb-32 lg:px-8">
   <div class="relative mx-auto max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-700/40 via-ink-850 to-cyan-700/30 px-6 py-16 text-center sm:px-16">
@@ -764,6 +811,7 @@ tailwind.config = {
         <ul class="mt-4 space-y-2.5 text-sm text-slate-400">
           <li><a href="#specs"   data-i18n="nav.specs"   class="transition hover:text-white"></a></li>
           <li><a href="#connect" data-i18n="nav.connect" class="transition hover:text-white"></a></li>
+        <li><a href="#aud"     data-i18n="nav.aud"     class="transition hover:text-white"></a></li>
           <li><a href="#offer"   data-i18n="nav.offer"   class="transition hover:text-white"></a></li>
           <li><a href="#faq"     data-i18n="nav.faq"     class="transition hover:text-white"></a></li>
         </ul>

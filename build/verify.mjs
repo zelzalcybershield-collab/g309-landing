@@ -201,5 +201,66 @@ console.log('\n=== root hub ===');
   }
 }
 
+/* The four quick-stat numbers used to be hardcoded in template.html as
+ * 86g / 25000 / 300+ / 6, which are the G309 mouse's weight, DPI, battery
+ * hours and button count. Only the labels beside them were data, so all five
+ * laptop and tablet pages inherited them: a laptop shipped showing "86g" over
+ * a 15.6 inch screen and "25,000" over a 1-year warranty. They now come from
+ * p.stats, and these checks keep them honest:
+ *   - the number rendered must be the number in the data
+ *   - a "v" stat must be numeric, or the count-up animation paints NaN; a
+ *     non-numeric value ("6E", "USB", "2.4K") has to be declared as text
+ *   - the same value+suffix must not appear on two products, which is the
+ *     signature of the copy-paste that caused this in the first place
+ */
+{
+  const LABEL = ['k.weight', 'k.dpi', 'k.batt', 'k.btns'];
+  const seen = new Map();
+  for (const p of all) {
+    const stats = p.stats || [];
+    check(`${p.slug}: four stat tiles declared`, stats.length === 4, `got ${stats.length}`);
+    if (stats.length !== 4) continue;
+
+    const page = readFileSync(join(p.dir, 'index.html'), 'utf8');
+    // each tile reads: <p class="text-4xl...">NUMBER</p><p ... data-i18n="k.X">
+    // so walk backwards from the label rather than collecting data-count
+    // globally - a "text" stat renders no data-count at all and would shift
+    // every later tile by one
+    const rendered = LABEL.map((key) => {
+      const at = page.indexOf(`data-i18n="${key}"`);
+      if (at < 0) return null;
+      const before = page.slice(Math.max(0, at - 600), at);
+      const box = before.lastIndexOf('<p class="text-4xl');
+      if (box < 0) return null;
+      const inner = before.slice(box);
+      return {
+        literal: (inner.match(/<span class="num">([^<]*)<\/span>/) || [])[1],
+        count: (inner.match(/data-count="([^"]*)"/) || [])[1],
+        attrs: (inner.match(/data-count="[^"]*"([^>]*)>/) || ['', ''])[1],
+      };
+    });
+
+    stats.forEach((s, i) => {
+      const t = rendered[i];
+      const label = `stat ${i + 1} of ${p.slug}`;
+      if (!t) { check(`${label} rendered`, false, 'tile markup not found next to its label'); return; }
+      if ('text' in s) {
+        check(`${label} renders its literal`, t.literal === s.text, `page shows ${JSON.stringify(t.literal)}, data says ${JSON.stringify(s.text)}`);
+        return;
+      }
+      check(`${label} renders its own number`, t.count === String(s.v), `page shows ${JSON.stringify(t.count)}, data says ${JSON.stringify(String(s.v))}`);
+      check(`${label} suffix matches`, (t.attrs.match(/data-suffix="([^"]*)"/) || ['', ''])[1] === (s.suffix || ''),
+        `page ${JSON.stringify((t.attrs.match(/data-suffix="([^"]*)"/) || ['', ''])[1])}, data ${JSON.stringify(s.suffix || '')}`);
+      check(`${label} number is finite`, Number.isFinite(Number(s.v)), `"${s.v}" would count up to NaN`);
+      // value+suffix, so "1 year" and "1 TB" are not treated as a duplicate
+      const sig = `${s.v}${s.suffix || ''}`;
+      const owner = seen.get(sig);
+      check(`${label} is not another product's figure`, !owner || owner === p.slug,
+        `"${sig}" is also on ${owner} - stat figures must not be copy-pasted`);
+      seen.set(sig, p.slug);
+    });
+  }
+}
+
 console.log(failures ? `\n${failures} FAILURES` : '\nall good');
 process.exit(failures ? 1 : 0);
