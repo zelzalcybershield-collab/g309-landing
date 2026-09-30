@@ -178,7 +178,7 @@
       "faq.eyebrow": "أسئلة شائعة",
       "faq.title": "أسئلة يسألها المشترين",
       "faq.q1": "الفرق بين نسخة LTE والواي فاي؟",
-      "faq.a1": "النسخة دي هي LTE: تقدر تحط فيها شريحة اتصال وتشتغل ببيانات الموبايل في أي مكان، وكمان واي فاي. النسخة الواي فاي بس بتبقى من غير شريحة وتحتاج شبكة. اسم الموديل في صفحة أمازون بيوضح إن دي نسخة LTE.",
+      "faq.a1": "النسخة دي هي LTE: تقدر تحط فيها شريحة اتصال وتشتغل ببيانات الموبايل في أي مكان، وكمان واي فاي. النسخة الواي فاي بس بتبقى من غير شريحة وتحتاج شبكة. النمطين متاحين على أمازون كصفحتين منفصلتين بأسعار مختلفة، وشوف قسم «النمطان» في الصفحة دي للمقارنة السريعة. اسم الموديل في صفحة أمازون بيوضح إن دي نسخة LTE.",
       "faq.q2": "القلم جاي في العلبة؟",
       "faq.a2": "لا. الجهاز بيدعم قلم نشط لكنه مش متضمن في العلبة — بيتباع منفصل. اللي متضمن حسب صفحة المنتج هو الغطاء القلاب وضمان سنة من الشركة المصنعة.",
       "faq.q3": "إيه اللي مضمون في العلبة بالظبط؟",
@@ -212,7 +212,27 @@
       "aud.a3t": "اللي شغّال على الترفيه",
       "aud.a3b": "أربع مكبرات صوت بتجربة محيطية على شاشة 2.5K — فيديوهات سلسة وألعاب خفيفة ومكالمات فيديو واضحة.",
       "aud.a4t": "اللي بيدوّر على قيمة مقابل السعر",
-      "aud.a4b": "في 15,600 جنيه بتاخد شاشة 2.5K و8+128 وتوسعة ذكية وLTE مع غطاء قلاب وضمان سنة، باعتماد أمازون مصر نفسها."
+      "aud.a4b": "في 15,600 جنيه بتاخد شاشة 2.5K و8+128 وتوسعة ذكية وLTE مع غطاء قلاب وضمان سنة، باعتماد أمازون مصر نفسها.",
+      "var.eyebrow": "اختيار النمط",
+      "var.title": "النمطان المتاحان على أمازون مصر",
+      "var.sub": "الفرق الجوهري بينهم هو الاتصال — واي فاي بس أو LTE + واي فاي — مع فرق بسيط في السعر والتقييمات، والمواصفات الأساسية واحدة.",
+      "var.note": "الأرقام كما ظهرت على صفحات أمازون مصر وقت تحديث الصفحة، وقد تتغير حسب التوفر — السعر الحي بيظهر دائمًا على صفحة المنتج نفسه على أمازون.",
+      "var.i1.tag": "متوفر الآن",
+      "var.i1.name": "هونر باد X9a — نسخة واي فاي",
+      "var.i1.dim": "من غير شريحة اتصال · واي فاي بس",
+      "var.i1.price": "14,900 جنيه",
+      "var.i1.rating": "4.6 من 5 نجوم",
+      "var.i1.count": "323 تقييماً على أمازون",
+      "var.i1.note": "كاش عند الاستلام · تشحن وتباع من Amazon.eg",
+      "var.i1.buy": "شوفها على أمازون",
+      "var.i2.tag": "النسخة المعروضة في الصفحة دي",
+      "var.i2.name": "هونر باد X9a — نسخة LTE",
+      "var.i2.dim": "شريحة اتصال + واي فاي",
+      "var.i2.price": "15,600 جنيه",
+      "var.i2.rating": "4.3 من 5 نجوم",
+      "var.i2.count": "59 تقييماً على أمازون",
+      "var.i2.note": "كاش عند الاستلام · تشحن وتباع من Amazon.eg",
+      "var.i2.buy": "شوفها على أمازون"
     },
     "en": {
       "nav.tagline": "HONOR PAD X9a · Gray",
@@ -359,7 +379,7 @@
       "faq.eyebrow": "FAQ",
       "faq.title": "Questions buyers ask",
       "faq.q1": "What is the difference between the LTE and Wi-Fi versions?",
-      "faq.a1": "This is the LTE version: it accepts a SIM card and works on mobile data anywhere, plus Wi-Fi. The Wi-Fi-only version has no SIM tray and needs a network. The model name on the Amazon listing makes the LTE version clear.",
+      "faq.a1": "This is the LTE version: it accepts a SIM card and works on mobile data anywhere, plus Wi-Fi. The Wi-Fi-only version has no SIM tray and needs a network. The two variants are listed separately on Amazon with different prices — see the variants section on this page for a quick comparison. The model name on the Amazon listing makes the LTE version clear.",
       "faq.q2": "Is the pen in the box?",
       "faq.a2": "No. The tablet supports an active pen but it is not included — it is sold separately. What the listing includes is the flip cover and a 1-year manufacturer warranty.",
       "faq.q3": "What exactly is guaranteed in the box?",
@@ -393,12 +413,44 @@
       "aud.a3t": "People into entertainment",
       "aud.a3b": "Four speakers in an immersive setup on a 2.5K screen — smooth videos, light games and clear video calls.",
       "aud.a4t": "Buyers chasing value",
-      "aud.a4b": "For EGP 15,600 you get a 2.5K screen, 8+128 with smart expansion, LTE, a flip cover and a 1-year warranty, backed by Amazon.eg itself."
+      "aud.a4b": "For EGP 15,600 you get a 2.5K screen, 8+128 with smart expansion, LTE, a flip cover and a 1-year warranty, backed by Amazon.eg itself.",
+      "var.eyebrow": "Pick a variant",
+      "var.title": "The two variants on Amazon.eg",
+      "var.sub": "The core difference is connectivity — Wi-Fi only or LTE + Wi-Fi — with a small difference in price and ratings; the baseline specs are the same.",
+      "var.note": "Figures as shown on the Amazon.eg listings when this page was last updated and can change with availability — the live price always shows on the Amazon product page itself.",
+      "var.i1.tag": "In stock now",
+      "var.i1.name": "HONOR Pad X9a — Wi-Fi version",
+      "var.i1.dim": "No SIM tray · Wi-Fi only",
+      "var.i1.price": "14,900 EGP",
+      "var.i1.rating": "4.6 out of 5 stars",
+      "var.i1.count": "323 ratings on Amazon",
+      "var.i1.note": "Cash on delivery · Ships from Amazon.eg",
+      "var.i1.buy": "See it on Amazon",
+      "var.i2.tag": "The version this page covers",
+      "var.i2.name": "HONOR Pad X9a — LTE version",
+      "var.i2.dim": "SIM + Wi-Fi",
+      "var.i2.price": "15,600 EGP",
+      "var.i2.rating": "4.3 out of 5 stars",
+      "var.i2.count": "59 ratings on Amazon",
+      "var.i2.note": "Cash on delivery · Ships from Amazon.eg",
+      "var.i2.buy": "See it on Amazon"
     }
   },
   "payments": {
     "cod": true,
     "verifiedOn": "amazon.eg listing banner: \"الدفع عند الاستلام متوفر\" (COD available) next to free expedited shipping"
+  },
+  "variants": {
+    "items": [
+      {
+        "asin": "B0F54T2J1S",
+        "current": false
+      },
+      {
+        "asin": "B0F54TX745",
+        "current": true
+      }
+    ]
   },
   "stats": [
     {

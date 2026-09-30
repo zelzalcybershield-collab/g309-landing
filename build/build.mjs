@@ -53,6 +53,49 @@ const couponBlock = (p) => {
 
 const jstr = (s) => JSON.stringify(String(s));
 
+// Optional variant comparison: rendered only when the product carries
+// `variants.items`. Each card shows one Amazon variant (اسم النمط, السعر,
+// التقييم) and links straight to its own tagged listing. The anchors must NOT
+// carry data-buy — template.js initBuy() would otherwise repoint every one of
+// them at the page's main product.
+const variantsBlock = (p) => {
+  const items = p.variants?.items;
+  if (!Array.isArray(items) || !items.length) return '';
+  const cards = items.map((it, i) => {
+    const n = i + 1;
+    const url = p.affiliateTag
+      ? `https://www.amazon.eg/dp/${it.asin}?tag=${encodeURIComponent(p.affiliateTag)}`
+      : `https://www.amazon.eg/dp/${it.asin}`;
+    return `
+        <article class="relative flex flex-col rounded-2xl border bg-ink-950 p-7 ${it.current ? 'border-emerald-400/35' : 'border-white/10'}">
+          <span class="absolute -top-3 start-5 rounded-full px-3 py-1 text-xs font-black ${it.current
+            ? 'bg-emerald-500 text-ink-950'
+            : 'border border-white/10 bg-ink-800 text-slate-300'}" data-i18n="var.i${n}.tag"></span>
+          <h3 class="mt-1 text-lg font-extrabold text-white" data-i18n="var.i${n}.name"></h3>
+          <p class="mt-1 text-sm text-slate-400" data-i18n="var.i${n}.dim"></p>
+          <p class="mt-6 text-3xl font-black text-white" data-i18n="var.i${n}.price"></p>
+          <p class="mt-2 text-xs font-bold text-amber-300" data-i18n="var.i${n}.rating"></p>
+          <p class="mt-0.5 text-xs text-slate-500" data-i18n="var.i${n}.count"></p>
+          <p class="mt-4 text-sm leading-relaxed text-slate-400" data-i18n="var.i${n}.note"></p>
+          <a href="${esc(url)}" target="_blank" rel="sponsored noopener"
+             class="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-cyan-400 to-sky-500 px-5 py-3 text-sm font-black text-ink-950 transition hover:shadow-xl hover:shadow-cyan-500/20" data-variant-buy data-i18n="var.i${n}.buy"></a>
+        </article>`;
+  }).join('\n');
+  return `
+<section id="variants" class="scroll-mt-28 border-y border-white/5 bg-ink-900/30 py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-cyan-400" data-i18n="var.eyebrow"></p>
+      <h2 class="mt-3 text-3xl font-black tracking-tight text-white sm:text-4xl" data-i18n="var.title"></h2>
+      <p class="mt-4 text-lg text-slate-400" data-i18n="var.sub"></p>
+    </div>
+    <div class="mt-14 grid gap-5 md:grid-cols-2">${cards}
+    </div>
+    <p class="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-slate-500" data-i18n="var.note"></p>
+  </div>
+</section>`;
+};
+
 // Renders the four quick-stat tiles. A stat with `v` counts up like before; a
 // stat with `text` (Wi-Fi 6E, USB, RGB, 2.4K) is printed as-is, because
 // countUp() would paint NaN on a non-numeric value.
@@ -145,6 +188,7 @@ function render(p) {
     .replaceAll('{{HERO_ALT}}', esc(m.heroAlt))
     .replaceAll('{{COUPON_BLOCK}}', couponBlock(p))
     .replaceAll('{{STATS_TILES}}', statsTiles(p))
+    .replaceAll('{{VARIANTS_BLOCK}}', variantsBlock(p))
     // The buy anchor ships with the tagged URL already in the href. It used to
     // ship as href="#" and be pointed at the product by app.js at load, which
     // meant a blocked, slow or failed app.js turned every buy button into a
