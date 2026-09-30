@@ -45,7 +45,7 @@ tailwind.config = {
           كل المنتجات في مكان واحد
         </h1>
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">
-          11 منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة والتقييمات.
+          <span class="num">11</span> منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة والتقييمات.
           السعر والتقسيط وأي عروض بتظهر على صفحة أمازون نفسها.
         </p>
         <a href="https://www.facebook.com/nezabthalak" target="_blank" rel="noopener noreferrer"
@@ -55,9 +55,36 @@ tailwind.config = {
         </a>
       </header>
 
+      <div class="mb-8 flex flex-wrap items-center gap-2" role="group" aria-label="تصفية حسب الفئة">
+        <button type="button" data-filter="all" aria-pressed="true"
+          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-cyan-400/50 bg-cyan-500/15 text-cyan-300">
+          الكل <span class="num opacity-60">11</span>
+        </button>
+        <button type="button" data-filter="tablet" aria-pressed="false"
+          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+          تابلت <span class="num opacity-60">4</span>
+        </button>
+        <button type="button" data-filter="laptop" aria-pressed="false"
+          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+          لابتوب <span class="num opacity-60">3</span>
+        </button>
+        <button type="button" data-filter="phone" aria-pressed="false"
+          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+          موبايل <span class="num opacity-60">1</span>
+        </button>
+        <button type="button" data-filter="mouse" aria-pressed="false"
+          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+          ماوس <span class="num opacity-60">2</span>
+        </button>
+        <button type="button" data-filter="audio" aria-pressed="false"
+          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+          سماعات <span class="num opacity-60">1</span>
+        </button>
+      </div>
+
       <div class="grid gap-5 sm:grid-cols-2">
 
-        <a href="honor-pad-10/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="honor-pad-10/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 12.1 بوصة · معدل 120Hz</p>
@@ -71,7 +98,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="honor-pad-x9a/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="honor-pad-x9a/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 11.5 بوصة · نسخة LTE</p>
@@ -85,7 +112,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="hp-headset-g2/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="hp-headset-g2/" data-cat="audio" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">سماعة رأس · سلكية USB</p>
@@ -99,7 +126,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="infinix-xpad-30e/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="infinix-xpad-30e/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 11 بوصة · نسخة 4G</p>
@@ -113,7 +140,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="iphone-pro-burgundy/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="iphone-pro-burgundy/" data-cat="phone" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">ايفون 18 برو · بورغندي · 2TB</p>
@@ -127,7 +154,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="lenovo-legion5/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="lenovo-legion5/" data-cat="laptop" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">لابتوب جيمنج · 15.6 بوصة</p>
@@ -141,7 +168,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="g309/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="g309/" data-cat="mouse" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">Gaming Mouse · لاسلكي</p>
@@ -155,7 +182,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="msi-modern15/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="msi-modern15/" data-cat="laptop" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">لابتوب أعمال · 15.6 بوصة</p>
@@ -169,7 +196,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="msi-thin15/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="msi-thin15/" data-cat="laptop" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">لابتوب جيمنج · 15.6 بوصة</p>
@@ -183,7 +210,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="redragon-m711/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="redragon-m711/" data-cat="mouse" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">ماوس جيمنج · سلكي</p>
@@ -197,7 +224,7 @@ tailwind.config = {
           </p>
         </a>
 
-        <a href="tcl-nxtpaper14/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="tcl-nxtpaper14/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 14.3 بوصة · الجيل الثاني</p>
@@ -212,6 +239,8 @@ tailwind.config = {
         </a>
       </div>
 
+      <p class="hub-empty mt-8 hidden text-center text-sm text-slate-500" role="status">مفيش منتجات في الفئة دي.</p>
+
       <footer class="mt-14 border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
         <p>
   التقييمات والمخزون مأخوذة من صفحات أمازون مصر وقد تتغير في أي وقت — وكل صفحة
@@ -225,5 +254,37 @@ tailwind.config = {
       </footer>
     </div>
   </main>
+<script>
+  // Filtering is progressive enhancement: every card is in the HTML already, so
+  // the grid is complete and crawlable without JavaScript. This only hides the
+  // ones outside the chosen category.
+  (function () {
+    var btns = [].slice.call(document.querySelectorAll('.hub-filter'));
+    var cards = [].slice.call(document.querySelectorAll('.hub-card'));
+    var empty = document.querySelector('.hub-empty');
+    if (!btns.length || !cards.length) return;
+
+    function apply(cat) {
+      var shown = 0;
+      cards.forEach(function (c) {
+        var match = cat === 'all' || c.getAttribute('data-cat') === cat;
+        c.classList.toggle('hidden', !match);
+        if (match) shown++;
+      });
+      btns.forEach(function (b) {
+        var on = b.getAttribute('data-filter') === cat;
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.className = 'hub-filter rounded-full border px-4 py-2 text-sm font-bold transition ' + (on
+          ? 'border-cyan-400/50 bg-cyan-500/15 text-cyan-300'
+          : 'border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white');
+      });
+      if (empty) empty.classList.toggle('hidden', shown !== 0);
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { apply(b.getAttribute('data-filter')); });
+    });
+  })();
+</script>
 </body>
 </html>

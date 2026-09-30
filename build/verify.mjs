@@ -47,6 +47,21 @@ for (const p of all) {
   check('PRODUCT_URL carries the right asin', js.includes(`/dp/${p.asin}`));
   check('no other asin leaked in', !/\/dp\/(B0[A-Z0-9]{8})/.test(js.replace(new RegExp(`/dp/${p.asin}`), '')));
 
+  // Every product page must offer a way back to the catalogue, in the fixed
+  // header and again in the footer. Both point at the site root, and neither may
+  // carry the affiliate tag - the hub is not a product and must not look like a
+  // commission-bearing link.
+  // Compare per anchor rather than by distance from the href: the inline SVG
+  // icon sits between the href and the label, so any "within N characters"
+  // window silently depends on how long that icon's attribute list happens to be.
+  const hubAnchors = [...html.matchAll(/<a\s[^>]*href="\.\.\/"[\s\S]*?<\/a>/g)].map((m) => m[0]);
+  check('page links to the catalogue', hubAnchors.length >= 2, `found ${hubAnchors.length}`);
+  check('catalogue links are in the header and the footer', /<header[\s\S]*?<\/header>/.test(html) && /<footer[\s\S]*?<\/footer>/.test(html)
+    && [/<header[\s\S]*?<\/header>/.exec(html)?.[0] ?? '', /<footer[\s\S]*?<\/footer>/.exec(html)?.[0] ?? '']
+      .every((s) => /href="\.\.\/"/.test(s)));
+  check('catalogue link carries no affiliate tag', hubAnchors.every((h) => !/tag=/.test(h)));
+  check('every catalogue link is labelled', hubAnchors.length > 0 && hubAnchors.every((a) => /data-i18n="nav\.all"/.test(a)));
+
   // Nothing from another product may survive in the output. This is the check
   // that would have caught the hardcoded G309 dictionary, which shipped a
   // laptop page full of mouse copy.
@@ -226,6 +241,19 @@ console.log('\n=== root hub ===');
     const internal = hrefs.filter((h) => !/^(https?:)?\/\//.test(h) && !h.startsWith('#'));
     check('root internal links are only products', internal.every((h) => all.some((p) => h === `${p.dir}/`)), internal.join(', '));
     check('root has no affiliate tag on any link', !/tag=zoq-21/.test(hub));
+
+    // Category filter: every card must be tagged so the filter has something to
+    // match on, every tag must be a real category, and the buttons must be
+    // generated for the categories that actually have products.
+    const cats = [...new Set([...hub.matchAll(/data-cat="([^"]+)"/g)].map((m) => m[1]))];
+    const cards = (hub.match(/data-cat="/g) || []).length;
+    check('every hub card is tagged with a category', cards === all.length, `${cards} cards, ${all.length} products`);
+    check('card categories come from the product files', all.every((p) => cats.includes(p.category)), cats.join(', '));
+    const btns = [...new Set([...hub.matchAll(/data-filter="([^"]+)"/g)].map((m) => m[1]))];
+    const used = new Set(all.map((p) => p.category));
+    check('filter buttons cover every used category', [...used].every((c) => btns.includes(c)), btns.join(', '));
+    check('filter buttons add no empty category', btns.filter((c) => c !== 'all').every((c) => used.has(c)), btns.join(', '));
+    check('hub has an "all" filter', btns.includes('all'));
 
     for (const t of ['section', 'div', 'a', 'header', 'footer']) {
       const o = (hub.match(new RegExp(`<${t}[\\s>]`, 'g')) || []).length;

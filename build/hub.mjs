@@ -34,6 +34,22 @@ const SITE = {
 const files = readdirSync('products').filter((f) => f.endsWith('.json'));
 const products = files.map((f) => JSON.parse(readFileSync(`products/${f}`, 'utf8')));
 
+// The catalogue filters by what the thing actually is, so a visitor can narrow
+// eleven products down without reading every card. Each product's category comes
+// from its own listing (a "category" field written at build time), never from
+// guessing off the brand — Logitech and Redragon are both mice here, and HP is
+// the only audio item. A product with no valid category lands in "other" and
+// stays reachable under "all" rather than disappearing from the grid.
+const CATEGORIES = [
+  { id: 'all', label: 'الكل', en: 'All' },
+  { id: 'tablet', label: 'تابلت', en: 'Tablets' },
+  { id: 'laptop', label: 'لابتوب', en: 'Laptops' },
+  { id: 'phone', label: 'موبايل', en: 'Phones' },
+  { id: 'mouse', label: 'ماوس', en: 'Mice' },
+  { id: 'audio', label: 'سماعات', en: 'Audio' },
+];
+const catOf = (p) => (p.category && CATEGORIES.some((c) => c.id === p.category) ? p.category : 'other');
+
 const rows = products.map((p) => {
   const pricePath = `${p.dir}/price.json`;
   const live = existsSync(pricePath) ? JSON.parse(readFileSync(pricePath, 'utf8')) : {};
@@ -66,7 +82,7 @@ const card = ({ p, rating, reviews, inStock }) => {
       + (reviews === null ? '' : `<span class="text-xs text-slate-500">(${reviews.toLocaleString('en-US')})</span>`);
 
   return `
-        <a href="${esc(p.dir)}/" class="group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+        <a href="${esc(p.dir)}/" data-cat="${esc(catOf(p))}" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">${esc(cat)}</p>
@@ -80,6 +96,12 @@ const card = ({ p, rating, reviews, inStock }) => {
           </p>
         </a>`;
 };
+
+// only offer a filter button for a category that actually has products, so the
+// row never shows a tab that would reveal an empty grid
+const usedCats = new Set(rows.map(({ p }) => catOf(p)));
+const filters = CATEGORIES.filter((c) => c.id === 'all' || usedCats.has(c.id));
+const countOf = (id) => (id === 'all' ? rows.length : rows.filter(({ p }) => catOf(p) === id).length);
 
 const html = `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -128,7 +150,7 @@ tailwind.config = {
           كل المنتجات في مكان واحد
         </h1>
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">
-          ${rows.length} منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة والتقييمات.
+          <span class="num">${rows.length}</span> منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة والتقييمات.
           السعر والتقسيط وأي عروض بتظهر على صفحة أمازون نفسها.
         </p>
         <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer"
@@ -138,9 +160,18 @@ tailwind.config = {
         </a>
       </header>
 
+      <div class="mb-8 flex flex-wrap items-center gap-2" role="group" aria-label="تصفية حسب الفئة">
+${filters.map((c, i) => `        <button type="button" data-filter="${esc(c.id)}" aria-pressed="${i === 0 ? 'true' : 'false'}"
+          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition ${i === 0 ? 'border-cyan-400/50 bg-cyan-500/15 text-cyan-300' : 'border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white'}">
+          ${esc(c.label)} <span class="num opacity-60">${countOf(c.id)}</span>
+        </button>`).join('\n')}
+      </div>
+
       <div class="grid gap-5 sm:grid-cols-2">
 ${rows.map(card).join('\n')}
       </div>
+
+      <p class="hub-empty mt-8 hidden text-center text-sm text-slate-500" role="status">مفيش منتجات في الفئة دي.</p>
 
       <footer class="mt-14 border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
         <p>
@@ -155,6 +186,38 @@ ${rows.map(card).join('\n')}
       </footer>
     </div>
   </main>
+<script>
+  // Filtering is progressive enhancement: every card is in the HTML already, so
+  // the grid is complete and crawlable without JavaScript. This only hides the
+  // ones outside the chosen category.
+  (function () {
+    var btns = [].slice.call(document.querySelectorAll('.hub-filter'));
+    var cards = [].slice.call(document.querySelectorAll('.hub-card'));
+    var empty = document.querySelector('.hub-empty');
+    if (!btns.length || !cards.length) return;
+
+    function apply(cat) {
+      var shown = 0;
+      cards.forEach(function (c) {
+        var match = cat === 'all' || c.getAttribute('data-cat') === cat;
+        c.classList.toggle('hidden', !match);
+        if (match) shown++;
+      });
+      btns.forEach(function (b) {
+        var on = b.getAttribute('data-filter') === cat;
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        b.className = 'hub-filter rounded-full border px-4 py-2 text-sm font-bold transition ' + (on
+          ? 'border-cyan-400/50 bg-cyan-500/15 text-cyan-300'
+          : 'border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white');
+      });
+      if (empty) empty.classList.toggle('hidden', shown !== 0);
+    }
+
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () { apply(b.getAttribute('data-filter')); });
+    });
+  })();
+</script>
 </body>
 </html>
 `;

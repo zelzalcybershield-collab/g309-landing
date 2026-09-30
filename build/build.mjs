@@ -172,7 +172,8 @@ function render(p) {
     // simply lost. The href is now correct in the HTML and app.js only re-asserts
     // it. Amazon's operating agreement also requires rel="sponsored" on affiliate
     // links, which the anchors now carry.
-    .replaceAll('{{BUY_URL}}', esc(url));
+    .replaceAll('{{BUY_URL}}', esc(url))
+    .replaceAll('{{HUB_URL}}', esc('../'));
 
   const js = tplJs
     .replaceAll('{{PRODUCT_URL}}', url)

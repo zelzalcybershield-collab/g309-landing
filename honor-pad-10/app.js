@@ -180,7 +180,8 @@ const dict = {
     "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون",
     "offer.payTitle": "الدفع والتقسيط",
     "offer.paySub": "أمازون بيوفر طرق دفع متعددة وخيارات تقسيط حسب المنتج والبطاقة — وكل تفاصيل السعر والتقسيط والخصومات والعروض بتظهر على صفحة أمازون نفسها لحظة الشراء.",
-    "offer.payNote": "السعر والتقسيط وأي عروض حالية — كل ده على صفحة أمازون بس."
+    "offer.payNote": "السعر والتقسيط وأي عروض حالية — كل ده على صفحة أمازون بس.",
+    "nav.all": "كل المنتجات"
   },
   "en": {
     "nav.tagline": "HONOR PAD 10 · Gray",
@@ -353,7 +354,8 @@ const dict = {
     "offer.today": "See today's price and live offers directly on the product page at Amazon",
     "offer.payTitle": "Payment & instalments",
     "offer.paySub": "Amazon offers multiple payment methods and instalment options depending on the item and your card - every price, instalment, discount and deal detail appears on Amazon's own page at checkout.",
-    "offer.payNote": "The price, instalments and any current offers - all of it lives on Amazon's page only."
+    "offer.payNote": "The price, instalments and any current offers - all of it lives on Amazon's page only.",
+    "nav.all": "All Products"
   }
 };
 
