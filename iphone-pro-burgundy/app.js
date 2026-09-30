@@ -5,7 +5,7 @@
    · Count-up numbers
    ============================================================ */
 
-const PRODUCT_URL = 'https://www.amazon.eg/dp/B0HJB5H9NM?tag=zoq-21';
+const PRODUCT_URL = 'https://www.amazon.eg/dp/B0HJBCJPC7?tag=zoq-21';
 const STORE_KEY = 'iphone-pro-burgundy-lang';
 
 const dict = {
