@@ -87,7 +87,7 @@ const html = `<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>كل المنتجات — صفحات تفصيلية على أمازون مصر</title>
-<meta name="description" content="صفحات تفصيلية لمنتجات على أمازون مصر: المواصفات، التقييمات، المخزون، وأكواد خصم بطاقات البنك الأهلي. السعر دايماً من صفحة أمازون نفسها.">
+<meta name="description" content="صفحات تفصيلية لمنتجات على أمازون مصر: المواصفات، التقييمات، المخزون، وطرق الدفع والتقسيط المتاحة. السعر وكل التفاصيل المالية من صفحة أمازون نفسها.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -128,8 +128,8 @@ tailwind.config = {
           كل المنتجات في مكان واحد
         </h1>
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">
-          ${rows.length} منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة والتقييمات
-          وأكواد خصم بطاقات البنك الأهلي. السعر دايماً بتشوفه من صفحة أمازون نفسها.
+          ${rows.length} منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة والتقييمات.
+          السعر والتقسيط وأي عروض بتظهر على صفحة أمازون نفسها.
         </p>
         <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer"
            class="mt-6 inline-flex items-center gap-2.5 rounded-2xl border border-cyan-400/25 bg-cyan-500/10 px-5 py-3 text-sm font-extrabold text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
@@ -145,8 +145,8 @@ ${rows.map(card).join('\n')}
       <footer class="mt-14 border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
         <p>
   التقييمات والمخزون مأخوذة من صفحات أمازون مصر وقد تتغير في أي وقت — وكل صفحة
-  بتوصل لسعر المنتج مباشرة من أزرار الشراء. أكواد الخصم تعمل على بطاقات NBE
-  المؤهلة فقط.
+  بتوصل لصفحة المنتج على أمازون مباشرة من أزرار «معرفة سعر اليوم»، وكل التفاصيل
+  المالية والسعرية بتظهر هناك.
         </p>
         <p class="mt-4">
   الموقع ده من إعداد <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer" class="font-bold text-cyan-400 transition hover:text-cyan-300">${esc(SITE.name)}</a>.

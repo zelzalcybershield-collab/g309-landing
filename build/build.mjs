@@ -26,30 +26,9 @@ const jsStr = (s) => String(s)
 
 // The coupon card used to be hardcoded into the template with two NBE codes
 // that nothing in this repo can verify. A discount that does not work at
-// checkout is worse than no discount, so a product only gets the block when
-// its data actually carries codes.
-const couponBlock = (p) => {
-  const codes = p.coupon?.codes;
-  if (!codes?.length) return '';
-  const copy = p.dict.ar['offer.copy'];
-  const buttons = codes.map((c) => `
-            <button type="button" data-copy="${esc(c)}"
-              class="group flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-ink-950 px-4 py-3 text-start transition hover:border-cyan-400/40">
-              <span class="num text-sm font-black tracking-wider text-white">${esc(c)}</span>
-              <span class="text-[11px] font-bold text-slate-500 transition group-hover:text-cyan-300" data-i18n="offer.copy"></span>
-            </button>`).join('');
-  return `
-        <div class="rounded-3xl border border-cyan-400/25 bg-cyan-500/[0.06] p-8">
-          <h3 class="flex items-center gap-2 text-base font-extrabold text-white">
-            <svg class="h-5 w-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9M2 8h20v4H2zM12 3v5M12 3l-2.5 2.5M12 3l2.5 2.5"/></svg>
-            <span data-i18n="offer.couponTitle"></span>
-          </h3>
-          <p class="mt-2 text-sm text-slate-400" data-i18n="offer.couponSub"></p>
-          <div class="mt-5 grid gap-3 sm:grid-cols-2">${buttons}
-          </div>
-          <p class="mt-4 text-xs text-slate-500" data-i18n="offer.couponNote"></p>
-        </div>`;
-};
+// checkout is worse than no discount, so a product only gets a card when its
+// data carries codes. Codes are no longer shown at all: the page states that
+// instalments and payment options exist on Amazon and sends the visitor there.
 
 const jstr = (s) => JSON.stringify(String(s));
 
@@ -184,13 +163,6 @@ function render(p) {
     .replaceAll('{{SIZE}}', esc(m.size))
     .replaceAll('{{HERO_IMG}}', esc(m.heroImg))
     .replaceAll('{{HERO_ALT}}', esc(m.heroAlt))
-    // The right-hand column of the offer section holds the coupon card; the
-    // column only exists when the product actually carries codes, so a product
-    // with no codes (or a variant block instead) still gets a clean layout.
-    .replaceAll('{{OFFER_GRID}}', couponBlock(p) ? 'lg:grid-cols-[1.05fr_1fr]' : '')
-    .replaceAll('{{OFFER_ASIDE}}', couponBlock(p)
-      ? `<div class="space-y-6">\n${couponBlock(p)}\n      </div>`
-      : '')
     .replaceAll('{{STATS_TILES}}', statsTiles(p))
     .replaceAll('{{VARIANTS_BLOCK}}', variantsBlock(p))
     // The buy anchor ships with the tagged URL already in the href. It used to

@@ -3,7 +3,6 @@
    · i18n (ar / en) with RTL <-> LTR switching
  * Two-up comparison section
    · Count-up numbers
-   · Coupon code copy
    ============================================================ */
 
 const PRODUCT_URL = '{{PRODUCT_URL}}';
@@ -110,7 +109,7 @@ function renderLive() {
 }
 
 function initLivePrice() {
-  // 1) show the cached copy immediately so the page never flashes a stale hardcoded price
+  // 1) show the cached rating/review/stock data immediately, then refresh
   try {
     const cached = JSON.parse(localStorage.getItem(LIVE_KEY) || 'null');
     if (cached && Date.now() - new Date(cached.checkedAt).getTime() < LIVE_TTL) {
@@ -198,29 +197,6 @@ function initCounters() {
     });
   }, { threshold: 0.5 });
   els.forEach((el) => io.observe(el));
-}
-
-/* ---------- coupon copy ---------- */
-function initCopy() {
-  document.querySelectorAll('[data-copy]').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const code = btn.dataset.copy;
-      try {
-        await navigator.clipboard.writeText(code);
-      } catch {
-        const ta = document.createElement('textarea');
-        ta.value = code;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        ta.remove();
-      }
-      const label = btn.querySelector('span:last-child');
-      const prev = label.textContent;
-      label.textContent = lang === 'ar' ? 'تم النسخ ✓' : 'Copied ✓';
-      setTimeout(() => { label.textContent = prev; }, 1600);
-    });
-  });
 }
 
 /* ---------- buy links ---------- */
@@ -336,7 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initBuy();
-  initCopy();
   initCounters();
   initScroll();
   initGallery();

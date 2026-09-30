@@ -86,7 +86,7 @@
       "s5.t": "بطارية 46.8Whr ليوم عمل كامل",
       "s5.b": "بطارية من 3 خلايا بسعة 46.8Whr. وصف المنتج على أمازون بيقول إنها تدعم \"all-day work\"، يعني يوم شغل عادي من غير ما تدور على الشاحن في نص اليوم.",
       "s6.t": "يُنفَّذ من Amazon.eg مع إرجاع 15 يوم",
-      "s6.b": "المنتج بينفَّذ من Amazon.eg مباشرة، والشحن مجاني والإرجاع متاح خلال 15 يوم. وكمان بيقبل كود خصم 10% لو بطاقتك من البنك الأهلي المؤهلة.",
+      "s6.b": "المنتج بينفَّذ من Amazon.eg مباشرة، والشحن مجاني والإرجاع متاح خلال 15 يوم.",
       "t.brand": "الماركة",
       "t.model": "MSI Modern 15 F1MG",
       "t.color": "اللون",
@@ -143,10 +143,6 @@
       "offer.retV": "15 يوم",
       "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
       "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
-      "offer.copy": "نسخ",
-      "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
-      "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
-      "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني).",
       "rev.eyebrow": "ليه تختاره",
       "rev.title": "أسباب تخليك تختاره",
       "rev.sub": "مواصفات المنتج كما وردت في صفحة أمازون مصر",
@@ -173,7 +169,7 @@
       "faq.q5": "أقدر أرجّعه لو مش عاجبني؟",
       "faq.a5": "أيوا. الإرجاع متاح خلال 15 يوم حسب سياسة أمازون على المنتج. لو الجهاز وصل وحسّيت إنه مش مناسب، ابدأ الإرجاع من صفحة الطلب على أمازون.",
       "faq.q6": "فيه خصم؟",
-      "faq.a6": "أيوا. كود خصم 10% لبطاقات البنك الأهلي: الكود NBESEP500 لبطاقة NBE Visa Signature، والكود NBESEP250 لبطاقة NBE Visa Platinum. الخصم بيتم في صفحة الدفع على أمازون نفسه.",
+      "faq.a6": "أي خصومات أو عروض نشطة على المنتج بتظهر على صفحة أمازون نفسها وقت الشراء — الصفحة دي مبتعرضش أكواد خصم.",
       "cta.title": "محتاج لابتوب شغل خفيف؟",
       "cta.sub": "اطلبه من أمازون مصر — Core 5 وشاشة FHD وسنة ضمان دولي",
       "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
@@ -199,7 +195,10 @@
       "aud.a4t": "اللي بيدور على جهاز يدوم",
       "aud.a4b": "سنة ضمان دولي مكتوبة في وصف المنتج نفسه. لما تصرف مبلغ كده، الضمان المكتوب ده بيدي راحة تفرق.",
       "hero.cta2": "تفاصيل الشراء والتوصيل",
-      "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون"
+      "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون",
+      "offer.payTitle": "الدفع والتقسيط",
+      "offer.paySub": "أمازون بيوفر طرق دفع متعددة وخيارات تقسيط حسب المنتج والبطاقة — وكل تفاصيل السعر والتقسيط والخصومات والعروض بتظهر على صفحة أمازون نفسها لحظة الشراء.",
+      "offer.payNote": "السعر والتقسيط وأي عروض حالية — كل ده على صفحة أمازون بس."
     },
     "en": {
       "nav.tagline": "Modern 15 F1MG · Urban Silver",
@@ -260,7 +259,7 @@
       "s5.t": "A 46.8Whr battery for a full working day",
       "s5.b": "A 3-cell 46.8Whr battery. The amazon.eg description says it supports \"all-day work\", so a normal working day without hunting for a charger halfway through.",
       "s6.t": "Fulfilled by Amazon.eg with 15-day returns",
-      "s6.b": "The item is fulfilled by Amazon.eg directly, delivery is free, and returns are open for 15 days. It also accepts a 10% discount code if your card qualifies.",
+      "s6.b": "The item is fulfilled by Amazon.eg directly, delivery is free, and returns are open for 15 days.",
       "t.brand": "Brand",
       "t.model": "MSI Modern 15 F1MG",
       "t.color": "Colour",
@@ -317,10 +316,6 @@
       "offer.retV": "15 days",
       "offer.buyNow": "Buy & see today's price — click here",
       "offer.checkout": "Purchase and payment happen on amazon.eg",
-      "offer.copy": "copy",
-      "offer.couponTitle": "10% off with National Bank of Egypt cards",
-      "offer.couponSub": "Pick the code for your card — the discount is applied by Amazon",
-      "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card (Signature for the first code, Platinum for the second).",
       "rev.eyebrow": "Why choose it",
       "rev.title": "Reasons to choose it",
       "rev.sub": "Product specs as listed on the amazon.eg page",
@@ -347,7 +342,7 @@
       "faq.q5": "Can I return it if I do not like it?",
       "faq.a5": "Yes. Returns are available for 15 days under Amazon policy for this item. If it arrives and turns out not to suit you, start the return from your order page on Amazon.",
       "faq.q6": "Is there a discount?",
-      "faq.a6": "Yes. There is a 10% code for National Bank of Egypt cards: NBESEP500 for an NBE Visa Signature card, and NBESEP250 for an NBE Visa Platinum card. The discount is applied at checkout on Amazon itself.",
+      "faq.a6": "Any active discounts or offers on the item appear on Amazon's own page at checkout - this page does not carry discount codes.",
       "cta.title": "Need a light laptop for work?",
       "cta.sub": "Order it on amazon.eg — Core 5, an FHD display, and a 1-year international warranty",
       "cta.buy": "Order on Amazon & see today's price",
@@ -373,14 +368,11 @@
       "aud.a4t": "Anyone who wants a machine that lasts",
       "aud.a4b": "A 1-year international warranty written into the description. At this price, a warranty in writing is worth a lot of peace of mind.",
       "hero.cta2": "Buying & delivery details",
-      "offer.today": "See today's price and live offers directly on the product page at Amazon"
+      "offer.today": "See today's price and live offers directly on the product page at Amazon",
+      "offer.payTitle": "Payment & instalments",
+      "offer.paySub": "Amazon offers multiple payment methods and instalment options depending on the item and your card - every price, instalment, discount and deal detail appears on Amazon's own page at checkout.",
+      "offer.payNote": "The price, instalments and any current offers - all of it lives on Amazon's page only."
     }
-  },
-  "coupon": {
-    "codes": [
-      "NBESEP500",
-      "NBESEP250"
-    ]
   },
   "payments": {
     "cod": false,

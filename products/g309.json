@@ -134,10 +134,6 @@
       "offer.retV": "15 يوم",
       "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
       "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
-      "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
-      "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
-      "offer.copy": "نسخ",
-      "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني).",
       "rev.eyebrow": "ليه تختاره",
       "rev.title": "أسباب تخليك تختاره",
       "rev.sub": "مبني على مواصفات المنتج كما وردت من الشركة المصنّعة",
@@ -190,7 +186,10 @@
       "aud.a4t": "اللي بيدور على أول ماوس محترم",
       "aud.a4b": "25,000 نقطة حساسية ومحرك Lightforce هيدوك تحكم أدق من أي ماوس مبتدئ. لو بتتعلم تهدق، ده قفزة محسوسة من أول يوم.",
       "hero.cta2": "تفاصيل الشراء والتوصيل",
-      "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون"
+      "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون",
+      "offer.payTitle": "الدفع والتقسيط",
+      "offer.paySub": "أمازون بيوفر طرق دفع متعددة وخيارات تقسيط حسب المنتج والبطاقة — وكل تفاصيل السعر والتقسيط والخصومات والعروض بتظهر على صفحة أمازون نفسها لحظة الشراء.",
+      "offer.payNote": "السعر والتقسيط وأي عروض حالية — كل ده على صفحة أمازون بس."
     },
     "en": {
       "nav.tagline": "LIGHTSPEED · White",
@@ -308,10 +307,6 @@
       "offer.retV": "15 days",
       "offer.buyNow": "Buy & see today's price — click here",
       "offer.checkout": "Checkout and payment happen on Amazon Egypt",
-      "offer.couponTitle": "10% off with NBE cards",
-      "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
-      "offer.copy": "Copy",
-      "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second.",
       "rev.eyebrow": "Why choose it",
       "rev.title": "Reasons to choose it",
       "rev.sub": "Based on the product specifications as published by the manufacturer",
@@ -364,7 +359,10 @@
       "aud.a4t": "Anyone buying a first serious mouse",
       "aud.a4b": "25,000 DPI and a Lightforce sensor give you noticeably finer control than a beginner mouse. If you are still learning to aim, this is a step up you feel on day one.",
       "hero.cta2": "Buying & delivery details",
-      "offer.today": "See today's price and live offers directly on the product page at Amazon"
+      "offer.today": "See today's price and live offers directly on the product page at Amazon",
+      "offer.payTitle": "Payment & instalments",
+      "offer.paySub": "Amazon offers multiple payment methods and instalment options depending on the item and your card - every price, instalment, discount and deal detail appears on Amazon's own page at checkout.",
+      "offer.payNote": "The price, instalments and any current offers - all of it lives on Amazon's page only."
     }
   },
   "meta": {
@@ -382,12 +380,6 @@
     "size": "12 × 6.4 cm"
   },
   "affiliateTag": "zoq-21",
-  "coupon": {
-    "codes": [
-      "NBESEP500",
-      "NBESEP250"
-    ]
-  },
   "payments": {
     "cod": true,
     "verifiedOn": "amazon.eg delivery strip: \"Cash on Delivery\""

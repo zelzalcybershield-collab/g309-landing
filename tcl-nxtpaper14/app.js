@@ -3,7 +3,6 @@
    · i18n (ar / en) with RTL <-> LTR switching
  * Two-up comparison section
    · Count-up numbers
-   · Coupon code copy
    ============================================================ */
 
 const PRODUCT_URL = 'https://www.amazon.eg/dp/B0FSZZP7K3?tag=zoq-21';
@@ -166,10 +165,6 @@ const dict = {
     "footer.l3": "لماذا Nxtpaper",
     "footer.disclaimer": "الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون. المواصفات كما وردت في صفحة المنتج.",
     "footer.madeBy": "صفحة هبوط · AR / EN",
-    "offer.copy": "نسخ",
-    "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
-    "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
-    "offer.couponNote": "اضغط على الكود للنسخ، واستخدمه في صفحة الدفع. يعمل فقط على بطاقة NBE Visa المؤهلة (Signature للكود الأول، Platinum للكود التاني).",
     "aud.eyebrow": "مين الجهاز ده ليه",
     "aud.title": "اللي هيفيد معاه Nxtpaper 14",
     "aud.sub": "تابلت بمواصفات لابتوب وحاجات في العلبة، مصمم للقراءة والدراسة والفيديو",
@@ -182,7 +177,10 @@ const dict = {
     "aud.a4t": "اللي عايز جهاز للعائلة",
     "aud.a4b": "مفيش شريحة اتصالات، فأسهل في الاستخدام مع الأطفال، وفي نفس الوقت بيشتغل كويس للفيديو والكورسات. وشاشته ضد الانعكاس بتريح العين.",
     "hero.cta2": "تفاصيل الشراء والتوصيل",
-    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون"
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون",
+    "offer.payTitle": "الدفع والتقسيط",
+    "offer.paySub": "أمازون بيوفر طرق دفع متعددة وخيارات تقسيط حسب المنتج والبطاقة — وكل تفاصيل السعر والتقسيط والخصومات والعروض بتظهر على صفحة أمازون نفسها لحظة الشراء.",
+    "offer.payNote": "السعر والتقسيط وأي عروض حالية — كل ده على صفحة أمازون بس."
   },
   "en": {
     "nav.tagline": "NXTPAPER · Gray",
@@ -340,10 +338,6 @@ const dict = {
     "footer.l3": "Why Nxtpaper",
     "footer.disclaimer": "Prices and figures can change with availability on Amazon. Specifications as listed on the product page.",
     "footer.madeBy": "Landing page · AR / EN",
-    "offer.copy": "Copy",
-    "offer.couponTitle": "10% off with NBE cards",
-    "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
-    "offer.couponNote": "Click a code to copy it, then apply it at checkout. Valid only on an eligible NBE Visa card: Signature for the first code, Platinum for the second.",
     "aud.eyebrow": "Who it is for",
     "aud.title": "Who the Nxtpaper 14 suits",
     "aud.sub": "A tablet with laptop specs and the accessories in the box, built for reading, study and video",
@@ -356,7 +350,10 @@ const dict = {
     "aud.a4t": "A family device",
     "aud.a4b": "There is no SIM tray, which makes it easier to hand to children, and it still handles video and courses well. The anti-glare screen is easier on the eyes too.",
     "hero.cta2": "Buying & delivery details",
-    "offer.today": "See today's price and live offers directly on the product page at Amazon"
+    "offer.today": "See today's price and live offers directly on the product page at Amazon",
+    "offer.payTitle": "Payment & instalments",
+    "offer.paySub": "Amazon offers multiple payment methods and instalment options depending on the item and your card - every price, instalment, discount and deal detail appears on Amazon's own page at checkout.",
+    "offer.payNote": "The price, instalments and any current offers - all of it lives on Amazon's page only."
   }
 };
 
@@ -459,7 +456,7 @@ function renderLive() {
 }
 
 function initLivePrice() {
-  // 1) show the cached copy immediately so the page never flashes a stale hardcoded price
+  // 1) show the cached rating/review/stock data immediately, then refresh
   try {
     const cached = JSON.parse(localStorage.getItem(LIVE_KEY) || 'null');
     if (cached && Date.now() - new Date(cached.checkedAt).getTime() < LIVE_TTL) {
@@ -547,29 +544,6 @@ function initCounters() {
     });
   }, { threshold: 0.5 });
   els.forEach((el) => io.observe(el));
-}
-
-/* ---------- coupon copy ---------- */
-function initCopy() {
-  document.querySelectorAll('[data-copy]').forEach((btn) => {
-    btn.addEventListener('click', async () => {
-      const code = btn.dataset.copy;
-      try {
-        await navigator.clipboard.writeText(code);
-      } catch {
-        const ta = document.createElement('textarea');
-        ta.value = code;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        ta.remove();
-      }
-      const label = btn.querySelector('span:last-child');
-      const prev = label.textContent;
-      label.textContent = lang === 'ar' ? 'تم النسخ ✓' : 'Copied ✓';
-      setTimeout(() => { label.textContent = prev; }, 1600);
-    });
-  });
 }
 
 /* ---------- buy links ---------- */
@@ -685,7 +659,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   initBuy();
-  initCopy();
   initCounters();
   initScroll();
   initGallery();
