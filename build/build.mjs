@@ -73,7 +73,6 @@ const variantsBlock = (p) => {
             : 'border border-white/10 bg-ink-800 text-slate-300'}" data-i18n="var.i${n}.tag"></span>
           <h3 class="mt-1 text-lg font-extrabold text-white" data-i18n="var.i${n}.name"></h3>
           <p class="mt-1 text-sm text-slate-400" data-i18n="var.i${n}.dim"></p>
-          <p class="mt-6 text-3xl font-black text-white" data-i18n="var.i${n}.price"></p>
           <p class="mt-2 text-xs font-bold text-amber-300" data-i18n="var.i${n}.rating"></p>
           <p class="mt-0.5 text-xs text-slate-500" data-i18n="var.i${n}.count"></p>
           <p class="mt-4 text-sm leading-relaxed text-slate-400" data-i18n="var.i${n}.note"></p>
@@ -179,14 +178,19 @@ function render(p) {
     .replaceAll('{{DESC_EN}}', esc(m.descEn))
     .replaceAll('{{OG_TITLE_AR}}', esc(m.ogTitleAr))
     .replaceAll('{{OG_DESC_AR}}', esc(m.ogDescAr))
-    .replaceAll('{{PRICE_AMOUNT}}', esc(m.priceAmount))
     .replaceAll('{{BRAND}}', esc(m.brand))
     .replaceAll('{{BRAND_VALUE}}', esc(m.brandValue))
     .replaceAll('{{MODEL}}', esc(m.model))
     .replaceAll('{{SIZE}}', esc(m.size))
     .replaceAll('{{HERO_IMG}}', esc(m.heroImg))
     .replaceAll('{{HERO_ALT}}', esc(m.heroAlt))
-    .replaceAll('{{COUPON_BLOCK}}', couponBlock(p))
+    // The right-hand column of the offer section holds the coupon card; the
+    // column only exists when the product actually carries codes, so a product
+    // with no codes (or a variant block instead) still gets a clean layout.
+    .replaceAll('{{OFFER_GRID}}', couponBlock(p) ? 'lg:grid-cols-[1.05fr_1fr]' : '')
+    .replaceAll('{{OFFER_ASIDE}}', couponBlock(p)
+      ? `<div class="space-y-6">\n${couponBlock(p)}\n      </div>`
+      : '')
     .replaceAll('{{STATS_TILES}}', statsTiles(p))
     .replaceAll('{{VARIANTS_BLOCK}}', variantsBlock(p))
     // The buy anchor ships with the tagged URL already in the href. It used to

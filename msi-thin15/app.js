@@ -26,10 +26,7 @@ const dict = {
     "hero.sub": "معالج i7-13620H وشاشة 144Hz وكارت شاشة RTX 3050 مستقل",
     "hero.reviews": "الأكثر مبيعاً في اللابتوبات على أمازون",
     "hero.rank": "#1 في اللابتوبات التقليدية على أمازون",
-    "hero.priceLabel": "السعر شامل الضريبة",
-    "hero.vat": "السعر يشمل ضريبة القيمة المضافة · يُشحن من Amazon.eg",
-    "hero.buy": "اشترِ من أمازون",
-    "hero.installments": "اعرف التقسيط",
+    "hero.buy": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "hero.chip1l": "المعالج",
     "hero.chip1v": "i7-13620H",
     "hero.chip2l": "الشاشة",
@@ -127,18 +124,8 @@ const dict = {
     "offer.shipV": "بتشوف الموعد على صفحة المنتج",
     "offer.ret": "الإرجاع",
     "offer.retV": "حسب سياسة أمازون",
-    "offer.buyNow": "اشترِ الآن من أمازون",
+    "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
-    "offer.syncLabel": "السعر متزامن تلقائياً من صفحة أمازون",
-    "offer.syncStale": "تعذّر التحديث، معروض آخر سعر معروف",
-    "offer.instTitle": "خيارات التقسيط",
-    "offer.instSub": "تقسيط على فترات مختلفة من خلال بنوك مصر",
-    "offer.months": "شهر",
-    "offer.p1": "13,833.00 EGP / شهرياً",
-    "offer.p2": "6,916.50 EGP / شهرياً",
-    "offer.p3": "3,458.25 EGP / شهرياً",
-    "offer.p4": "1,729.13 EGP / شهرياً",
-    "offer.instNote": "الأرقام استرشادية وتعتمد على البنك والعروض",
     "rev.eyebrow": "ليه تختاره",
     "rev.title": "أسباب تخليك تختاره",
     "rev.sub": "مبني على مواصفات المنتج كما وردت من الشركة المصنّعة",
@@ -155,7 +142,7 @@ const dict = {
     "faq.eyebrow": "أسئلة شائعة",
     "faq.title": "أسئلة يسألها المشترين",
     "faq.q1": "نظام التشغيل اللي عليه جاهز؟",
-    "faq.a1": "⚠️ صفحة المنتج مذكورهاش نظام التشغيل بشكل صحيح — حقل «نظام التشغيل» فيها مكتوب فيه «New» وده مش نظام تشغيل. اسأل البائع على أمازون قبل ما تشتري، خصوصاً إن السعر 41,499 جنيه.",
+    "faq.a1": "⚠️ صفحة المنتج مذكورهاش نظام التشغيل بشكل صحيح — حقل «نظام التشغيل» فيها مكتوب فيه «New» وده مش نظام تشغيل. اسأل البائع على أمازون قبل ما تشتري.",
     "faq.q2": "ينفع للألعاب؟",
     "faq.a2": "المنتج مُعلن كـلابتوب جيمنج، ومعاه كرت شاشة مستقل RTX 3050 وشاشة بتردد 144Hz. الأداء الفعلي بيعتمد على اللعبة نفسها وعلى الإعدادات اللي تختارها.",
     "faq.q3": "يعني إيه 144Hz؟",
@@ -168,7 +155,7 @@ const dict = {
     "faq.a6": "الإرجاع حسب سياسة أمازون مصر المطبّقة على المنتج. راجع سياسة الإرجاع على صفحة المنتج قبل ما تشتري.",
     "cta.title": "جاهز تشوف Thin 15؟",
     "cta.sub": "اطلبه من أمازون مصر — شاشة 144Hz وكارت RTX 3050 ومعالج i7",
-    "cta.buy": "اطلب من أمازون",
+    "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
     "cta.questions": "عايز تسأل أكتر؟",
     "footer.about": "صفحة هبوط لمنتج MSI Thin 15 B13UC. الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون.",
     "footer.h1": "الصفحة",
@@ -193,7 +180,9 @@ const dict = {
     "aud.a3t": "الطالب اللي عايز جهاز واحد",
     "aud.a3b": "جهاز واحد بيعمل الحاجة: بياخد معاك زي اللابتوب، ويلعب برضه بعد ما تخلص شغلك أو محاضراتك.",
     "aud.a4t": "اللي بيدور على 144 هرتز بسعر معقول",
-    "aud.a4b": "شاشة بتردد عالي وكارت مستقل في نفس الفئة السعرية. لو بتلعب وشاشتك 60 هرتز، الانتقال لـ144 هرتز أوضح فرق ممكن تشوفه."
+    "aud.a4b": "شاشة بتردد عالي وكارت مستقل في نفس الفئة السعرية. لو بتلعب وشاشتك 60 هرتز، الانتقال لـ144 هرتز أوضح فرق ممكن تشوفه.",
+    "hero.cta2": "تفاصيل الشراء والتوصيل",
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون"
   },
   "en": {
     "nav.tagline": "THIN 15 · Gray",
@@ -211,10 +200,7 @@ const dict = {
     "hero.sub": "i7-13620H, a 144Hz display, and dedicated RTX 3050 graphics",
     "hero.reviews": "A best-seller among laptops on Amazon",
     "hero.rank": "#1 in Traditional Laptops on Amazon",
-    "hero.priceLabel": "Price incl. tax",
-    "hero.vat": "Price includes VAT · Ships from Amazon.eg",
-    "hero.buy": "Buy on Amazon",
-    "hero.installments": "See instalments",
+    "hero.buy": "Buy & see today's price — click here",
     "hero.chip1l": "CPU",
     "hero.chip1v": "i7-13620H",
     "hero.chip2l": "Display",
@@ -312,18 +298,8 @@ const dict = {
     "offer.shipV": "See the date on the product page",
     "offer.ret": "Returns",
     "offer.retV": "Per Amazon's policy",
-    "offer.buyNow": "Buy now on Amazon",
+    "offer.buyNow": "Buy & see today's price — click here",
     "offer.checkout": "Checkout and payment happen on Amazon.eg",
-    "offer.syncLabel": "Price syncs automatically from the Amazon listing",
-    "offer.syncStale": "Update failed — showing the last known price",
-    "offer.instTitle": "Instalment options",
-    "offer.instSub": "Pay over time through Egyptian banks",
-    "offer.months": "months",
-    "offer.p1": "EGP 13,833.00 / mo",
-    "offer.p2": "EGP 6,916.50 / mo",
-    "offer.p3": "EGP 3,458.25 / mo",
-    "offer.p4": "EGP 1,729.13 / mo",
-    "offer.instNote": "Figures are indicative and depend on your bank and the active offers",
     "rev.eyebrow": "Why choose it",
     "rev.title": "Reasons to pick this one",
     "rev.sub": "Based on the manufacturer's published specifications",
@@ -340,7 +316,7 @@ const dict = {
     "faq.eyebrow": "FAQ",
     "faq.title": "Questions buyers ask",
     "faq.q1": "Which operating system does it come with?",
-    "faq.a1": "⚠️ The listing doesn't state this correctly — the operating system field says \"New\", which isn't an operating system. Ask the seller on Amazon before you buy, especially at EGP 41,499.",
+    "faq.a1": "⚠️ The listing doesn't state this correctly — the operating system field says \"New\", which isn't an operating system. Ask the seller on Amazon before you buy.",
     "faq.q2": "Is it good for games?",
     "faq.a2": "It's advertised as a gaming laptop, with a dedicated RTX 3050 and a 144Hz display. Real performance depends on the game and the settings you pick.",
     "faq.q3": "What does 144Hz mean?",
@@ -353,7 +329,7 @@ const dict = {
     "faq.a6": "Returns follow the Amazon.eg policy that applies to this product. Check the return policy on the product page before you buy.",
     "cta.title": "Ready to look at the Thin 15?",
     "cta.sub": "Order it on Amazon.eg — 144Hz display, RTX 3050 graphics and an i7",
-    "cta.buy": "Order on Amazon",
+    "cta.buy": "Order on Amazon & see today's price",
     "cta.questions": "More questions?",
     "footer.about": "Landing page for the MSI Thin 15 B13UC. Prices and figures can change with availability on Amazon.",
     "footer.h1": "Page",
@@ -378,7 +354,9 @@ const dict = {
     "aud.a3t": "Students who want one machine",
     "aud.a3b": "One device that does both jobs: it carries like a laptop, and it still games once the work or lectures are done.",
     "aud.a4t": "Anyone after 144Hz at a fair price",
-    "aud.a4b": "A high-refresh panel and a discrete GPU in the same price band. If you game on a 60Hz screen, moving to 144Hz is the clearest upgrade you can see."
+    "aud.a4b": "A high-refresh panel and a discrete GPU in the same price band. If you game on a 60Hz screen, moving to 144Hz is the clearest upgrade you can see.",
+    "hero.cta2": "Buying & delivery details",
+    "offer.today": "See today's price and live offers directly on the product page at Amazon"
   }
 };
 
@@ -417,31 +395,18 @@ function applyLang(next) {
   renderLive();
 }
 
-/* ---------- live price (price.json) ----------
+/* ---------- live data (price.json) ----------
    price.json is written by scripts/update-price.mjs on a cron
    (see .github/workflows/price.yml). The page only reads it,
-   so no secret ever ships to the browser.                        */
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
 
 const PRICE_URL = 'price.json';
 const LIVE_KEY = 'msi-thin15-live';
 const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
 
 let live = null; // last known good data, or null if price.json has never loaded
-
-const fmtPrice = (n) =>
-  Number(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-
-function fmtDate(iso) {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  try {
-    return new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-EG', {
-      day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
-    }).format(d);
-  } catch {
-    return d.toISOString().slice(0, 16).replace('T', ' ');
-  }
-}
 
 /* substitutes {n} reviews / {r} rating inside i18n strings */
 function applyTokens() {
@@ -468,9 +433,6 @@ function applyTokens() {
 function renderLive() {
   if (!live) return;
 
-  if (live.price != null) {
-    document.querySelectorAll('[data-bind="price"]').forEach((el) => { el.textContent = fmtPrice(live.price); });
-  }
   if (live.rating != null) {
     document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
     document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
@@ -478,10 +440,6 @@ function renderLive() {
   // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
   // the markup, so every product that had no rating of its own quietly showed the
   // G309 score. A product with no reviews should show no stars.
-  if (live.updatedAt) {
-    const label = document.querySelector('[data-bind="updatedAt"]');
-    if (label) label.textContent = fmtDate(live.updatedAt) + (live.stale ? ' ' + t('offer.syncStale') : '');
-  }
 
   // stock badges
   document.querySelectorAll('[data-bind="stock"]').forEach((el) => {

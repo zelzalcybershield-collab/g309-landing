@@ -26,10 +26,7 @@ const dict = {
     "hero.sub": "ماوس جيمنج لاسلكي خفيف جداً بـ 86 جرام فقط، بحساس HERO 25K بدقة تتبع تحت الميكرون، ومفاتيح LIGHTFORCE هجينة، وبطارية AA واحدة تدوم أكثر من 300 ساعة لعب.",
     "hero.reviews": "من {n} تقييم على أمازون",
     "hero.rank": "#155 في أفضل ماوسات PC جيمنج",
-    "hero.priceLabel": "السعر شامل الضريبة",
-    "hero.vat": "السعر يشمل ضريبة القيمة المضافة · متوفر على أمازون مصر",
-    "hero.buy": "اشترِ من أمازون",
-    "hero.installments": "اعرف التقسيط",
+    "hero.buy": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "hero.chip1l": "الوزن",
     "hero.chip1v": "86 g",
     "hero.chip2l": "الحساسية",
@@ -127,18 +124,8 @@ const dict = {
     "offer.shipV": "غداً (إلى القاهرة الجديدة)",
     "offer.ret": "مدة الإرجاع",
     "offer.retV": "15 يوم",
-    "offer.buyNow": "اشترِ الآن من أمازون",
+    "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
-    "offer.syncLabel": "السعر متزامن تلقائياً من صفحة أمازون — آخر تحديث:",
-    "offer.syncStale": "(تعذّر التحديث، معروض آخر سعر معروف)",
-    "offer.instTitle": "خيارات التقسيط",
-    "offer.instSub": "تقسيط على فترات مختلفة من خلال بنوك مصر",
-    "offer.months": "شهر",
-    "offer.p1": "933.00 EGP / شهرياً",
-    "offer.p2": "466.50 EGP / شهرياً",
-    "offer.p3": "233.25 EGP / شهرياً",
-    "offer.p4": "116.63 EGP / شهرياً",
-    "offer.instNote": "الأرقام استرشادية وتعتمد على البنك والعروض المتاحة. قيمة فعلية للمبلغ والتقسيط تظهر في صفحة الدفع.",
     "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
     "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
     "offer.copy": "نسخ",
@@ -172,7 +159,7 @@ const dict = {
     "faq.a6": "المنتج معروض للبيع على أمازون مصر من لوجيتك. صفحة المنتج بتذكر «15 days Returnable» — راجع سياسة الإرجاع وشروط الضمان على صفحة المنتج قبل ما تشتري.",
     "cta.title": "جاهز تجرّب G309؟",
     "cta.sub": "اطلبه دلوقتي من أمازون مصر — شحن مجاني، إرجاع 15 يوم، ودفع عند الاستلام.",
-    "cta.buy": "اطلب من أمازون",
+    "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
     "cta.questions": "عايز تسأل أكتر؟",
     "footer.about": "صفحة هبوط لمنتج Logitech G309 LIGHTSPEED. كل الأسعار والتوفر مبنية على صفحة المنتج على أمازون مصر وقت النشر.",
     "footer.h1": "الصفحة",
@@ -193,7 +180,9 @@ const dict = {
     "aud.a3t": "اللي على لابتوب متنقل",
     "aud.a3b": "يشتغل لاسلكي عبر منفذ USB، فتفضل الماوس على المكتب وتفضل انت متحرك من غير ما تشيل الكابل. وبنفس الماوس على الكمبيوتر والماك ولينكس.",
     "aud.a4t": "اللي بيدور على أول ماوس محترم",
-    "aud.a4b": "25,000 نقطة حساسية ومحرك Lightforce هيدوك تحكم أدق من أي ماوس مبتدئ. لو بتتعلم تهدق، ده قفزة محسوسة من أول يوم."
+    "aud.a4b": "25,000 نقطة حساسية ومحرك Lightforce هيدوك تحكم أدق من أي ماوس مبتدئ. لو بتتعلم تهدق، ده قفزة محسوسة من أول يوم.",
+    "hero.cta2": "تفاصيل الشراء والتوصيل",
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون"
   },
   "en": {
     "nav.tagline": "LIGHTSPEED · White",
@@ -211,10 +200,7 @@ const dict = {
     "hero.sub": "An ultra-light wireless gaming mouse at just 86 g, with the HERO 25K sub-micron sensor, LIGHTFORCE hybrid switches, and a single AA battery that lasts 300+ hours of play.",
     "hero.reviews": "from {n} ratings on Amazon",
     "hero.rank": "#155 in PC Gaming Mice",
-    "hero.priceLabel": "Price incl. VAT",
-    "hero.vat": "Price includes VAT · Available on Amazon Egypt",
-    "hero.buy": "Buy on Amazon",
-    "hero.installments": "See installments",
+    "hero.buy": "Buy & see today's price — click here",
     "hero.chip1l": "Weight",
     "hero.chip1v": "86 g",
     "hero.chip2l": "Sensitivity",
@@ -312,18 +298,8 @@ const dict = {
     "offer.shipV": "Tomorrow (to New Cairo)",
     "offer.ret": "Return window",
     "offer.retV": "15 days",
-    "offer.buyNow": "Buy now on Amazon",
+    "offer.buyNow": "Buy & see today's price — click here",
     "offer.checkout": "Checkout and payment happen on Amazon Egypt",
-    "offer.syncLabel": "Price synced from the Amazon page — last updated:",
-    "offer.syncStale": "(could not refresh, showing last known price)",
-    "offer.instTitle": "Installment options",
-    "offer.instSub": "Split the payment over several periods with Egyptian banks",
-    "offer.months": "months",
-    "offer.p1": "933.00 EGP / mo",
-    "offer.p2": "466.50 EGP / mo",
-    "offer.p3": "233.25 EGP / mo",
-    "offer.p4": "116.63 EGP / mo",
-    "offer.instNote": "Figures are indicative and depend on the bank and current offers. The exact installment and total show at checkout.",
     "offer.couponTitle": "10% off with NBE cards",
     "offer.couponSub": "Pick the code for your card type — the discount is Amazon’s",
     "offer.copy": "Copy",
@@ -357,7 +333,7 @@ const dict = {
     "faq.a6": "The item is sold on Amazon Egypt by Logitech. The page lists it as \"15 days Returnable\" — check the return policy and any warranty terms on the product page before you buy.",
     "cta.title": "Ready to try the G309?",
     "cta.sub": "Order it now on Amazon Egypt — free delivery, 15-day returns, and cash on delivery.",
-    "cta.buy": "Order on Amazon",
+    "cta.buy": "Order on Amazon & see today's price",
     "cta.questions": "More questions?",
     "footer.about": "A landing page for the Logitech G309 LIGHTSPEED. All prices and availability are taken from the Amazon Egypt product page at the time of publishing.",
     "footer.h1": "Page",
@@ -378,7 +354,9 @@ const dict = {
     "aud.a3t": "Laptop users on the move",
     "aud.a3b": "It runs wirelessly over USB, so the mouse stays on the desk while you move around untethered. The same mouse works on PC, Mac and Linux.",
     "aud.a4t": "Anyone buying a first serious mouse",
-    "aud.a4b": "25,000 DPI and a Lightforce sensor give you noticeably finer control than a beginner mouse. If you are still learning to aim, this is a step up you feel on day one."
+    "aud.a4b": "25,000 DPI and a Lightforce sensor give you noticeably finer control than a beginner mouse. If you are still learning to aim, this is a step up you feel on day one.",
+    "hero.cta2": "Buying & delivery details",
+    "offer.today": "See today's price and live offers directly on the product page at Amazon"
   }
 };
 
@@ -417,31 +395,18 @@ function applyLang(next) {
   renderLive();
 }
 
-/* ---------- live price (price.json) ----------
+/* ---------- live data (price.json) ----------
    price.json is written by scripts/update-price.mjs on a cron
    (see .github/workflows/price.yml). The page only reads it,
-   so no secret ever ships to the browser.                        */
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
 
 const PRICE_URL = 'price.json';
 const LIVE_KEY = 'g309-live';
 const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
 
 let live = null; // last known good data, or null if price.json has never loaded
-
-const fmtPrice = (n) =>
-  Number(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-
-function fmtDate(iso) {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  try {
-    return new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-EG', {
-      day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
-    }).format(d);
-  } catch {
-    return d.toISOString().slice(0, 16).replace('T', ' ');
-  }
-}
 
 /* substitutes {n} reviews / {r} rating inside i18n strings */
 function applyTokens() {
@@ -468,9 +433,6 @@ function applyTokens() {
 function renderLive() {
   if (!live) return;
 
-  if (live.price != null) {
-    document.querySelectorAll('[data-bind="price"]').forEach((el) => { el.textContent = fmtPrice(live.price); });
-  }
   if (live.rating != null) {
     document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
     document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
@@ -478,10 +440,6 @@ function renderLive() {
   // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
   // the markup, so every product that had no rating of its own quietly showed the
   // G309 score. A product with no reviews should show no stars.
-  if (live.updatedAt) {
-    const label = document.querySelector('[data-bind="updatedAt"]');
-    if (label) label.textContent = fmtDate(live.updatedAt) + (live.stale ? ' ' + t('offer.syncStale') : '');
-  }
 
   // stock badges
   document.querySelectorAll('[data-bind="stock"]').forEach((el) => {

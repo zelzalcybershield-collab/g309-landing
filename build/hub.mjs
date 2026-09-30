@@ -8,10 +8,10 @@
  * four products. The root is now a generated index instead, so each product
  * exists at exactly one URL and the bare domain still lands somewhere useful.
  *
- * Prices come from each product's existing price.json rather than from the
- * product data, so the hub shows what the pages actually show. price.yml calls
- * this after it refreshes those files, otherwise the hub would quote prices
- * from whenever it was last built.
+ * The hub now sorts alphabetically and prints no prices: prices live on the
+ * Amazon pages themselves, and cached figures on the hub were going stale the
+ * same way they did on the product pages. Ratings, review counts and stock
+ * still come from each product's price.json so the cards stay current.
  */
 import { readFileSync, writeFileSync, readdirSync, existsSync } from 'node:fs';
 
@@ -39,25 +39,23 @@ const rows = products.map((p) => {
   const live = existsSync(pricePath) ? JSON.parse(readFileSync(pricePath, 'utf8')) : {};
   return {
     p,
-    price: typeof live.price === 'number' ? live.price : null,
     rating: typeof live.rating === 'number' ? live.rating : null,
     reviews: typeof live.reviews === 'number' ? live.reviews : null,
     inStock: live.inStock,
-    stale: Boolean(live.stale),
   };
 });
 
-// cheapest first: this page exists to let someone compare what their money buys
-rows.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
+// alphabetical by brand then model — pages used to sort by price, but the hub
+// no longer prints prices and this keeps a stable, predictable ordering
+rows.sort((a, b) =>
+  String(a.p.meta.brand).localeCompare(String(b.p.meta.brand), 'ar')
+  || String(a.p.meta.model).localeCompare(String(b.p.meta.model), 'ar'));
 
-const money = (n) => (n === null ? '—' : `${n.toLocaleString('en-US')} ج`);
-
-const card = ({ p, price, rating, reviews, inStock, stale }) => {
+const card = ({ p, rating, reviews, inStock }) => {
   const cat = p.dict.ar['hero.eyebrow'] || '';
   const flags = [];
   if (inStock === false) flags.push('<span class="rounded-full border border-rose-400/30 bg-rose-500/10 px-2.5 py-1 text-[11px] font-bold text-rose-300">غير متوفر حالياً</span>');
   else if (inStock === true) flags.push('<span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>');
-  if (stale) flags.push('<span class="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">السعر قد يكون متأخر</span>');
 
   const rate = rating === null
     ? ''
@@ -75,10 +73,6 @@ const card = ({ p, price, rating, reviews, inStock, stale }) => {
               <h2 class="mt-1.5 text-lg font-extrabold text-white">${esc(p.meta.brand)}</h2>
               <p class="text-sm text-slate-400">${esc(p.meta.model)}</p>
             </div>
-            <span class="shrink-0 rounded-2xl bg-ink-950 px-4 py-2.5 text-center">
-              <span class="num block text-xl font-black text-white">${esc(money(price))}</span>
-              <span class="block text-[10px] font-bold text-slate-500">شامل الضريبة</span>
-            </span>
           </div>
           <div class="flex flex-wrap items-center gap-2">${flags.join('')}${rate}</div>
           <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
@@ -93,7 +87,7 @@ const html = `<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>كل المنتجات — صفحات تفصيلية على أمازون مصر</title>
-<meta name="description" content="صفحات تفصيلية لمنتجات على أمازون مصر: السعر، المواصفات، أكواد خصم بطاقات البنك الأهلي، ومقارنة سريعة. الأسعار تتحدّث كل 4 ساعات.">
+<meta name="description" content="صفحات تفصيلية لمنتجات على أمازون مصر: المواصفات، التقييمات، المخزون، وأكواد خصم بطاقات البنك الأهلي. السعر دايماً من صفحة أمازون نفسها.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -134,8 +128,8 @@ tailwind.config = {
           كل المنتجات في مكان واحد
         </h1>
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">
-          ${rows.length} منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة وأكواد خصم
-          بطاقات البنك الأهلي. الأسعار متزامنة من أمازون مصر كل 4 ساعات.
+          ${rows.length} منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة والتقييمات
+          وأكواد خصم بطاقات البنك الأهلي. السعر دايماً بتشوفه من صفحة أمازون نفسها.
         </p>
         <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer"
            class="mt-6 inline-flex items-center gap-2.5 rounded-2xl border border-cyan-400/25 bg-cyan-500/10 px-5 py-3 text-sm font-extrabold text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
@@ -150,8 +144,9 @@ ${rows.map(card).join('\n')}
 
       <footer class="mt-14 border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
         <p>
-  الأسعار والمخزون مأخوذة من صفحات أمازون مصر وقد تتغير في أي وقت — وكل صفحة تعرض
-  آخر قيمة تم جلبها ومتى تم تحديثها. أكواد الخصم تعمل على بطاقات NBE المؤهلة فقط.
+  التقييمات والمخزون مأخوذة من صفحات أمازون مصر وقد تتغير في أي وقت — وكل صفحة
+  بتوصل لسعر المنتج مباشرة من أزرار الشراء. أكواد الخصم تعمل على بطاقات NBE
+  المؤهلة فقط.
         </p>
         <p class="mt-4">
   الموقع ده من إعداد <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer" class="font-bold text-cyan-400 transition hover:text-cyan-300">${esc(SITE.name)}</a>.

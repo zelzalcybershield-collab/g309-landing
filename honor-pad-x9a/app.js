@@ -26,10 +26,7 @@ const dict = {
     "hero.sub": "شاشة 11.5 بوصة 2.5K وأربع مكبرات صوت و8+128 جيجا — مع غطاء قلاب وضمان سنة",
     "hero.reviews": "{n} تقييم على أمازون",
     "hero.rank": "نسخة LTE — اتصال بالشريحة والواي فاي",
-    "hero.priceLabel": "السعر شامل الضريبة",
-    "hero.vat": "السعر يشمل ضريبة القيمة المضافة · يتنفذ بواسطة Amazon.eg",
-    "hero.buy": "اشترِ من أمازون",
-    "hero.installments": "اعرف التقسيط",
+    "hero.buy": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "hero.chip1l": "الشاشة",
     "hero.chip1v": "11.5\" 2.5K",
     "hero.chip2l": "الاتصال",
@@ -127,18 +124,8 @@ const dict = {
     "offer.shipV": "شحن مجاني · استلام غدًا حسب صفحة أمازون",
     "offer.ret": "الإرجاع",
     "offer.retV": "إرجاع مجاني حسب سياسة أمازون",
-    "offer.buyNow": "اشترِ الآن من أمازون",
+    "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
-    "offer.syncLabel": "السعر متزامن تلقائياً من صفحة أمازون",
-    "offer.syncStale": "تعذّر التحديث، معروض آخر سعر معروف",
-    "offer.instTitle": "خيارات التقسيط",
-    "offer.instSub": "تقسيط على فترات مختلفة من خلال بنوك مصر",
-    "offer.months": "شهر",
-    "offer.p1": "1,374.17 EGP / شهرياً",
-    "offer.p2": "687.08 EGP / شهرياً",
-    "offer.p3": "458.06 EGP / شهرياً",
-    "offer.p4": "343.54 EGP / شهرياً",
-    "offer.instNote": "الأرقام استرشادية وتعتمد على البنك والعروض",
     "rev.eyebrow": "ليه تختاره",
     "rev.title": "أسباب تخليك تختاره",
     "rev.sub": "مبني على مواصفات المنتج كما وردت من الشركة المصنّعة",
@@ -168,7 +155,7 @@ const dict = {
     "faq.a6": "الإرجاع حسب سياسة أمازون مصر على المنتج، وبيبدأ عادةً بطلب رجوع مجاني. راجع سياسة الإرجاع على صفحة المنتج قبل ما تشتري.",
     "cta.title": "جاهز تجربته؟",
     "cta.sub": "اطلبه من أمازون مصر — هونر باد X9a بشاشة 11.5 بوصة 2.5K مع غطاء قلاب في العلبة",
-    "cta.buy": "اطلب من أمازون",
+    "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
     "cta.questions": "عايز تسأل أكتر؟",
     "footer.about": "صفحة هبوط لمنتج هونر باد X9a. الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون.",
     "footer.h1": "الصفحة",
@@ -189,15 +176,14 @@ const dict = {
     "aud.a3t": "اللي شغّال على الترفيه",
     "aud.a3b": "أربع مكبرات صوت بتجربة محيطية على شاشة 2.5K — فيديوهات سلسة وألعاب خفيفة ومكالمات فيديو واضحة.",
     "aud.a4t": "اللي بيدوّر على قيمة مقابل السعر",
-    "aud.a4b": "في 16,490 جنيه بتاخد شاشة 2.5K و8+128 وتوسعة ذكية وLTE مع غطاء قلاب وضمان سنة، باعتماد أمازون مصر نفسها.",
+    "aud.a4b": "بتحصل على شاشة 2.5K و8+128 وتوسعة ذكية وLTE مع غطاء قلاب وضمان سنة، باعتماد أمازون مصر نفسها.",
     "var.eyebrow": "اختيار النمط",
     "var.title": "النمطان المتاحان على أمازون مصر",
-    "var.sub": "الفرق الجوهري بينهم هو الاتصال — واي فاي بس أو LTE + واي فاي — مع فرق بسيط في السعر والتقييمات، والمواصفات الأساسية واحدة.",
-    "var.note": "الأرقام كما ظهرت على صفحات أمازون مصر وقت تحديث الصفحة، وقد تتغير حسب التوفر — السعر الحي بيظهر دائمًا على صفحة المنتج نفسه على أمازون.",
+    "var.sub": "الفرق الجوهري بينهم هو الاتصال — واي فاي بس أو LTE + واي فاي — مع اختلاف بسيط في التقييمات، والمواصفات الأساسية واحدة.",
+    "var.note": "التقييمات وأرقام التقييم كما ظهرت على صفحات أمازون مصر وقت تحديث الصفحة وقد تتغير حسب التوفر — السعر الحي بيظهر دائمًا على صفحة المنتج نفسه على أمازون.",
     "var.i1.tag": "متوفر الآن",
     "var.i1.name": "هونر باد X9a — نسخة واي فاي",
     "var.i1.dim": "من غير شريحة اتصال · واي فاي بس",
-    "var.i1.price": "14,900 جنيه",
     "var.i1.rating": "4.6 من 5 نجوم",
     "var.i1.count": "323 تقييماً على أمازون",
     "var.i1.note": "كاش عند الاستلام · تشحن وتباع من Amazon.eg",
@@ -205,11 +191,12 @@ const dict = {
     "var.i2.tag": "النسخة المعروضة في الصفحة دي",
     "var.i2.name": "هونر باد X9a — نسخة LTE",
     "var.i2.dim": "شريحة اتصال + واي فاي",
-    "var.i2.price": "16,490 جنيه",
     "var.i2.rating": "4.3 من 5 نجوم",
     "var.i2.count": "59 تقييماً على أمازون",
     "var.i2.note": "كاش عند الاستلام · تشحن وتباع من Amazon.eg",
-    "var.i2.buy": "شوفها على أمازون"
+    "var.i2.buy": "شوفها على أمازون",
+    "hero.cta2": "تفاصيل الشراء والتوصيل",
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون"
   },
   "en": {
     "nav.tagline": "HONOR PAD X9a · Gray",
@@ -227,10 +214,7 @@ const dict = {
     "hero.sub": "An 11.5-inch 2.5K screen, four speakers and 8+128GB — with a flip cover and a 1-year warranty",
     "hero.reviews": "{n} ratings on Amazon",
     "hero.rank": "LTE version — works on a SIM and Wi-Fi",
-    "hero.priceLabel": "Price incl. tax",
-    "hero.vat": "Price includes VAT · Fulfilled by Amazon.eg",
-    "hero.buy": "Buy on Amazon",
-    "hero.installments": "See instalments",
+    "hero.buy": "Buy & see today's price — click here",
     "hero.chip1l": "Display",
     "hero.chip1v": "11.5\" 2.5K",
     "hero.chip2l": "Connectivity",
@@ -328,18 +312,8 @@ const dict = {
     "offer.shipV": "Free shipping · next-day delivery per the Amazon listing",
     "offer.ret": "Returns",
     "offer.retV": "Free returns per Amazon's policy",
-    "offer.buyNow": "Buy now on Amazon",
+    "offer.buyNow": "Buy & see today's price — click here",
     "offer.checkout": "Checkout and payment happen on Amazon.eg",
-    "offer.syncLabel": "Price syncs automatically from the Amazon listing",
-    "offer.syncStale": "Update failed — showing the last known price",
-    "offer.instTitle": "Instalment options",
-    "offer.instSub": "Pay over time through Egyptian banks",
-    "offer.months": "months",
-    "offer.p1": "EGP 1,374.17 / mo",
-    "offer.p2": "EGP 687.08 / mo",
-    "offer.p3": "EGP 458.06 / mo",
-    "offer.p4": "EGP 343.54 / mo",
-    "offer.instNote": "Figures are indicative and depend on your bank and the active offers",
     "rev.eyebrow": "Why choose it",
     "rev.title": "Reasons to pick this one",
     "rev.sub": "Based on the manufacturer's published specifications",
@@ -369,7 +343,7 @@ const dict = {
     "faq.a6": "Returns follow the Amazon.eg policy for this product, usually starting with a free return request. Check the return policy on the product page before ordering.",
     "cta.title": "Ready to try it?",
     "cta.sub": "Order it on Amazon.eg — a HONOR Pad X9a with an 11.5-inch 2.5K screen and its flip cover in the box",
-    "cta.buy": "Order on Amazon",
+    "cta.buy": "Order on Amazon & see today's price",
     "cta.questions": "More questions?",
     "footer.about": "Landing page for the HONOR Pad X9a. Prices and figures can change with availability on Amazon.",
     "footer.h1": "Page",
@@ -390,15 +364,14 @@ const dict = {
     "aud.a3t": "People into entertainment",
     "aud.a3b": "Four speakers in an immersive setup on a 2.5K screen — smooth videos, light games and clear video calls.",
     "aud.a4t": "Buyers chasing value",
-    "aud.a4b": "For EGP 16,490 you get a 2.5K screen, 8+128 with smart expansion, LTE, a flip cover and a 1-year warranty, backed by Amazon.eg itself.",
+    "aud.a4b": "You get a 2.5K screen, 8+128 with smart expansion, LTE, a flip cover and a 1-year warranty, backed by Amazon.eg itself.",
     "var.eyebrow": "Pick a variant",
     "var.title": "The two variants on Amazon.eg",
-    "var.sub": "The core difference is connectivity — Wi-Fi only or LTE + Wi-Fi — with a small difference in price and ratings; the baseline specs are the same.",
-    "var.note": "Figures as shown on the Amazon.eg listings when this page was last updated and can change with availability — the live price always shows on the Amazon product page itself.",
+    "var.sub": "The core difference is connectivity — Wi-Fi only or LTE + Wi-Fi — with slightly different ratings; the baseline specs are the same.",
+    "var.note": "Ratings and review counts as shown on the Amazon.eg listings when this page was last updated and can change with availability — the live price always shows on the product page at Amazon.",
     "var.i1.tag": "In stock now",
     "var.i1.name": "HONOR Pad X9a — Wi-Fi version",
     "var.i1.dim": "No SIM tray · Wi-Fi only",
-    "var.i1.price": "14,900 EGP",
     "var.i1.rating": "4.6 out of 5 stars",
     "var.i1.count": "323 ratings on Amazon",
     "var.i1.note": "Cash on delivery · Ships from Amazon.eg",
@@ -406,11 +379,12 @@ const dict = {
     "var.i2.tag": "The version this page covers",
     "var.i2.name": "HONOR Pad X9a — LTE version",
     "var.i2.dim": "SIM + Wi-Fi",
-    "var.i2.price": "16,490 EGP",
     "var.i2.rating": "4.3 out of 5 stars",
     "var.i2.count": "59 ratings on Amazon",
     "var.i2.note": "Cash on delivery · Ships from Amazon.eg",
-    "var.i2.buy": "See it on Amazon"
+    "var.i2.buy": "See it on Amazon",
+    "hero.cta2": "Buying & delivery details",
+    "offer.today": "See today's price and live offers directly on the product page at Amazon"
   }
 };
 
@@ -449,31 +423,18 @@ function applyLang(next) {
   renderLive();
 }
 
-/* ---------- live price (price.json) ----------
+/* ---------- live data (price.json) ----------
    price.json is written by scripts/update-price.mjs on a cron
    (see .github/workflows/price.yml). The page only reads it,
-   so no secret ever ships to the browser.                        */
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
 
 const PRICE_URL = 'price.json';
 const LIVE_KEY = 'honor-pad-x9a-live';
 const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
 
 let live = null; // last known good data, or null if price.json has never loaded
-
-const fmtPrice = (n) =>
-  Number(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-
-function fmtDate(iso) {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  try {
-    return new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-EG', {
-      day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
-    }).format(d);
-  } catch {
-    return d.toISOString().slice(0, 16).replace('T', ' ');
-  }
-}
 
 /* substitutes {n} reviews / {r} rating inside i18n strings */
 function applyTokens() {
@@ -500,9 +461,6 @@ function applyTokens() {
 function renderLive() {
   if (!live) return;
 
-  if (live.price != null) {
-    document.querySelectorAll('[data-bind="price"]').forEach((el) => { el.textContent = fmtPrice(live.price); });
-  }
   if (live.rating != null) {
     document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
     document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
@@ -510,10 +468,6 @@ function renderLive() {
   // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
   // the markup, so every product that had no rating of its own quietly showed the
   // G309 score. A product with no reviews should show no stars.
-  if (live.updatedAt) {
-    const label = document.querySelector('[data-bind="updatedAt"]');
-    if (label) label.textContent = fmtDate(live.updatedAt) + (live.stale ? ' ' + t('offer.syncStale') : '');
-  }
 
   // stock badges
   document.querySelectorAll('[data-bind="stock"]').forEach((el) => {

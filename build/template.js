@@ -46,31 +46,18 @@ function applyLang(next) {
   renderLive();
 }
 
-/* ---------- live price (price.json) ----------
+/* ---------- live data (price.json) ----------
    price.json is written by scripts/update-price.mjs on a cron
    (see .github/workflows/price.yml). The page only reads it,
-   so no secret ever ships to the browser.                        */
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
 
 const PRICE_URL = 'price.json';
 const LIVE_KEY = '{{LIVE_KEY}}';
 const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
 
 let live = null; // last known good data, or null if price.json has never loaded
-
-const fmtPrice = (n) =>
-  Number(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-
-function fmtDate(iso) {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  try {
-    return new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-EG', {
-      day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
-    }).format(d);
-  } catch {
-    return d.toISOString().slice(0, 16).replace('T', ' ');
-  }
-}
 
 /* substitutes {n} reviews / {r} rating inside i18n strings */
 function applyTokens() {
@@ -97,9 +84,6 @@ function applyTokens() {
 function renderLive() {
   if (!live) return;
 
-  if (live.price != null) {
-    document.querySelectorAll('[data-bind="price"]').forEach((el) => { el.textContent = fmtPrice(live.price); });
-  }
   if (live.rating != null) {
     document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
     document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
@@ -107,10 +91,6 @@ function renderLive() {
   // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
   // the markup, so every product that had no rating of its own quietly showed the
   // G309 score. A product with no reviews should show no stars.
-  if (live.updatedAt) {
-    const label = document.querySelector('[data-bind="updatedAt"]');
-    if (label) label.textContent = fmtDate(live.updatedAt) + (live.stale ? ' ' + t('offer.syncStale') : '');
-  }
 
   // stock badges
   document.querySelectorAll('[data-bind="stock"]').forEach((el) => {

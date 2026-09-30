@@ -26,10 +26,7 @@ const dict = {
     "hero.sub": "معالج i7-14700HX بـ20 نواة، كارت شاشة RTX 5060، و32 جيجا رام DDR5",
     "hero.reviews": "{n} تقييم على أمازون",
     "hero.rank": "موديل Legion 5 · إصدار 15IRX10",
-    "hero.priceLabel": "السعر شامل الضريبة",
-    "hero.vat": "السعر يشمل ضريبة القيمة المضافة · يُشحن من Amazon.eg",
-    "hero.buy": "اشترِ من أمازون",
-    "hero.installments": "اعرف التقسيط",
+    "hero.buy": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "hero.chip1l": "المعالج",
     "hero.chip1v": "i7-14700HX",
     "hero.chip2l": "كرت الشاشة",
@@ -126,18 +123,8 @@ const dict = {
     "offer.shipV": "بتشوف الموعد على صفحة المنتج",
     "offer.ret": "الإرجاع",
     "offer.retV": "حسب سياسة أمازون",
-    "offer.buyNow": "اشترِ الآن من أمازون",
+    "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
-    "offer.syncLabel": "السعر متزامن تلقائياً من صفحة أمازون",
-    "offer.syncStale": "تعذّر التحديث، معروض آخر سعر معروف",
-    "offer.instTitle": "خيارات التقسيط",
-    "offer.instSub": "تقسيط على فترات مختلفة من خلال بنوك مصر",
-    "offer.months": "شهر",
-    "offer.p1": "29,999.67 EGP / شهرياً",
-    "offer.p2": "14,999.83 EGP / شهرياً",
-    "offer.p3": "7,499.92 EGP / شهرياً",
-    "offer.p4": "3,749.96 EGP / شهرياً",
-    "offer.instNote": "الأرقام استرشادية وتعتمد على البنك والعروض",
     "rev.eyebrow": "ليه تختاره",
     "rev.title": "أسباب تخليك تختاره",
     "rev.sub": "مبني على مواصفات المنتج كما وردت من الشركة المصنّعة",
@@ -167,7 +154,7 @@ const dict = {
     "faq.a6": "المنتج معروض للبيع على أمازون مصر ويُشحن من Amazon.eg، وبذلك بياخد ضمان أمازون. راجع شروط الضمان على صفحة المنتج.",
     "cta.title": "جاهز تلعب على Legion 5؟",
     "cta.sub": "اطلبه دلوقتي من أمازون مصر — معالج 20 نواة وكارت RTX 5060 و32 جيجا رام",
-    "cta.buy": "اطلب من أمازون",
+    "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
     "cta.questions": "عايز تسأل أكتر؟",
     "footer.about": "صفحة هبوط لمنتج Lenovo Legion 5 15IRX10. الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون.",
     "footer.h1": "الصفحة",
@@ -193,7 +180,9 @@ const dict = {
     "aud.a3t": "اللي بيعمل شغل ويلعب",
     "aud.a3b": "لو شغلك بياخد يوم كامل وعايز تلعب بعده، الجهاز ده بيعمل الاتنين: أداء عالي في الشغل، ونفس الأداء في الألعاب بعدين.",
     "aud.a4t": "اللي عايز جهاز يخدمه سنين",
-    "aud.a4b": "رام 32 جيجا وهارد 1 تيرا مواصفات مش بتخلص بسرعة. جهاز واحد يقدر يغطي الشغل والدراسة والألعاب مع بعض."
+    "aud.a4b": "رام 32 جيجا وهارد 1 تيرا مواصفات مش بتخلص بسرعة. جهاز واحد يقدر يغطي الشغل والدراسة والألعاب مع بعض.",
+    "hero.cta2": "تفاصيل الشراء والتوصيل",
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون"
   },
   "en": {
     "nav.tagline": "LEGION 5 · Black",
@@ -211,10 +200,7 @@ const dict = {
     "hero.sub": "i7-14700HX with 20 cores, RTX 5060 graphics, and 32GB DDR5 RAM",
     "hero.reviews": "{n} rating on Amazon",
     "hero.rank": "Legion 5 model · 15IRX10",
-    "hero.priceLabel": "Price incl. tax",
-    "hero.vat": "Price includes VAT · Ships from Amazon.eg",
-    "hero.buy": "Buy on Amazon",
-    "hero.installments": "See instalments",
+    "hero.buy": "Buy & see today's price — click here",
     "hero.chip1l": "CPU",
     "hero.chip1v": "i7-14700HX",
     "hero.chip2l": "Graphics",
@@ -311,18 +297,8 @@ const dict = {
     "offer.shipV": "See the date on the product page",
     "offer.ret": "Returns",
     "offer.retV": "Per Amazon's policy",
-    "offer.buyNow": "Buy now on Amazon",
+    "offer.buyNow": "Buy & see today's price — click here",
     "offer.checkout": "Checkout and payment happen on Amazon.eg",
-    "offer.syncLabel": "Price syncs automatically from the Amazon listing",
-    "offer.syncStale": "Update failed — showing the last known price",
-    "offer.instTitle": "Instalment options",
-    "offer.instSub": "Pay over time through Egyptian banks",
-    "offer.months": "months",
-    "offer.p1": "EGP 29,999.67 / mo",
-    "offer.p2": "EGP 14,999.83 / mo",
-    "offer.p3": "EGP 7,499.92 / mo",
-    "offer.p4": "EGP 3,749.96 / mo",
-    "offer.instNote": "Figures are indicative and depend on your bank and the active offers",
     "rev.eyebrow": "Why choose it",
     "rev.title": "Reasons to pick this one",
     "rev.sub": "Based on the manufacturer's published specifications",
@@ -352,7 +328,7 @@ const dict = {
     "faq.a6": "The product is sold on Amazon.eg and ships from Amazon.eg, so it carries Amazon's warranty. Check the warranty terms on the product page.",
     "cta.title": "Ready to game on the Legion 5?",
     "cta.sub": "Order it on Amazon.eg — 20-core CPU, RTX 5060 graphics and 32GB of RAM",
-    "cta.buy": "Order on Amazon",
+    "cta.buy": "Order on Amazon & see today's price",
     "cta.questions": "More questions?",
     "footer.about": "Landing page for the Lenovo Legion 5 15IRX10. Prices and figures can change with availability on Amazon.",
     "footer.h1": "Page",
@@ -378,7 +354,9 @@ const dict = {
     "aud.a3t": "People who work then play",
     "aud.a3b": "If work takes the whole day and you still want to game after, this does both: full performance on the job, and the same performance on the games.",
     "aud.a4t": "Anyone who wants one machine for years",
-    "aud.a4b": "32GB of RAM and a 1TB SSD are not specs that run out quickly. One machine can cover work, study and gaming together."
+    "aud.a4b": "32GB of RAM and a 1TB SSD are not specs that run out quickly. One machine can cover work, study and gaming together.",
+    "hero.cta2": "Buying & delivery details",
+    "offer.today": "See today's price and live offers directly on the product page at Amazon"
   }
 };
 
@@ -417,31 +395,18 @@ function applyLang(next) {
   renderLive();
 }
 
-/* ---------- live price (price.json) ----------
+/* ---------- live data (price.json) ----------
    price.json is written by scripts/update-price.mjs on a cron
    (see .github/workflows/price.yml). The page only reads it,
-   so no secret ever ships to the browser.                        */
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
 
 const PRICE_URL = 'price.json';
 const LIVE_KEY = 'lenovo-legion5-live';
 const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
 
 let live = null; // last known good data, or null if price.json has never loaded
-
-const fmtPrice = (n) =>
-  Number(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-
-function fmtDate(iso) {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  try {
-    return new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-EG', {
-      day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
-    }).format(d);
-  } catch {
-    return d.toISOString().slice(0, 16).replace('T', ' ');
-  }
-}
 
 /* substitutes {n} reviews / {r} rating inside i18n strings */
 function applyTokens() {
@@ -468,9 +433,6 @@ function applyTokens() {
 function renderLive() {
   if (!live) return;
 
-  if (live.price != null) {
-    document.querySelectorAll('[data-bind="price"]').forEach((el) => { el.textContent = fmtPrice(live.price); });
-  }
   if (live.rating != null) {
     document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
     document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
@@ -478,10 +440,6 @@ function renderLive() {
   // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
   // the markup, so every product that had no rating of its own quietly showed the
   // G309 score. A product with no reviews should show no stars.
-  if (live.updatedAt) {
-    const label = document.querySelector('[data-bind="updatedAt"]');
-    if (label) label.textContent = fmtDate(live.updatedAt) + (live.stale ? ' ' + t('offer.syncStale') : '');
-  }
 
   // stock badges
   document.querySelectorAll('[data-bind="stock"]').forEach((el) => {

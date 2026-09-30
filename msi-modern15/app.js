@@ -26,10 +26,7 @@ const dict = {
     "hero.sub": "لابتوب أعمال خفيف: معالج Core 5 من إنتل، شاشة FHD ضد الانعكاس، 512GB NVMe، وسنة ضمان دولي",
     "hero.reviews": "من {n} تقييم على أمازون",
     "hero.rank": "لابتوب أعمال خفيف بضمان سنة · 15.6 بوصة FHD",
-    "hero.priceLabel": "السعر شامل الضريبة",
-    "hero.vat": "السعر يشمل ضريبة القيمة المضافة · يُشحن من Amazon.eg",
-    "hero.buy": "اشترِ من أمازون",
-    "hero.installments": "اعرف التقسيط",
+    "hero.buy": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "hero.chip1l": "الضمان",
     "hero.chip1v": "سنة ضمان دولي",
     "hero.chip2l": "الشاشة",
@@ -127,18 +124,8 @@ const dict = {
     "offer.shipV": "بتشوف الموعد على صفحة المنتج",
     "offer.ret": "الإرجاع",
     "offer.retV": "15 يوم",
-    "offer.buyNow": "اشترِ الآن من أمازون",
+    "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
     "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
-    "offer.syncLabel": "السعر متزامن تلقائياً من صفحة أمازون",
-    "offer.syncStale": "تعذّر التحديث، معروض آخر سعر معروف",
-    "offer.instTitle": "خيارات التقسيط",
-    "offer.instSub": "أمازون بيعرض التقسيط على بنوك مختارة",
-    "offer.months": "شهر",
-    "offer.p1": "4,527.50 EGP / شهرياً",
-    "offer.p2": "2,263.75 EGP / شهرياً",
-    "offer.p3": "1,131.88 EGP / شهرياً",
-    "offer.p4": "754.58 EGP / شهرياً",
-    "offer.instNote": "مبلغ 754.58 جنيه شهرياً على 36 شهر هو الرقم المنشور على صفحة أمازون. باقي المدد محسوبة من السعر، وبتختلف حسب البنك والعروض.",
     "offer.copy": "نسخ",
     "offer.couponTitle": "خصم 10% ببطاقات البنك الأهلي",
     "offer.couponSub": "اختار الكود حسب نوع بطاقتك — الخصم من أمازون نفسه",
@@ -172,7 +159,7 @@ const dict = {
     "faq.a6": "أيوا. كود خصم 10% لبطاقات البنك الأهلي: الكود NBESEP500 لبطاقة NBE Visa Signature، والكود NBESEP250 لبطاقة NBE Visa Platinum. الخصم بيتم في صفحة الدفع على أمازون نفسه.",
     "cta.title": "محتاج لابتوب شغل خفيف؟",
     "cta.sub": "اطلبه من أمازون مصر — Core 5 وشاشة FHD وسنة ضمان دولي",
-    "cta.buy": "اطلب من أمازون",
+    "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
     "cta.questions": "عايز تسأل أكتر؟",
     "footer.about": "صفحة هبوط لمنتج MSI Modern 15 F1MG. الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون.",
     "footer.h1": "الصفحة",
@@ -193,7 +180,9 @@ const dict = {
     "aud.a3t": "أصحاب العمل الحر والمشاريع الصغيرة",
     "aud.a3b": "شبكة Wi-Fi 6E بتخلي الاتصال ثابت حتى في المقاهي المزدحمة، والقرص NVMe من الجيل الرابع بيخلي فتح الملفات سريع من غير انتظار.",
     "aud.a4t": "اللي بيدور على جهاز يدوم",
-    "aud.a4b": "سنة ضمان دولي مكتوبة في وصف المنتج نفسه. لما تصرف مبلغ كده، الضمان المكتوب ده بيدي راحة تفرق."
+    "aud.a4b": "سنة ضمان دولي مكتوبة في وصف المنتج نفسه. لما تصرف مبلغ كده، الضمان المكتوب ده بيدي راحة تفرق.",
+    "hero.cta2": "تفاصيل الشراء والتوصيل",
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون"
   },
   "en": {
     "nav.tagline": "Modern 15 F1MG · Urban Silver",
@@ -211,10 +200,7 @@ const dict = {
     "hero.sub": "A light business laptop: Intel Core 5, anti-glare FHD display, 512GB NVMe, and a 1-year international warranty",
     "hero.reviews": "{n} ratings on Amazon",
     "hero.rank": "A light business laptop with a 1-year warranty · 15.6 inch FHD",
-    "hero.priceLabel": "Price includes VAT",
-    "hero.vat": "Price includes VAT · shipped and fulfilled by Amazon.eg",
-    "hero.buy": "Buy on Amazon",
-    "hero.installments": "See instalments",
+    "hero.buy": "Buy & see today's price — click here",
     "hero.chip1l": "Warranty",
     "hero.chip1v": "1-year international",
     "hero.chip2l": "Display",
@@ -312,18 +298,8 @@ const dict = {
     "offer.shipV": "Check the date on the product page",
     "offer.ret": "Returns",
     "offer.retV": "15 days",
-    "offer.buyNow": "Buy now on Amazon",
+    "offer.buyNow": "Buy & see today's price — click here",
     "offer.checkout": "Purchase and payment happen on amazon.eg",
-    "offer.syncLabel": "Price syncs automatically from the Amazon page",
-    "offer.syncStale": "Could not refresh, showing the last known price",
-    "offer.instTitle": "Instalment options",
-    "offer.instSub": "Amazon offers instalments through select banks",
-    "offer.months": "months",
-    "offer.p1": "EGP 4,527.50 / month",
-    "offer.p2": "EGP 2,263.75 / month",
-    "offer.p3": "EGP 1,131.88 / month",
-    "offer.p4": "EGP 754.58 / month",
-    "offer.instNote": "EGP 754.58 per month over 36 months is the figure published on the Amazon page. The other terms are calculated from the price and vary by bank and offer.",
     "offer.copy": "copy",
     "offer.couponTitle": "10% off with National Bank of Egypt cards",
     "offer.couponSub": "Pick the code for your card — the discount is applied by Amazon",
@@ -357,7 +333,7 @@ const dict = {
     "faq.a6": "Yes. There is a 10% code for National Bank of Egypt cards: NBESEP500 for an NBE Visa Signature card, and NBESEP250 for an NBE Visa Platinum card. The discount is applied at checkout on Amazon itself.",
     "cta.title": "Need a light laptop for work?",
     "cta.sub": "Order it on amazon.eg — Core 5, an FHD display, and a 1-year international warranty",
-    "cta.buy": "Order on Amazon",
+    "cta.buy": "Order on Amazon & see today's price",
     "cta.questions": "Want to ask more?",
     "footer.about": "A landing page for the MSI Modern 15 F1MG. Prices and figures can change with availability on Amazon.",
     "footer.h1": "Page",
@@ -378,7 +354,9 @@ const dict = {
     "aud.a3t": "Freelancers and small business owners",
     "aud.a3b": "Wi-Fi 6E holds a steady connection even in busy cafes, and the Gen4 NVMe drive opens files fast without the wait.",
     "aud.a4t": "Anyone who wants a machine that lasts",
-    "aud.a4b": "A 1-year international warranty written into the description. At this price, a warranty in writing is worth a lot of peace of mind."
+    "aud.a4b": "A 1-year international warranty written into the description. At this price, a warranty in writing is worth a lot of peace of mind.",
+    "hero.cta2": "Buying & delivery details",
+    "offer.today": "See today's price and live offers directly on the product page at Amazon"
   }
 };
 
@@ -417,31 +395,18 @@ function applyLang(next) {
   renderLive();
 }
 
-/* ---------- live price (price.json) ----------
+/* ---------- live data (price.json) ----------
    price.json is written by scripts/update-price.mjs on a cron
    (see .github/workflows/price.yml). The page only reads it,
-   so no secret ever ships to the browser.                        */
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
 
 const PRICE_URL = 'price.json';
 const LIVE_KEY = 'msi-modern15-live';
 const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
 
 let live = null; // last known good data, or null if price.json has never loaded
-
-const fmtPrice = (n) =>
-  Number(n).toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
-
-function fmtDate(iso) {
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  try {
-    return new Intl.DateTimeFormat(lang === 'ar' ? 'ar-EG' : 'en-EG', {
-      day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit',
-    }).format(d);
-  } catch {
-    return d.toISOString().slice(0, 16).replace('T', ' ');
-  }
-}
 
 /* substitutes {n} reviews / {r} rating inside i18n strings */
 function applyTokens() {
@@ -468,9 +433,6 @@ function applyTokens() {
 function renderLive() {
   if (!live) return;
 
-  if (live.price != null) {
-    document.querySelectorAll('[data-bind="price"]').forEach((el) => { el.textContent = fmtPrice(live.price); });
-  }
   if (live.rating != null) {
     document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
     document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
@@ -478,10 +440,6 @@ function renderLive() {
   // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
   // the markup, so every product that had no rating of its own quietly showed the
   // G309 score. A product with no reviews should show no stars.
-  if (live.updatedAt) {
-    const label = document.querySelector('[data-bind="updatedAt"]');
-    if (label) label.textContent = fmtDate(live.updatedAt) + (live.stale ? ' ' + t('offer.syncStale') : '');
-  }
 
   // stock badges
   document.querySelectorAll('[data-bind="stock"]').forEach((el) => {

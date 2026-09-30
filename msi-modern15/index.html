@@ -4,12 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MSI Modern 15 F1MG — لابتوب أعمال Core 5 بشاشة 15.6 بوصة وضمان سنة</title>
-<meta name="description" content="لابتوب أعمال MSI Modern 15 F1MG: معالج Intel Core 5 120U، شاشة 15.6 بوصة FHD ضد الانعكاس، 8GB DDR4 و512GB NVMe، مع Wi-Fi 6E وسنة ضمان دولي. كارت الشاشة مدمج — مناسب للشغل والدراسة مش للألعاب. 27,165 جنيه من أمازون مصر.">
+<meta name="description" content="لابتوب أعمال MSI Modern 15 F1MG: معالج Intel Core 5 120U، شاشة 15.6 بوصة FHD ضد الانعكاس، 8GB DDR4 و512GB NVMe، مع Wi-Fi 6E وسنة ضمان دولي. كارت الشاشة مدمج — مناسب للشغل والدراسة مش للألعاب. متوفر على أمازون مصر.">
 <meta property="og:title" content="MSI Modern 15 F1MG — لابتوب أعمال Core 5 بضمان سنة">
-<meta property="og:description" content="15.6 بوصة FHD ضد الانعكاس · 8GB DDR4 · 512GB NVMe · Wi-Fi 6E · ضمان سنة. 27,165 جنيه على أمازون مصر.">
+<meta property="og:description" content="15.6 بوصة FHD ضد الانعكاس · 8GB DDR4 · 512GB NVMe · Wi-Fi 6E · ضمان سنة. متوفر على أمازون مصر.">
 <meta property="og:type" content="product">
-<meta property="product:price:amount" content="27165">
-<meta property="product:price:currency" content="EGP">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -140,20 +138,7 @@ tailwind.config = {
           <span class="text-sm text-slate-500" data-i18n="hero.rank"></span>
         </div>
 
-        <!-- price -->
-        <div class="mt-8 flex flex-wrap items-end gap-4">
-          <div>
-            <p class="text-sm font-semibold text-slate-500" data-i18n="hero.priceLabel"></p>
-            <p class="mt-1 flex items-baseline gap-2">
-              <span class="text-4xl font-black text-white sm:text-5xl" style="direction:ltr;display:inline-block">
-                <span class="num" data-bind="price">2,799</span>
-                <span class="ms-1 text-2xl font-extrabold text-slate-300">EGP</span>
-              </span>
-            </p>
-          </div>
-          <span class="mb-2 rounded-lg bg-white/5 px-2.5 py-1 text-xs font-bold text-slate-400" data-i18n="hero.vat"></span>
-        </div>
-
+        <!-- buy -->
         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
           <a data-buy href="https://www.amazon.eg/dp/B0H2JH8ZRV?tag=zoq-21" target="_blank" rel="sponsored noopener"
              class="group inline-flex items-center justify-center gap-2.5 rounded-xl bg-gradient-to-l from-violet-600 to-cyan-500 px-7 py-4 text-base font-extrabold text-white shadow-xl shadow-violet-600/25 transition hover:shadow-2xl hover:shadow-cyan-500/30">
@@ -162,7 +147,7 @@ tailwind.config = {
           </a>
           <a href="#offer"
              class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 py-4 text-base font-bold text-white transition hover:bg-white/10">
-            <span data-i18n="hero.installments"></span>
+            <span data-i18n="hero.cta2"></span>
           </a>
         </div>
 
@@ -507,6 +492,8 @@ tailwind.config = {
   </div>
 </section>
 
+
+
 <!-- ===================== OFFER / PRICE ===================== -->
 <section id="offer" class="scroll-mt-28 py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -517,7 +504,7 @@ tailwind.config = {
 
     <div class="mt-16 grid items-start gap-6 lg:grid-cols-[1.05fr_1fr]">
 
-      <!-- price card -->
+      <!-- buy card -->
       <div class="rounded-3xl border border-white/10 bg-gradient-to-b from-ink-850 to-ink-950 p-8 sm:p-10">
         <div class="flex items-start justify-between gap-4">
           <div>
@@ -527,15 +514,10 @@ tailwind.config = {
           <span class="rounded-lg bg-emerald-500/10 px-2.5 py-1 text-xs font-extrabold text-emerald-300" data-bind="stock" data-stock-in="offer.inStock" data-stock-out="offer.inStockOut" data-i18n="offer.inStock"></span>
         </div>
 
-        <div class="mt-8 flex items-end gap-3">
-          <p class="text-5xl font-black text-white" style="direction:ltr"><span class="num" data-bind="price">2,799</span><span class="ms-2 text-2xl font-extrabold text-slate-400">EGP</span></p>
+        <div class="mt-8 flex items-start gap-3 rounded-xl border border-white/10 bg-ink-950 px-5 py-4">
+          <svg class="mt-0.5 h-5 w-5 shrink-0 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg>
+          <p class="text-sm leading-relaxed text-slate-300" data-i18n="offer.today"></p>
         </div>
-        <p class="mt-2 text-xs text-slate-500" data-i18n="hero.vat"></p>
-        <p class="mt-1.5 flex items-center gap-1.5 text-[11px] text-slate-600">
-          <span class="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-          <span data-i18n="offer.syncLabel"></span>
-          <span data-bind="updatedAt" class="text-slate-500"></span>
-        </p>
 
         <div class="mt-7 grid grid-cols-2 gap-3">
           <div class="rounded-xl border border-white/10 bg-ink-950 px-4 py-3">
@@ -556,32 +538,7 @@ tailwind.config = {
         <p class="mt-3 text-center text-xs text-slate-500" data-i18n="offer.checkout"></p>
       </div>
 
-      <!-- installments + coupons -->
-      <div class="space-y-6">
-        <div class="rounded-3xl border border-white/10 bg-ink-900 p-8">
-          <h3 class="text-base font-extrabold text-white" data-i18n="offer.instTitle"></h3>
-          <p class="mt-1.5 text-sm text-slate-500" data-i18n="offer.instSub"></p>
-          <div class="mt-6 divide-y divide-white/5">
-            <div class="flex items-center justify-between py-3">
-              <span class="text-sm font-bold text-slate-300 num">3 <span data-i18n="offer.months"></span></span>
-              <span class="text-sm font-extrabold text-white num" data-i18n="offer.p1"></span>
-            </div>
-            <div class="flex items-center justify-between py-3">
-              <span class="text-sm font-bold text-slate-300 num">6 <span data-i18n="offer.months"></span></span>
-              <span class="text-sm font-extrabold text-white num" data-i18n="offer.p2"></span>
-            </div>
-            <div class="flex items-center justify-between py-3">
-              <span class="text-sm font-bold text-slate-300 num">12 <span data-i18n="offer.months"></span></span>
-              <span class="text-sm font-extrabold text-white num" data-i18n="offer.p3"></span>
-            </div>
-            <div class="flex items-center justify-between py-3">
-              <span class="text-sm font-bold text-slate-300 num">24 <span data-i18n="offer.months"></span></span>
-              <span class="text-sm font-extrabold text-white num" data-i18n="offer.p4"></span>
-            </div>
-          </div>
-          <p class="mt-5 text-xs leading-relaxed text-slate-500" data-i18n="offer.instNote"></p>
-        </div>
-
+<div class="space-y-6">
 
         <div class="rounded-3xl border border-cyan-400/25 bg-cyan-500/[0.06] p-8">
           <h3 class="flex items-center gap-2 text-base font-extrabold text-white">
@@ -782,7 +739,6 @@ tailwind.config = {
     <div class="relative">
       <h2 class="text-3xl font-black tracking-tight text-white sm:text-4xl" data-i18n="cta.title"></h2>
       <p class="mx-auto mt-4 max-w-xl text-lg text-slate-300" data-i18n="cta.sub"></p>
-      <p class="mt-6 text-4xl font-black text-white" style="direction:ltr"><span class="num" data-bind="price">2,799</span><span class="ms-2 text-xl font-extrabold text-slate-300">EGP</span></p>
       <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
         <a data-buy href="https://www.amazon.eg/dp/B0H2JH8ZRV?tag=zoq-21" target="_blank" rel="sponsored noopener"
            class="w-full rounded-xl bg-cyan-400 px-8 py-4 text-base font-black text-ink-950 shadow-xl shadow-cyan-500/20 transition hover:bg-cyan-300 sm:w-auto" data-i18n="cta.buy"></a>
