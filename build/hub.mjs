@@ -81,8 +81,19 @@ const card = ({ p, rating, reviews, inStock }) => {
     : `<span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ ${rating.toFixed(1)}</span>`
       + (reviews === null ? '' : `<span class="text-xs text-slate-500">(${reviews.toLocaleString('en-US')})</span>`);
 
+  // The card reuses the product's own deployed hero shot rather than shipping a
+  // second copy of it: every product directory already carries img/<hero>, so
+  // pointing at it keeps the hub from duplicating ~10MB of JPEGs in the repo.
+  // Paths are relative to the hub at the site root, hence the <dir>/img/ prefix.
+  const thumb = p.meta.heroImg ? `${p.dir}/img/${p.meta.heroImg}` : null;
+  const shot = thumb
+    ? `<img src="${esc(thumb)}" alt="${esc(p.meta.brand + ' ' + p.meta.model)}" loading="lazy" decoding="async"
+          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">`
+    : '';
+
   return `
         <a href="${esc(p.dir)}/" data-cat="${esc(catOf(p))}" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
+          ${shot}
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">${esc(cat)}</p>

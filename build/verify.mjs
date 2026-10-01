@@ -255,6 +255,24 @@ console.log('\n=== root hub ===');
     check('filter buttons add no empty category', btns.filter((c) => c !== 'all').every((c) => used.has(c)), btns.join(', '));
     check('hub has an "all" filter', btns.includes('all'));
 
+    // The hub now shows each product's own hero shot, taken from the copy the
+    // build already deployed under <product>/img/. Every one of those paths must
+    // exist on disk, or the catalogue ships a grid of broken images. This
+    // replaces the old "root references no images" rule, which existed only
+    // because the hub used to be a text-only list.
+    const hubImgs = [...hub.matchAll(/<img[^>]+src="([^"]+)"/g)].map((m) => m[1]);
+    check('root shows one image per product', hubImgs.length === all.length, `${hubImgs.length} images, ${all.length} products`);
+    const missingImgs = hubImgs.filter((s) => !existsSync(s));
+    check('every hub image exists on disk', missingImgs.length === 0, missingImgs.slice(0, 3).join(', '));
+    check('hub images are relative, not absolute', hubImgs.every((s) => !/^(https?:)?\/\//.test(s) && !s.startsWith('/')));
+    check('hub images lazy-load', [...hub.matchAll(/<img[^>]*>/g)].every((m) => /loading="lazy"/.test(m[0])));
+    check('every hub image has an alt', [...hub.matchAll(/<img[^>]*>/g)].every((m) => /\salt="[^"]+"/.test(m[0])));
+    // no product may be pictured with another product's file
+    for (const p of all) {
+      const mine = hubImgs.filter((s) => s.startsWith(`${p.dir}/img/`));
+      check(`${p.dir} card uses its own hero`, mine.length === 1 && mine[0] === `${p.dir}/img/${p.meta.heroImg}`, mine.join(', '));
+    }
+
     for (const t of ['section', 'div', 'a', 'header', 'footer']) {
       const o = (hub.match(new RegExp(`<${t}[\\s>]`, 'g')) || []).length;
       const c = (hub.match(new RegExp(`</${t}>`, 'g')) || []).length;
@@ -267,7 +285,7 @@ console.log('\n=== root hub ===');
   for (const stale of ['app.js', 'price.json']) {
     check(`no stale root ${stale}`, !existsSync(stale));
   }
-  check('root hub references no images', !/<img\b/.test(hub));
+  check('root hub references no stale source copies', !/<img[^>]+src="img\//.test(hub));
   // the source images must still be there, or the next build breaks
   for (const p of all) {
     const src = p.images?.from || 'img';
