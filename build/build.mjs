@@ -173,7 +173,22 @@ function render(p) {
     // it. Amazon's operating agreement also requires rel="sponsored" on affiliate
     // links, which the anchors now carry.
     .replaceAll('{{BUY_URL}}', esc(url))
-    .replaceAll('{{HUB_URL}}', esc('../'));
+    .replaceAll('{{HUB_URL}}', esc('../'))
+    .replaceAll('{{BOX_ITEM_4}}', boxItem4(p));
+
+// The box list is a fixed three slots plus an optional fourth. TWL earbuds ship
+// with the buds, the case and the manual, and the Amazon page states "Built-In
+// Media: User Manual" with no other accessory - so the fourth slot is dropped
+// rather than filled with a cable or a warranty card nobody lists.
+function boxItem4(p) {
+  const item = p.dict?.ar?.['box.i4'] && p.dict?.en?.['box.i4'];
+  if (!item) return '';
+  return `
+<li class="flex items-center gap-3 rounded-xl border border-white/10 bg-ink-950 px-4 py-3.5 text-sm font-semibold text-slate-200">
+<svg class="h-5 w-5 shrink-0 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+<span data-i18n="box.i4"></span>
+</li>`;
+}
 
   const js = tplJs
     .replaceAll('{{PRODUCT_URL}}', url)
