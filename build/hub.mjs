@@ -150,8 +150,7 @@ tailwind.config = {
           كل المنتجات في مكان واحد
         </h1>
         <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">
-          <span class="num">${rows.length}</span> منتجات — كل واحد بصفحة تفصيلية فيها المواصفات الكاملة والتقييمات.
-          السعر والتقسيط وأي عروض بتظهر على صفحة أمازون نفسها.
+          مش هنقولك «اشتري ده» وخلاص. هنخليك تعرف مواصفات المنتج، تشوف تقييماته، وتقارن اختياراتك… وبعدها القرار قرارك.
         </p>
         <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer"
            class="mt-6 inline-flex items-center gap-2.5 rounded-2xl border border-cyan-400/25 bg-cyan-500/10 px-5 py-3 text-sm font-extrabold text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
