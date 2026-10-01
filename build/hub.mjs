@@ -46,6 +46,7 @@ const CATEGORIES = [
   { id: 'laptop', label: 'لابتوب', en: 'Laptops' },
   { id: 'phone', label: 'موبايل', en: 'Phones' },
   { id: 'mouse', label: 'ماوس', en: 'Mice' },
+  { id: 'keyboard', label: 'كيبورد', en: 'Keyboards' },
   { id: 'audio', label: 'سماعات', en: 'Audio' },
 ];
 const catOf = (p) => (p.category && CATEGORIES.some((c) => c.id === p.category) ? p.category : 'other');
