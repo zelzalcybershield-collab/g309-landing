@@ -1,3 +1,8 @@
 ﻿node_modules/
 .DS_Store
 Thumbs.db
+
+# Raw brand source images dropped in for brand.ps1 to process. The processed
+# output (brand/logo.png) is the one that gets deployed; the originals do not
+# belong in the repo - they are multi-megabyte and reproducible.
+brand/inbox/

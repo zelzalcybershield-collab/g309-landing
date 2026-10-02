@@ -17,8 +17,12 @@
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Drawing
 
-$inbox = 'brand\inbox'
-$logoOut = 'brand\logo.png'
+# Paths resolve from this script's own location, not the caller's working
+# directory. Running it from anywhere but the repo root used to print
+# "no inbox at brand\inbox" and exit 0, which looks like it had already worked.
+$root = Split-Path -Parent (Split-Path -Parent $PSCommandPath)
+$inbox = Join-Path $root 'brand\inbox'
+$logoOut = Join-Path $root 'brand\logo.png'
 
 if (-not (Test-Path $inbox)) { Write-Output "no inbox at $inbox"; exit 0 }
 
@@ -69,21 +73,33 @@ if ($logo) {
   # so 256 is already 7x oversampled on a retina screen. The source is 1254px and
   # 1.9MB, which is a megabyte of payload the visitor downloads to draw a badge
   # the size of a coin.
-  $side = [Math]::Min([Math]::Max($logo.Width, $logo.Height), 256)
-  $out = New-Object System.Drawing.Bitmap $side, $side
+  $side = [int][Math]::Min([Math]::Max($logo.Width, $logo.Height), 256)
+  # 32bppArgb so any transparency in the source survives; the canvas is never
+  # cleared, because clearing to black would paint out the transparent parts and
+  # turn a transparent logo into a black square.
+  $out = New-Object System.Drawing.Bitmap $side, $side, ([System.Drawing.Imaging.PixelFormat]::Format32bppArgb)
   $g = [System.Drawing.Graphics]::FromImage($out)
   $g.InterpolationMode = 'HighQualityBicubic'
   $g.SmoothingMode = 'HighQuality'
   $g.PixelOffsetMode = 'HighQuality'
-  $g.Clear([System.Drawing.Color]::Black)
-  $ox = [int](($side - $logo.Width) / 2); $oy = [int](($side - $logo.Height) / 2)
-  $g.DrawImage($logo, $ox, $oy, $side, $side)
+  $g.CompositingQuality = 'HighQuality'
+  # Cover-fit: scale until the image fills the square, then centre it so the
+  # overflow is cropped evenly. The destination rectangle has to start at the
+  # canvas origin, not at (side - source) / 2 - the source is larger than the
+  # target, so that offset is negative and would place the whole logo
+  # off-canvas and leave a blank square behind.
+  $scale = [Math]::Max($side / $logo.Width, $side / $logo.Height)
+  $dw = [int][Math]::Ceiling($logo.Width * $scale)
+  $dh = [int][Math]::Ceiling($logo.Height * $scale)
+  $dx = [int][Math]::Floor(($side - $dw) / 2)
+  $dy = [int][Math]::Floor(($side - $dh) / 2)
+  $g.DrawImage($logo, $dx, $dy, $dw, $dh)
   $g.Dispose()
   $out.Save($logoOut, [System.Drawing.Imaging.ImageFormat]::Png)
   $out.Dispose()
   $kb = [int]((Get-Item $logoOut).Length / 1KB)
   Write-Output ''
-  Write-Output ("logo  -> {0}  ({1}x{1} square png, {2} KB)" -f $logoOut, $side, $kb)
+  Write-Output ("logo  -> {0}  ({1}x{1} square png, {2} KB, cover-fit from {3}x{4})" -f $logoOut, $side, $kb, $logo.Width, $logo.Height)
   $logo.Dispose()
 } else {
   Write-Output 'no profile picture found (need a square-ish image in the inbox)'
