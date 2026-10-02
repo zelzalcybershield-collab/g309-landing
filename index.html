@@ -3,351 +3,450 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>كل المنتجات — صفحات تفصيلية على أمازون مصر</title>
-<meta name="description" content="صفحات تفصيلية لمنتجات على أمازون مصر: المواصفات، التقييمات، المخزون، وطرق الدفع والتقسيط المتاحة. السعر وكل التفاصيل المالية من صفحة أمازون نفسها.">
+<title>كل المنتجات — صفحات تفصيلية على أمازون مصر | نظبطهالك</title>
+<meta name="description" content="صفحات تفصيلية لمنتجات على أمازون مصر — المواصفات والتقييمات والمخزون من صفحة أمازون نفسها.">
+<meta name="theme-color" content="#07070D">
+<link rel="icon" type="image/svg+xml" href="brand/mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config = {
-  theme: {
-    extend: {
-      fontFamily: { sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'] },
-      colors: {
-        ink: {
-          950: '#07070D', 900: '#0B0B13', 850: '#11111C',
-          800: '#171725', 700: '#1F1F31',
+  // The ink scale is the dark base every product page is built on, so the hub
+  // has to define the same ramp or its bg-ink-* classes resolve to nothing and
+  // the page falls back to a white background with white text on it.
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'] },
+        colors: {
+          ink: {
+            950: '#07070D', 900: '#0B0B13', 850: '#11111C',
+            800: '#171725', 700: '#1F1F31',
+          },
         },
       },
     },
-  },
-};
+  };
 </script>
 <style>
+  /* Brand tokens. Kept as plain CSS rather than a tailwind.config extension so
+   * the identity survives the CDN build without depending on the config script
+   * having run before first paint. */
+  :root {
+    --nz-1: #67E8F9;
+    --nz-2: #22D3EE;
+    --nz-3: #2563EB;
+  }
   [dir="rtl"] body { font-family: 'Cairo', system-ui, sans-serif; }
   .num { font-feature-settings: 'tnum'; direction: ltr; unicode-bidi: isolate; display: inline-block; }
+  .brand-grad { background-image: linear-gradient(90deg, var(--nz-1), var(--nz-2) 45%, var(--nz-3)); }
+  .brand-text {
+    background-image: linear-gradient(100deg, var(--nz-1), var(--nz-2) 50%, var(--nz-3));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  /* The ambient wash behind the header. Fixed rather than absolute so the long
+   * page does not stretch a 560px div down the whole document. */
+  .brand-aura {
+    background:
+      radial-gradient(760px 320px at 78% -8%, rgba(34,211,238,.20), transparent 70%),
+      radial-gradient(560px 300px at 12% 0%, rgba(37,99,235,.18), transparent 70%);
+  }
   .gridlines {
     background-image:
-      linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
-    background-size: 60px 60px;
+      linear-gradient(to right, rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    mask-image: linear-gradient(to bottom, #000 0, transparent 68%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, transparent 68%);
   }
-  ::selection { background: #0e7490; color: #fff; }
+  ::selection { background: var(--nz-3); color: #fff; }
+  @media (prefers-reduced-motion: reduce) {
+    .hub-card, .brand-aura { transition: none !important; }
+    .hub-card:hover { transform: none; }
+  }
 </style>
 </head>
 <body class="min-h-screen bg-ink-950 text-slate-200 antialiased">
-  <main class="gridlines">
-    <div class="mx-auto max-w-5xl px-6 py-16 sm:py-24">
-      <header class="mb-12">
-        <p class="text-xs font-bold tracking-[0.3em] text-cyan-400">NEZABTHALAK</p>
-        <h1 class="mt-4 text-3xl font-black leading-tight text-white sm:text-5xl">
-          كل المنتجات في مكان واحد
+<div aria-hidden="true" class="brand-aura pointer-events-none fixed inset-0 z-0"></div>
+<div aria-hidden="true" class="gridlines pointer-events-none fixed inset-0 z-0"></div>
+
+<div class="relative z-10">
+  <header class="sticky top-0 z-40 border-b border-white/[.07] bg-ink-950/80 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
+      <a href="#top" class="flex items-center gap-3" aria-label="نظبطهالك — أعلى الصفحة">
+      <svg viewBox="0 0 96 96" width="40" height="40" fill="none" aria-hidden="true" class="shrink-0">
+        <defs>
+          <linearGradient id="nza" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#67E8F9"/><stop offset=".5" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="92" height="92" rx="26" fill="url(#nza)"/>
+        <rect x="2" y="2" width="92" height="92" rx="26" stroke="#fff" stroke-opacity=".28" stroke-width="2"/>
+        <path d="M27 49c0 14 9 22 21 22s21-8 21-22" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
+        <path d="M48 18l3.6 7.4 7.4 3.6-7.4 3.6L48 40l-3.6-7.4L37 29l7.4-3.6z" fill="#fff"/>
+      </svg>
+        <span class="leading-none">
+          <span class="block text-base font-black text-white">نظبطهالك</span>
+          <span class="num mt-1.5 block text-[9px] font-bold tracking-[0.3em] text-cyan-400/70">NEZABTHALAK</span>
+        </span>
+      </a>
+      <div class="flex items-center gap-2 sm:gap-3">
+        <span class="num hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-300 sm:inline-block">15 منتج</span>
+        <a href="https://www.facebook.com/nezabthalak" target="_blank" rel="noopener noreferrer" aria-label="صفحة نظبطهالك على فيسبوك"
+           class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-400/25 bg-cyan-500/10 text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="relative">
+    <div class="mx-auto max-w-6xl px-5 pb-4 pt-12 sm:px-8 sm:pt-20">
+      <div class="max-w-3xl">
+        <span class="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-500/10 px-3.5 py-1.5 text-[11px] font-bold text-cyan-300">
+          <span aria-hidden="true" class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
+          كتالوج كامل — كل التفاصيل من أمازون مصر
+        </span>
+        <h1 class="mt-6 text-4xl font-black leading-[1.14] text-white sm:text-6xl">
+          كل المنتجات في <span class="brand-text">مكان واحد</span>
         </h1>
-        <p class="mt-4 max-w-2xl text-base leading-relaxed text-slate-400">
+        <p class="mt-5 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
           مش هنقولك «اشتري ده» وخلاص. هنخليك تعرف مواصفات المنتج، تشوف تقييماته، وتقارن اختياراتك… وبعدها القرار قرارك.
         </p>
-        <a href="https://www.facebook.com/nezabthalak" target="_blank" rel="noopener noreferrer"
-           class="mt-6 inline-flex items-center gap-2.5 rounded-2xl border border-cyan-400/25 bg-cyan-500/10 px-5 py-3 text-sm font-extrabold text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
-          تابع صفحة نظبطهالك على فيسبوك
-        </a>
-      </header>
+      </div>
 
-      <div class="mb-8 flex flex-wrap items-center gap-2" role="group" aria-label="تصفية حسب الفئة">
-        <button type="button" data-filter="all" aria-pressed="true"
-          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-cyan-400/50 bg-cyan-500/15 text-cyan-300">
+      <div class="mt-10 grid gap-3 sm:grid-cols-3">
+        <div class="rounded-2xl border border-white/10 bg-ink-850/60 p-5">
+          <p class="text-sm font-extrabold text-white">صفحة تفصيلية لكل منتج</p>
+          <p class="mt-1.5 text-xs leading-relaxed text-slate-400">مواصفات وصور وأسئلة شائعة — مش سطر واحد بس.</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-ink-850/60 p-5">
+          <p class="text-sm font-extrabold text-white">السعر من أمازون نفسه</p>
+          <p class="mt-1.5 text-xs leading-relaxed text-slate-400">مفيش سعر مخزّن عندنا؛ كل صفحة بتوديك لعرض السعر الحالي.</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-ink-850/60 p-5">
+          <p class="text-sm font-extrabold text-white">الشراء والاسترجاع من أمازون</p>
+          <p class="mt-1.5 text-xs leading-relaxed text-slate-400">الدفع عند الاستلام والاسترجاع بيتمّان داخل صفحة أمازون.</p>
+        </div>
+      </div>
+
+      <div class="mt-12 mb-7 flex flex-wrap items-center gap-2" role="group" aria-label="تصفية حسب الفئة">
+        <button type="button" data-filter="all" aria-pressed="true" class="hub-filter rounded-full border border-cyan-400/50 bg-cyan-500/15 px-4 py-2 text-sm font-bold text-cyan-300 transition">
           الكل <span class="num opacity-60">15</span>
         </button>
-        <button type="button" data-filter="tablet" aria-pressed="false"
-          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+        <button type="button" data-filter="tablet" aria-pressed="false" class="hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-cyan-400/40 hover:text-white">
           تابلت <span class="num opacity-60">5</span>
         </button>
-        <button type="button" data-filter="laptop" aria-pressed="false"
-          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+        <button type="button" data-filter="laptop" aria-pressed="false" class="hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-cyan-400/40 hover:text-white">
           لابتوب <span class="num opacity-60">3</span>
         </button>
-        <button type="button" data-filter="phone" aria-pressed="false"
-          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+        <button type="button" data-filter="phone" aria-pressed="false" class="hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-cyan-400/40 hover:text-white">
           موبايل <span class="num opacity-60">1</span>
         </button>
-        <button type="button" data-filter="mouse" aria-pressed="false"
-          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+        <button type="button" data-filter="mouse" aria-pressed="false" class="hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-cyan-400/40 hover:text-white">
           ماوس <span class="num opacity-60">2</span>
         </button>
-        <button type="button" data-filter="keyboard" aria-pressed="false"
-          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+        <button type="button" data-filter="keyboard" aria-pressed="false" class="hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-cyan-400/40 hover:text-white">
           كيبورد <span class="num opacity-60">2</span>
         </button>
-        <button type="button" data-filter="audio" aria-pressed="false"
-          class="hub-filter rounded-full border px-4 py-2 text-sm font-bold transition border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white">
+        <button type="button" data-filter="audio" aria-pressed="false" class="hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-cyan-400/40 hover:text-white">
           سماعات <span class="num opacity-60">2</span>
         </button>
       </div>
 
-      <div class="grid gap-5 sm:grid-cols-2">
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-        <a href="doogee-tab-a9/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="doogee-tab-a9/img/hero.jpg" alt="DOOGEE Tab A9" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 10.1 بوصة · أندرويد 15</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">DOOGEE</h2>
-              <p class="text-sm text-slate-400">Tab A9</p>
-            </div>
+        <a href="doogee-tab-a9/" data-cat="tablet" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="doogee-tab-a9/img/hero.jpg" alt="DOOGEE Tab A9" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">تابلت</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 2.8</span><span class="text-xs text-slate-500">(22)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">DOOGEE</h2>
+          <p class="mt-1 text-sm text-slate-400">Tab A9</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 2.8</span><span class="text-xs text-slate-500">(22)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="honor-pad-10/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="honor-pad-10/img/hero.jpg" alt="HONOR Pad 10" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 12.1 بوصة · معدل 120Hz</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">HONOR</h2>
-              <p class="text-sm text-slate-400">Pad 10</p>
-            </div>
+        <a href="honor-pad-10/" data-cat="tablet" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="honor-pad-10/img/hero.jpg" alt="HONOR Pad 10" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">تابلت</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.3</span><span class="text-xs text-slate-500">(213)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">HONOR</h2>
+          <p class="mt-1 text-sm text-slate-400">Pad 10</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.3</span><span class="text-xs text-slate-500">(213)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="honor-pad-x9a/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="honor-pad-x9a/img/hero.jpg" alt="HONOR X9a (LTE)" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 11.5 بوصة · نسخة LTE</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">HONOR</h2>
-              <p class="text-sm text-slate-400">X9a (LTE)</p>
-            </div>
+        <a href="honor-pad-x9a/" data-cat="tablet" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="honor-pad-x9a/img/hero.jpg" alt="HONOR X9a (LTE)" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">تابلت</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.3</span><span class="text-xs text-slate-500">(59)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">HONOR</h2>
+          <p class="mt-1 text-sm text-slate-400">X9a (LTE)</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.3</span><span class="text-xs text-slate-500">(59)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="hp-headset-g2/" data-cat="audio" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="hp-headset-g2/img/hp-00.jpg" alt="HP Stereo G2 Stereo G2 · 428H5AA" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">سماعة رأس · سلكية USB</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">HP Stereo G2</h2>
-              <p class="text-sm text-slate-400">Stereo G2 · 428H5AA</p>
-            </div>
+        <a href="hp-headset-g2/" data-cat="audio" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="hp-headset-g2/img/hp-00.jpg" alt="HP Stereo G2 Stereo G2 · 428H5AA" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">سماعات</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.2</span><span class="text-xs text-slate-500">(57)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">HP Stereo G2</h2>
+          <p class="mt-1 text-sm text-slate-400">Stereo G2 · 428H5AA</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.2</span><span class="text-xs text-slate-500">(57)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="infinix-xpad-30e/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="infinix-xpad-30e/img/hero.jpg" alt="Infinix X1102B" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 11 بوصة · نسخة 4G</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">Infinix</h2>
-              <p class="text-sm text-slate-400">X1102B</p>
-            </div>
+        <a href="infinix-xpad-30e/" data-cat="tablet" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="infinix-xpad-30e/img/hero.jpg" alt="Infinix X1102B" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">تابلت</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 5.0</span><span class="text-xs text-slate-500">(4)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">Infinix</h2>
+          <p class="mt-1 text-sm text-slate-400">X1102B</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 5.0</span><span class="text-xs text-slate-500">(4)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="iphone-pro-burgundy/" data-cat="phone" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="iphone-pro-burgundy/img/iph-00.jpg" alt="iPhone 18 Pro 18 Pro · 2TB" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">ايفون 18 برو · بورغندي · 2TB</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">iPhone 18 Pro</h2>
-              <p class="text-sm text-slate-400">18 Pro · 2TB</p>
-            </div>
+        <a href="iphone-pro-burgundy/" data-cat="phone" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="iphone-pro-burgundy/img/iph-00.jpg" alt="iPhone 18 Pro 18 Pro · 2TB" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">موبايل</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 3.8</span><span class="text-xs text-slate-500">(11)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">iPhone 18 Pro</h2>
+          <p class="mt-1 text-sm text-slate-400">18 Pro · 2TB</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 3.8</span><span class="text-xs text-slate-500">(11)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="lenovo-legion5/" data-cat="laptop" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="lenovo-legion5/img/legion5-00.jpg" alt="Lenovo Legion 5 Legion 5 15IRX10 · 83LY00DRED" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">لابتوب جيمنج · 15.6 بوصة</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">Lenovo Legion 5</h2>
-              <p class="text-sm text-slate-400">Legion 5 15IRX10 · 83LY00DRED</p>
-            </div>
+        <a href="lenovo-legion5/" data-cat="laptop" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="lenovo-legion5/img/legion5-00.jpg" alt="Lenovo Legion 5 Legion 5 15IRX10 · 83LY00DRED" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">لابتوب</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">Lenovo Legion 5</h2>
+          <p class="mt-1 text-sm text-slate-400">Legion 5 15IRX10 · 83LY00DRED</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="g309/" data-cat="mouse" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="g309/img/g309-00.jpg" alt="Logitech G309 G309 · 910-007209" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">Gaming Mouse · لاسلكي</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">Logitech G309</h2>
-              <p class="text-sm text-slate-400">G309 · 910-007209</p>
-            </div>
+        <a href="g309/" data-cat="mouse" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="g309/img/g309-00.jpg" alt="Logitech G309 G309 · 910-007209" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">ماوس</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">Logitech G309</h2>
+          <p class="mt-1 text-sm text-slate-400">G309 · 910-007209</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="msi-modern15/" data-cat="laptop" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="msi-modern15/img/518TZAH-A0L.jpg" alt="MSI Modern 15 Modern 15 F1MG" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">لابتوب أعمال · 15.6 بوصة</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">MSI Modern 15</h2>
-              <p class="text-sm text-slate-400">Modern 15 F1MG</p>
-            </div>
+        <a href="msi-modern15/" data-cat="laptop" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="msi-modern15/img/518TZAH-A0L.jpg" alt="MSI Modern 15 Modern 15 F1MG" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">لابتوب</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 5.0</span><span class="text-xs text-slate-500">(1)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">MSI Modern 15</h2>
+          <p class="mt-1 text-sm text-slate-400">Modern 15 F1MG</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 5.0</span><span class="text-xs text-slate-500">(1)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="msi-thin15/" data-cat="laptop" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="msi-thin15/img/msi-00.jpg" alt="MSI Thin 15 Thin 15 B13UC" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">لابتوب جيمنج · 15.6 بوصة</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">MSI Thin 15</h2>
-              <p class="text-sm text-slate-400">Thin 15 B13UC</p>
-            </div>
+        <a href="msi-thin15/" data-cat="laptop" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="msi-thin15/img/msi-00.jpg" alt="MSI Thin 15 Thin 15 B13UC" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">لابتوب</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">MSI Thin 15</h2>
+          <p class="mt-1 text-sm text-slate-400">Thin 15 B13UC</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="oraim-sound360/" data-cat="audio" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="oraim-sound360/img/hero.jpg" alt="Oraimo SpaceBuds Neo · OTW-323-BK" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">سماعة أذن لاسلكية · بلوتوث 5.4</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">Oraimo</h2>
-              <p class="text-sm text-slate-400">SpaceBuds Neo · OTW-323-BK</p>
-            </div>
+        <a href="oraim-sound360/" data-cat="audio" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="oraim-sound360/img/hero.jpg" alt="Oraimo SpaceBuds Neo · OTW-323-BK" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">سماعات</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.0</span><span class="text-xs text-slate-500">(465)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">Oraimo</h2>
+          <p class="mt-1 text-sm text-slate-400">SpaceBuds Neo · OTW-323-BK</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.0</span><span class="text-xs text-slate-500">(465)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="redragon-k552-kumara/" data-cat="keyboard" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="redragon-k552-kumara/img/hero.jpg" alt="REDRAGON K552 KUMARA" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">كيبورد ميكانيكي · إضاءة RGB</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">REDRAGON</h2>
-              <p class="text-sm text-slate-400">K552 KUMARA</p>
-            </div>
+        <a href="redragon-k552-kumara/" data-cat="keyboard" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="redragon-k552-kumara/img/hero.jpg" alt="REDRAGON K552 KUMARA" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">كيبورد</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.7</span><span class="text-xs text-slate-500">(90)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">REDRAGON</h2>
+          <p class="mt-1 text-sm text-slate-400">K552 KUMARA</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.7</span><span class="text-xs text-slate-500">(90)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="redragon-m711/" data-cat="mouse" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="redragon-m711/img/m711-00.jpg" alt="Redragon M711 M711 · Cobra" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">ماوس جيمنج · سلكي</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">Redragon M711</h2>
-              <p class="text-sm text-slate-400">M711 · Cobra</p>
-            </div>
+        <a href="redragon-m711/" data-cat="mouse" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="redragon-m711/img/m711-00.jpg" alt="Redragon M711 M711 · Cobra" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">ماوس</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.4</span><span class="text-xs text-slate-500">(8,879)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">Redragon M711</h2>
+          <p class="mt-1 text-sm text-slate-400">M711 · Cobra</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.4</span><span class="text-xs text-slate-500">(8,879)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="tcl-nxtpaper14/" data-cat="tablet" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="tcl-nxtpaper14/img/tcl-00.jpg" alt="TCL Nxtpaper Nxtpaper 14.3" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">تابلت 14.3 بوصة · الجيل الثاني</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">TCL Nxtpaper</h2>
-              <p class="text-sm text-slate-400">Nxtpaper 14.3</p>
-            </div>
+        <a href="tcl-nxtpaper14/" data-cat="tablet" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="tcl-nxtpaper14/img/tcl-00.jpg" alt="TCL Nxtpaper Nxtpaper 14.3" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">تابلت</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.1</span><span class="text-xs text-slate-500">(6)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">TCL Nxtpaper</h2>
+          <p class="mt-1 text-sm text-slate-400">Nxtpaper 14.3</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 4.1</span><span class="text-xs text-slate-500">(6)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
 
-        <a href="wisfox-keyboard/" data-cat="keyboard" class="hub-card group flex flex-col gap-4 rounded-3xl border border-white/10 bg-ink-850 p-6 transition hover:border-cyan-400/40 hover:bg-ink-800">
-          <img src="wisfox-keyboard/img/hero.jpg" alt="WISFOX QWY-CE0142" loading="lazy" decoding="async"
-          class="aspect-[4/3] w-full rounded-2xl border border-white/10 bg-white object-contain p-3 transition group-hover:border-cyan-400/40">
-          <div class="flex items-start justify-between gap-4">
-            <div>
-              <p class="text-[11px] font-bold tracking-widest text-cyan-400/80">كيبورد جيمنج معدني · إضاءة RGB</p>
-              <h2 class="mt-1.5 text-lg font-extrabold text-white">WISFOX</h2>
-              <p class="text-sm text-slate-400">QWY-CE0142</p>
-            </div>
+        <a href="wisfox-keyboard/" data-cat="keyboard" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
+          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
+          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]"><img src="wisfox-keyboard/img/hero.jpg" alt="WISFOX QWY-CE0142" loading="lazy" decoding="async"
+           class="aspect-[4/3] w-full object-contain p-4"></div>
+          <div class="mb-2.5 flex flex-wrap items-center gap-2">
+            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">كيبورد</span>
+            <span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>
           </div>
-          <div class="flex flex-wrap items-center gap-2"><span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 3.8</span><span class="text-xs text-slate-500">(170)</span></div>
-          <p class="mt-auto inline-flex items-center gap-1.5 text-sm font-bold text-cyan-300 transition group-hover:gap-2.5">
-            اعرف التفاصيل <span aria-hidden="true">←</span>
-          </p>
+          <h2 class="text-lg font-black leading-tight text-white">WISFOX</h2>
+          <p class="mt-1 text-sm text-slate-400">QWY-CE0142</p>
+          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
+            <span class="flex items-center gap-1.5"><span class="num inline-flex items-center gap-1 text-sm font-bold text-amber-300">★ 3.8</span><span class="text-xs text-slate-500">(170)</span></span>
+            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          </div>
         </a>
       </div>
 
       <p class="hub-empty mt-8 hidden text-center text-sm text-slate-500" role="status">مفيش منتجات في الفئة دي.</p>
-
-      <footer class="mt-14 border-t border-white/10 pt-6 text-xs leading-relaxed text-slate-500">
-        <p>
-  التقييمات والمخزون مأخوذة من صفحات أمازون مصر وقد تتغير في أي وقت — وكل صفحة
-  بتوصل لصفحة المنتج على أمازون مباشرة من أزرار «معرفة سعر اليوم»، وكل التفاصيل
-  المالية والسعرية بتظهر هناك.
-        </p>
-        <p class="mt-4">
-  الموقع ده من إعداد <a href="https://www.facebook.com/nezabthalak" target="_blank" rel="noopener noreferrer" class="font-bold text-cyan-400 transition hover:text-cyan-300">نظبطهالك</a>.
-  المنتجات المعروضة من أمازون مصر،   وأنا مش مسؤول عن أي بيعة بتتم على أمازون.
-        </p>
-      </footer>
     </div>
   </main>
+
+  <footer class="relative mt-16 border-t border-white/[.07]">
+    <div class="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+      <div class="flex flex-wrap items-center justify-between gap-6">
+        <div class="flex items-center gap-3">
+      <svg viewBox="0 0 96 96" width="34" height="34" fill="none" aria-hidden="true" class="shrink-0">
+        <defs>
+          <linearGradient id="nzb" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#67E8F9"/><stop offset=".5" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/>
+          </linearGradient>
+        </defs>
+        <rect x="2" y="2" width="92" height="92" rx="26" fill="url(#nzb)"/>
+        <rect x="2" y="2" width="92" height="92" rx="26" stroke="#fff" stroke-opacity=".28" stroke-width="2"/>
+        <path d="M27 49c0 14 9 22 21 22s21-8 21-22" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
+        <path d="M48 18l3.6 7.4 7.4 3.6-7.4 3.6L48 40l-3.6-7.4L37 29l7.4-3.6z" fill="#fff"/>
+      </svg>
+          <span class="leading-none">
+            <span class="block text-sm font-black text-white">نظبطهالك</span>
+            <span class="num mt-1.5 block text-[9px] font-bold tracking-[0.3em] text-cyan-400/60">NEZABTHALAK</span>
+          </span>
+        </div>
+        <a href="https://www.facebook.com/nezabthalak" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center gap-2.5 rounded-2xl border border-cyan-400/25 bg-cyan-500/10 px-5 py-3 text-sm font-extrabold text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+          تابعنا على فيسبوك
+        </a>
+      </div>
+      <p class="mt-8 max-w-3xl text-xs leading-relaxed text-slate-500">
+  التقييمات والمخزون مأخوذة من صفحات أمازون مصر وقد تتغير في أي وقت — وكل صفحة بتوصل
+  لصفحة المنتج على أمازون مباشرة من أزرار «معرفة سعر اليوم»، وكل التفاصيل المالية
+  والسعرية بتظهر هناك.
+      </p>
+      <p class="mt-3 max-w-3xl text-xs leading-relaxed text-slate-500">
+  الموقع ده من إعداد <a href="https://www.facebook.com/nezabthalak" target="_blank" rel="noopener noreferrer" class="font-bold text-cyan-400 transition hover:text-cyan-300">نظبطهالك</a>.
+  المنتجات المعروضة من أمازون مصر، وأنا مش مسؤول عن أي بيعة بتتم على أمازون.
+      </p>
+    </div>
+  </footer>
+</div>
 <script>
   // Filtering is progressive enhancement: every card is in the HTML already, so
   // the grid is complete and crawlable without JavaScript. This only hides the
   // ones outside the chosen category.
   (function () {
+    var ON = "hub-filter rounded-full border border-cyan-400/50 bg-cyan-500/15 px-4 py-2 text-sm font-bold text-cyan-300 transition";
+    var OFF = "hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-cyan-400/40 hover:text-white";
     var btns = [].slice.call(document.querySelectorAll('.hub-filter'));
     var cards = [].slice.call(document.querySelectorAll('.hub-card'));
     var empty = document.querySelector('.hub-empty');
@@ -363,9 +462,7 @@ tailwind.config = {
       btns.forEach(function (b) {
         var on = b.getAttribute('data-filter') === cat;
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
-        b.className = 'hub-filter rounded-full border px-4 py-2 text-sm font-bold transition ' + (on
-          ? 'border-cyan-400/50 bg-cyan-500/15 text-cyan-300'
-          : 'border-white/10 bg-white/5 text-slate-300 hover:border-cyan-400/40 hover:text-white');
+        b.className = on ? ON : OFF;
       });
       if (empty) empty.classList.toggle('hidden', shown !== 0);
     }
