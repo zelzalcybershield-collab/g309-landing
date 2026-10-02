@@ -572,7 +572,7 @@ function initScroll() {
    Real product shots pulled from the Amazon listing and served from ./img, so
    the page never hotlinks Amazon. Amazon hands these over in the order the
    seller listed them, so the order is kept as-is. */
-const GAL_FILES = ["img/xiaomi-g34wqi-00.jpg","img/xiaomi-g34wqi-01.jpg","img/xiaomi-g34wqi-02.jpg","img/xiaomi-g34wqi-03.jpg"];
+const GAL_FILES = ["img/xiaomi-g34wqi-01.jpg","img/xiaomi-g34wqi-02.jpg","img/xiaomi-g34wqi-03.jpg","img/xiaomi-g34wqi-04.jpg"];
 let galItems = [];
 
 function renderGallery() {
