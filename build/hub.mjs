@@ -280,17 +280,21 @@ ${(() => {
     mask-image: linear-gradient(to bottom, #000 0, transparent 68%);
     -webkit-mask-image: linear-gradient(to bottom, #000 0, transparent 68%);
   }
-  /* The Facebook cover, used as the hero backdrop so the page opens on the same
-   * artwork the brand already runs on. It is a background-image rather than an
-   * image tag because verify.mjs requires exactly one image element per product
-   * on the root, and a 16th one for decoration would fail that count. It sits
-   * under an 82% ink scrim, so it reads as texture, not as a competing photo.
-   * (Note: do not spell out the image tag in this comment - the string lands in
-   * the served HTML and the verifier counts it as a product image.) */
-  .cover-bg {
+  /* The Facebook cover gets its own full-width banner strip below the hero
+   * instead of sitting under the headline. The cover's artwork already carries
+   * the brand's own text, so overlaying our headline on it is what made the two
+   * read on top of each other. On its own canvas there is no scrim to dim it,
+   * so its own text stays sharp and fully visible. It is a background-image
+   * rather than an image element because verify.mjs requires exactly one image
+   * element per product on the root, and a 16th one for decoration would fail
+   * that count. (Note: do not spell out the tag name in this comment - the
+   * string lands in the served HTML and the verifier counts it as a product
+   * image.) The ratio is the source cover's own 2056:765, so nothing crops. */
+  .cover-banner {
+    aspect-ratio: 2056 / 765;
     background-image: url('brand/cover.jpg');
     background-size: cover;
-    background-position: center 30%;
+    background-position: center;
   }
   ::selection { background: var(--nz-3); color: #fff; }
   @media (prefers-reduced-motion: reduce) {
@@ -325,8 +329,6 @@ ${(() => {
   <main id="top" class="relative">
     <div class="mx-auto max-w-6xl px-5 pb-4 pt-12 sm:px-8 sm:pt-20">
       <div class="relative overflow-hidden rounded-[32px] border border-white/[.09] bg-ink-900/60">
-        <span aria-hidden="true" class="cover-bg absolute inset-0"></span>
-        <span aria-hidden="true" class="absolute inset-0 bg-ink-950/82"></span>
         <span aria-hidden="true" class="absolute inset-0 bg-gradient-to-l from-emerald-500/12 via-transparent to-transparent"></span>
         <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink-950/90 to-transparent"></span>
         <div class="relative px-6 py-14 sm:px-12 sm:py-20">
@@ -343,6 +345,12 @@ ${(() => {
           </p>
         </div>
         </div>
+      </div>
+
+      <!-- The brand's Facebook cover, on its own full-width canvas so its own
+           text stands alone instead of colliding with the headline below it. -->
+      <div class="cover-wrap mt-10 overflow-hidden rounded-[28px] border border-white/10 shadow-2xl shadow-black/50">
+        <div class="cover-banner" role="img" aria-label="غلاف صفحة ${esc(SITE.name)} على فيسبوك"></div>
       </div>
 
       <div class="mt-5 grid gap-3 sm:grid-cols-3">

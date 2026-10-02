@@ -107,11 +107,12 @@ if ($logo) {
 }
 
 if ($cover) {
-  # The cover becomes the catalogue's hero backdrop, so it ships rather than
-  # only being measured. JPEG at quality 82 and capped at 1600px wide: it sits
-  # behind a dark overlay at low opacity, so it never needs to be sharp, and the
-  # source PNG is 1.2MB.
-  $cw = [int][Math]::Min($cover.Width, 1600)
+  # The cover now gets its own full-width banner strip, shown without an overlay,
+  # so it has to be sharp enough for its own text to read. Cap the output at the
+  # source width (2056) and keep quality high: on a max-w-6xl page the banner is
+  # ~1100px wide, so shipping it at source res makes the title text crisp on a
+  # retina screen instead of soft.
+  $cw = [int][Math]::Min($cover.Width, 2056)
   $ch = [int][Math]::Ceiling($cover.Height * $cw / $cover.Width)
   $cOut = New-Object System.Drawing.Bitmap $cw, $ch, ([System.Drawing.Imaging.PixelFormat]::Format24bppRgb)
   $g2 = [System.Drawing.Graphics]::FromImage($cOut)
@@ -123,12 +124,12 @@ if ($cover) {
   # the default 75.
   $codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.MimeType -eq 'image/jpeg' }
   $ep = New-Object System.Drawing.Imaging.EncoderParameters 1
-  $ep.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter ([System.Drawing.Imaging.Encoder]::Quality), 82
+  $ep.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter ([System.Drawing.Imaging.Encoder]::Quality), 85
   $cOut.Save($coverOut, $codec, $ep)
   $cOut.Dispose(); $ep.Dispose()
 
   Write-Output ''
-  Write-Output ("cover -> {0}  ({1}x{2} jpg q82, {3} KB)" -f $coverOut, $cw, $ch, [int]((Get-Item $coverOut).Length / 1KB))
+  Write-Output ("cover -> {0}  ({1}x{2} jpg q85, {3} KB)" -f $coverOut, $cw, $ch, [int]((Get-Item $coverOut).Length / 1KB))
 
   Write-Output 'cover palette, most common first:'
   $i = 0
