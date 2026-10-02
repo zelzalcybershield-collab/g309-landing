@@ -1,0 +1,668 @@
+﻿/* ============================================================
+ * Product landing page - one dictionary per product, injected from the data file.
+   · i18n (ar / en) with RTL <-> LTR switching
+ * Two-up comparison section
+   · Count-up numbers
+   ============================================================ */
+
+const PRODUCT_URL = 'https://www.amazon.eg/dp/B0D1HQK5G5?tag=zoq-21';
+const STORE_KEY = 'xiaomi-g34wqi-lang';
+
+const dict = {
+  "ar": {
+    "nav.tagline": "G34WQi · أسود",
+    "nav.specs": "المواصفات",
+    "nav.connect": "منحني ولا مسطح",
+    "nav.aud": "مين ليه",
+    "nav.offer": "السعر والشراء",
+    "nav.faq": "أسئلة شائعة",
+    "nav.buy": "اشترِ الآن",
+    "hero.eyebrow": "شاشة ألعاب · منحنية",
+    "hero.stock": "متوفر في المخزون",
+    "hero.outOfStock": "غير متوفر حالياً",
+    "hero.title1": "Xiaomi G34WQi",
+    "hero.title2": "CURVED 180Hz",
+    "hero.sub": "شاشة ألعاب منحنية 34 بوصة بدقة WQHD ومعدل تحديث 180Hz وFreeSync Premium",
+    "hero.reviews": "من {n} تقييم على أمازون",
+    "hero.rank": "ضمان سنة من المصنّع — متوفر على أمازون مصر",
+    "hero.buy": "للشراء ومعرفة سعره اليوم — اضغط هنا",
+    "hero.chip1l": "الدقة",
+    "hero.chip1v": "WQHD 3440×1440",
+    "hero.chip2l": "معدل التحديث",
+    "hero.chip2v": "180Hz",
+    "gal.eyebrow": "من المنتج",
+    "gal.title": "شوفها عن قرب",
+    "gal.sub": "الصور من صفحة المنتج الرسمية على أمازون مصر",
+    "gal.prev": "الصورة السابقة",
+    "gal.next": "الصورة التالية",
+    "gal.close": "إغلاق",
+    "gal.label": "صورة من المنتج",
+    "trust.cod": "بطاقة أو تقسيط",
+    "trust.codSub": "دفع إلكتروني — بدون كاش",
+    "trust.delivery": "متوفر على أمازون مصر",
+    "trust.deliverySub": "مواعيد التوصيل على صفحة المنتج",
+    "trust.returns": "استرجاع خلال 15 يوم",
+    "trust.returnsSub": "كما هو مذكور على صفحة المنتج",
+    "trust.prime": "ماركة موثوقة",
+    "trust.primeSub": "تقييم 4.4 من 5 من 318 عميل على أمازون",
+    "k.weight": "شاشة UltraWide",
+    "k.weightSub": "مقاس 34 بوصة بنسبة 21:9",
+    "k.dpi": "دقة WQHD",
+    "k.dpiSub": "3440×1440 — تفاصيل أوضح",
+    "k.batt": "معدل التحديث",
+    "k.battSub": "سلاسة من غير تقطيع في اللعب",
+    "k.btns": "انحناء الشاشة",
+    "k.btnsSub": "زاوية عرض غامرة",
+    "specs.eyebrow": "المواصفات",
+    "specs.title": "المواصفات بالأرقام الحقيقية",
+    "specs.sub": "من صفحة المنتج على أمازون مصر وبيانات شاومي الرسمية",
+    "specs.table": "الورقة التقنية الكاملة",
+    "s1.t": "دقة WQHD — 3440×1440",
+    "s1.b": "شاشة عريضة بنسبة 21:9 بتدي مجال رؤية أوسع من الشاشات القياسية، فتشوف محتوى أكتر في اللعبة ومعلومات أكتر في الشغل. وضوح WQHD أعلى من Full HD بشكل ملحوظ.",
+    "s2.t": "معدل تحديث 180Hz و1ms",
+    "s2.b": "معدل تحديث عالي بيمرر الصورة بسلاسة في الليفيل المتنافس، واستجابة 1ms بتقلل الضبابية أثناء الحركة السريعة.",
+    "s3.t": "انحناء 1500R",
+    "s3.b": "الانحناء بيجيب أطراف الشاشة في نفس المسافة من عينك، فيدي إحساس غمر أعمق في الألعاب والأفلام من غير ما تحرك رقبتك.",
+    "s4.t": "ألوان غنية مع HDR 10",
+    "s4.b": "تباين 4000:1 مع دعم HDR 10 ونطاق ألوان sRGB واسع، والصور والألعاب بتطلع بألوان أغنى وأعمق.",
+    "s5.t": "FreeSync Premium",
+    "s5.b": "تقنية مزامنة بتحافظ على تناسق معدل التحديث مع كارت الشاشة، فتقلل قطع الصورة والتقطيع في اللحظات الحساسة.",
+    "s6.t": "حماية العين",
+    "s6.b": "فلتر الضوء الأزرق (Low Blue Light) بيقلل إجهاد العين في الجلسات الطويلة، فتكمل لعب أو شغل من غير تعب سريع.",
+    "t.brand": "الماركة",
+    "t.model": "الموديل",
+    "t.color": "اللون",
+    "t.colorV": "أسود",
+    "t.sensor": "الدقة",
+    "t.sensorV": "WQHD 3440×1440",
+    "t.switch": "معدل التحديث",
+    "t.switchV": "180Hz (بحد أقصى)",
+    "t.weight": "الوزن",
+    "t.weightV": "6.9 كجم (مع القاعدة)",
+    "t.size": "الاتصال",
+    "t.conn": "المنافذ",
+    "t.connV": "DisplayPort 1.4 ×2 و HDMI 2.0 ×2 ومنفذ صوت",
+    "t.batt": "الإضاءة",
+    "t.battV": "RGB خلفية",
+    "t.os": "الاستخدام",
+    "t.osV": "ألعاب وشغل ومشاهدة",
+    "t.hand": "الضمان",
+    "t.handV": "سنة واحدة من المصنّع",
+    "t.inbox": "في العلبة",
+    "t.inboxV": "الشاشة + القاعدة + كابل DP + محول طاقة + دليل المستخدم",
+    "conn.eyebrow": "منحني ولا مسطح",
+    "conn.title": "الفرق اللي بيفرق معاك",
+    "conn.sub": "الاختيار بين المنحني والمسطح بيتوقف على استخدامك — المقارنة تاخدها في الاعتبار",
+    "conn.btnLs": "منحني 1500R (زي دي)",
+    "conn.btnBt": "مسطح",
+    "conn.m1l": "تجربة المشاهدة",
+    "conn.m1Ls": "زاوية أوسع من غير تحريك الرقبة — غمر أعمق",
+    "conn.m1Bt": "شاشة مستقيمة — أوضح للحروف والخطوط النصية",
+    "conn.m2l": "الأنسب لـ",
+    "conn.m2Ls": "ألعاب وأفلام",
+    "conn.m2Bt": "شغل مكتب ومستندات وبرمجة",
+    "conn.m3l": "اللي بيفرقه",
+    "conn.m3Ls": "إحساس أوسع وأغمر في اللعب",
+    "conn.m3Bt": "سعر أقل غالباً وشكل مألوف",
+    "conn.vizTitle": "خلاصة الفرق",
+    "conn.noteLs": "الانحناء 1500R بيجيب أطراف الشاشة في مسافة واحدة من عينك، فالغمر أعمق في الألعاب والأفلام من غير حركة رقبة زايدة. لو شغلك مستندات وجداول، المستقيم بيفيدك أكتر في وضوح النصوص.",
+    "conn.noteBt": "الشاشة المسطحة أرخص غالباً وبتناسب المكاتب العادية، بس بيفوتك إحساس الانحناء الغامر اللي بيوصلك في الألعاب والأفلام.",
+    "box.title": "اللي هيوصلك",
+    "box.sub": "المنتج أصلي من شاومي وكل ملحقاته في العلبة، متوفر على أمازون مصر",
+    "box.i1": "شاشة G34WQi مقاس 34 بوصة",
+    "box.i2": "قاعدة ووصلات التركيب",
+    "box.i3": "كابل DisplayPort",
+    "box.i4": "محول طاقة ودليل المستخدم",
+    "offer.eyebrow": "السعر والعروض",
+    "offer.title": "اشترِ من أمازون مصر",
+    "offer.productName": "Xiaomi G34WQi — شاشة ألعاب منحنية 34 بوصة WQHD 180Hz — أسود",
+    "offer.seller": "متوفر على أمازون مصر",
+    "offer.inStock": "متوفر",
+    "offer.inStockOut": "غير متوفر",
+    "offer.ship": "موعد التوصيل",
+    "offer.shipV": "بتشوف الموعد على صفحة المنتج",
+    "offer.ret": "مدة الاسترجاع",
+    "offer.retV": "خلال 15 يوم",
+    "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
+    "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
+    "rev.eyebrow": "ليه تختارها",
+    "rev.title": "أسباب تخليك تختارها",
+    "rev.sub": "مواصفات المنتج وتقييم 4.4 من 5 بناءً على 318 تقييم على أمازون",
+    "rev.count": "{n} تقييم · {r} من 5",
+    "rev.q1": "دقة WQHD 3440×1440",
+    "rev.n1": "الشاشة",
+    "rev.v1": "أعرض وأوضح",
+    "rev.q2": "180Hz و1ms وFreeSync",
+    "rev.n2": "الأداء",
+    "rev.v2": "سلاسة بلا تقطيع",
+    "rev.q3": "منحنية 1500R",
+    "rev.n3": "التجربة",
+    "rev.v3": "غامرة",
+    "faq.eyebrow": "أسئلة شائعة",
+    "faq.title": "أسئلة يسألها المشترين",
+    "faq.q1": "الشاشة مقاسها كام؟",
+    "faq.a1": "مقاس 34 بوصة بنسبة عرض 21:9 وانحناء 1500R، ودقة WQHD (3440×1440).",
+    "faq.q2": "معدل التحديث كام؟",
+    "faq.a2": "بحد أقصى 180Hz مع استجابة 1ms وتقنية FreeSync Premium للمزامنة — الأرقام دي مكتوبة في عنوان المنتج على أمازون وبيانات شاومي الرسمية.",
+    "faq.q3": "المنافذ المتاحة إيه؟",
+    "faq.a3": "منفذين DisplayPort 1.4 ومنفذين HDMI 2.0 ومنفذ صوت، مع عصا تحكم (جويستيك) للتنقل في القائمة — وفق بيانات شاومي الرسمية.",
+    "faq.q4": "تنفع للشغل غير الألعاب؟",
+    "faq.a4": "أيوا — العرض العريض 21:9 بيسعك تفتح نافذتين جنب بعض من غير تبديل مستمر، والفلترة من الضوء الأزرق بتريحك في جلسات العمل الطويلة.",
+    "faq.q5": "ينفع أدفع عند الاستلام؟",
+    "faq.a5": "لأ — الدفع عند الاستلام غير متاح لهذا المنتج حسب صفحة أمازون مصر، والدفع إلكتروني بالبطاقة أو التقسيط. كل الطرق المتاحة بتظهر على صفحة أمازون وقت الدفع.",
+    "faq.q6": "أقدر أرجّعها لو مش مناسبة؟",
+    "faq.a6": "الإرجاع متاح خلال 15 يوم من الاستلام حسب سياسة أمازون المطبّقة على المنتج. راجع تفاصيل الاسترجاع على صفحة المنتج قبل ما تشتري.",
+    "cta.title": "جاهز تجهّز مكتب الألعاب؟",
+    "cta.sub": "اطلب G34WQi من أمازون مصر — 34 بوصة WQHD و180Hz وانحناء 1500R",
+    "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
+    "cta.questions": "عايز تسأل أكتر؟",
+    "footer.about": "صفحة هبوط لشاشة Xiaomi G34WQi. الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون.",
+    "footer.h1": "الصفحة",
+    "footer.h2": "المنتج",
+    "footer.h3": "تابعنا",
+    "footer.l1": "شراء من أمازون",
+    "footer.l2": "محتويات العلبة",
+    "footer.l3": "لماذا G34WQi",
+    "footer.disclaimer": "الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون. المواصفات كما وردت في صفحة المنتج وبيانات المصنع الرسمية.",
+    "footer.madeBy": "صفحة هبوط · AR / EN",
+    "aud.eyebrow": "مين الشاشة دي ليه",
+    "aud.title": "اللي هتفرق معاهم G34WQi",
+    "aud.sub": "عرض عريض منحني وسلاسة في الألعاب — لكل عايز تجربة أكبر",
+    "aud.a1t": "اللاعبين التنافسيين",
+    "aud.a1b": "180Hz مع استجابة 1ms وFreeSync Premium بيوفروا حركة سلسة بلا تقطيع في الألعاب السريعة، فتتحكم بدقة من غير قطع صورة.",
+    "aud.a2t": "اللي بيشتغلوا على أكتر من نافذة",
+    "aud.a2b": "العرض 21:9 بيسعك تفتح مستندين جنب بعض أو محرر أكواد مع براوزر من غير تبديل مستمر — مساحة عمل أوسع على مكتبك.",
+    "aud.a3t": "عشاق الأفلام والمسلسلات",
+    "aud.a3b": "الانحناء 1500R والدقة العالية بيوفروا صورة غامرة، مع ألوان أغنى بدعم HDR 10 وتباين 4000:1.",
+    "aud.a4t": "اللي عايزين شكل مميز على المكتب",
+    "aud.a4b": "إضاءة RGB خلفية وحواف رفيعة ومعروفة يقدموا شكل مميز يكمّل أي تجهيز للألعاب أو الشغل.",
+    "hero.cta2": "تفاصيل الشراء والتوصيل",
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون",
+    "offer.payTitle": "الدفع والتقسيط",
+    "offer.paySub": "أمازون بيوفر طرق دفع متعددة وخيارات تقسيط حسب المنتج والبطاقة — وكل تفاصيل السعر والتقسيط والخصومات والعروض بتظهر على صفحة أمازون نفسها لحظة الشراء.",
+    "offer.payNote": "السعر والتقسيط وأي عروض حالية — كل ده على صفحة أمازون بس.",
+    "nav.all": "كل المنتجات"
+  },
+  "en": {
+    "nav.tagline": "G34WQi · Black",
+    "nav.specs": "Specs",
+    "nav.connect": "Curved vs Flat",
+    "nav.aud": "Who for",
+    "nav.offer": "Price & Buy",
+    "nav.faq": "FAQ",
+    "nav.buy": "Buy Now",
+    "hero.eyebrow": "Gaming Monitor · Curved",
+    "hero.stock": "In stock",
+    "hero.outOfStock": "Currently unavailable",
+    "hero.title1": "Xiaomi G34WQi",
+    "hero.title2": "CURVED 180Hz",
+    "hero.sub": "A 34-inch curved gaming monitor with WQHD resolution, a 180Hz refresh rate and FreeSync Premium",
+    "hero.reviews": "{n} ratings on Amazon",
+    "hero.rank": "1-year manufacturer warranty — available on Amazon.eg",
+    "hero.buy": "Buy & see today's price — click here",
+    "hero.chip1l": "Resolution",
+    "hero.chip1v": "WQHD 3440×1440",
+    "hero.chip2l": "Refresh rate",
+    "hero.chip2v": "180Hz",
+    "gal.eyebrow": "From the product",
+    "gal.title": "See it up close",
+    "gal.sub": "Photos from the official product listing on amazon.eg",
+    "gal.prev": "Previous image",
+    "gal.next": "Next image",
+    "gal.close": "Close",
+    "gal.label": "Product photo",
+    "trust.cod": "Card or instalments",
+    "trust.codSub": "Electronic payment — card or instalments",
+    "trust.delivery": "Available on Amazon.eg",
+    "trust.deliverySub": "Delivery dates on the product page",
+    "trust.returns": "15-day returns",
+    "trust.returnsSub": "As stated on the product page",
+    "trust.prime": "Trusted brand",
+    "trust.primeSub": "Rated 4.4 out of 5 by 318 customers on Amazon",
+    "k.weight": "UltraWide display",
+    "k.weightSub": "34-inch, 21:9 aspect ratio",
+    "k.dpi": "WQHD resolution",
+    "k.dpiSub": "3440×1440 — sharper detail",
+    "k.batt": "Refresh rate",
+    "k.battSub": "Smooth, tear-free gaming",
+    "k.btns": "Curvature",
+    "k.btnsSub": "An immersive viewing angle",
+    "specs.eyebrow": "Specs",
+    "specs.title": "The real numbers, straight from the listing",
+    "specs.sub": "From the amazon.eg product page and Xiaomi's official data",
+    "specs.table": "Full technical sheet",
+    "s1.t": "WQHD resolution — 3440×1440",
+    "s1.b": "A 21:9 ultrawide screen gives you a wider field of view than standard displays — more on screen in games and more space for work. WQHD is noticeably sharper than Full HD.",
+    "s2.t": "180Hz refresh rate and 1ms",
+    "s2.b": "A high refresh rate keeps motion smooth in competitive play, and 1ms response reduces motion blur during fast movement.",
+    "s3.t": "1500R curvature",
+    "s3.b": "The curve keeps the edges of the screen at the same distance from your eyes, giving a deeper, more immersive feel in games and films without moving your head.",
+    "s4.t": "Rich colours with HDR 10",
+    "s4.b": "A 4000:1 contrast ratio with HDR 10 support and a wide sRGB colour gamut makes games and pictures look richer and deeper.",
+    "s5.t": "FreeSync Premium",
+    "s5.b": "Adaptive sync keeps the refresh rate in step with your graphics card, reducing screen tearing and stutter at the critical moments.",
+    "s6.t": "Eye protection",
+    "s6.b": "A low-blue-light filter reduces eye strain during long sessions, so you can keep playing or working without tiring quickly.",
+    "t.brand": "Brand",
+    "t.model": "Model",
+    "t.color": "Colour",
+    "t.colorV": "Black",
+    "t.sensor": "Resolution",
+    "t.sensorV": "WQHD 3440×1440",
+    "t.switch": "Refresh rate",
+    "t.switchV": "Up to 180Hz",
+    "t.weight": "Weight",
+    "t.weightV": "6.9 kg (with stand)",
+    "t.size": "Connection",
+    "t.conn": "Ports",
+    "t.connV": "DisplayPort 1.4 ×2 and HDMI 2.0 ×2 plus an audio port",
+    "t.batt": "Lighting",
+    "t.battV": "RGB backlight",
+    "t.os": "Use",
+    "t.osV": "Gaming, work and viewing",
+    "t.hand": "Warranty",
+    "t.handV": "1 year from the manufacturer",
+    "t.inbox": "In the box",
+    "t.inboxV": "Monitor + stand + DP cable + power adapter + user manual",
+    "conn.eyebrow": "Curved vs flat",
+    "conn.title": "The difference that matters",
+    "conn.sub": "The choice between curved and flat comes down to how you use it — worth weighing before you pay",
+    "conn.btnLs": "Curved 1500R (this one)",
+    "conn.btnBt": "Flat",
+    "conn.m1l": "Viewing experience",
+    "conn.m1Ls": "Wider angle without moving your head — deeper immersion",
+    "conn.m1Bt": "A straight screen — crisper text and straight lines",
+    "conn.m2l": "Best for",
+    "conn.m2Ls": "Games and films",
+    "conn.m2Bt": "Office work, documents and coding",
+    "conn.m3l": "The trade-off",
+    "conn.m3Ls": "A wider, more immersive feel in games",
+    "conn.m3Bt": "Usually cheaper and a familiar shape",
+    "conn.vizTitle": "The difference in short",
+    "conn.noteLs": "The 1500R curve brings the edges of the screen to the same distance from your eyes, so immersion runs deeper in games and films without extra head movement. If your day is documents and spreadsheets, a flat screen reads text more easily.",
+    "conn.noteBt": "A flat screen is usually cheaper and suits ordinary desks, but you lose the immersive push of the curve during games and films.",
+    "box.title": "What arrives in the box",
+    "box.sub": "Genuine Xiaomi with all accessories included, available on Amazon.eg",
+    "box.i1": "G34WQi 34-inch monitor",
+    "box.i2": "Stand and mounting parts",
+    "box.i3": "DisplayPort cable",
+    "box.i4": "Power adapter and user manual",
+    "offer.eyebrow": "Price & offers",
+    "offer.title": "Buy on Amazon.eg",
+    "offer.productName": "Xiaomi G34WQi — 34\" WQHD 180Hz Curved Gaming Monitor — Black",
+    "offer.seller": "Available on Amazon.eg",
+    "offer.inStock": "In stock",
+    "offer.inStockOut": "Out of stock",
+    "offer.ship": "Delivery",
+    "offer.shipV": "See the date on the product page",
+    "offer.ret": "Returns",
+    "offer.retV": "Within 15 days",
+    "offer.buyNow": "Buy & see today's price — click here",
+    "offer.checkout": "Checkout and payment happen on Amazon.eg",
+    "rev.eyebrow": "Why choose it",
+    "rev.title": "Reasons to pick this one",
+    "rev.sub": "Product specs and a 4.4 out of 5 rating from 318 ratings on Amazon",
+    "rev.count": "{n} ratings · {r} of 5",
+    "rev.q1": "WQHD 3440×1440 resolution",
+    "rev.n1": "Display",
+    "rev.v1": "Wider, sharper",
+    "rev.q2": "180Hz, 1ms and FreeSync",
+    "rev.n2": "Performance",
+    "rev.v2": "Smooth, tear-free",
+    "rev.q3": "1500R curvature",
+    "rev.n3": "Experience",
+    "rev.v3": "Immersive",
+    "faq.eyebrow": "FAQ",
+    "faq.title": "Questions buyers ask",
+    "faq.q1": "What size is the screen?",
+    "faq.a1": "34 inches at a 21:9 aspect ratio with 1500R curvature and WQHD resolution (3440×1440).",
+    "faq.q2": "What is the refresh rate?",
+    "faq.a2": "Up to 180Hz with 1ms response and FreeSync Premium for synchronisation — these figures are in the product title on Amazon and in Xiaomi's official data.",
+    "faq.q3": "What ports does it have?",
+    "faq.a3": "Two DisplayPort 1.4, two HDMI 2.0 and an audio port, with a joystick for menu navigation — per Xiaomi's official data.",
+    "faq.q4": "Is it good for work, not just gaming?",
+    "faq.a4": "Yes — the 21:9 ultrawide screen lets you keep two windows side by side without constantly switching, and the low-blue-light filter helps through long working sessions.",
+    "faq.q5": "Can I pay cash on delivery?",
+    "faq.a5": "No — cash on delivery is not available for this item, per the Amazon Egypt page; payment is electronic by card or instalments. Every available method appears on the Amazon page at checkout.",
+    "faq.q6": "Can I return it if it's not right for me?",
+    "faq.a6": "Returns are available within 15 days of delivery per Amazon's policy for this product. Check the return details on the product page before you buy.",
+    "cta.title": "Ready to set up your gaming desk?",
+    "cta.sub": "Order the G34WQi on Amazon.eg — 34\" WQHD, 180Hz and 1500R curvature",
+    "cta.buy": "Order on Amazon & see today's price",
+    "cta.questions": "More questions?",
+    "footer.about": "Landing page for the Xiaomi G34WQi monitor. Prices and figures can change with availability on Amazon.",
+    "footer.h1": "Page",
+    "footer.h2": "Product",
+    "footer.h3": "Follow",
+    "footer.l1": "Buy on Amazon",
+    "footer.l2": "In the box",
+    "footer.l3": "Why the G34WQi",
+    "footer.disclaimer": "Prices and figures can change with availability on Amazon. Specifications as listed on the product page and official manufacturer data.",
+    "footer.madeBy": "Landing page · AR / EN",
+    "aud.eyebrow": "Who it is for",
+    "aud.title": "Who the G34WQi suits",
+    "aud.sub": "An ultrawide curved display with smooth gaming — for anyone who wants a bigger experience",
+    "aud.a1t": "Competitive gamers",
+    "aud.a1b": "180Hz with 1ms response and FreeSync Premium deliver smooth, tear-free motion in fast games, so you aim with precision and no screen tearing.",
+    "aud.a2t": "People working across many windows",
+    "aud.a2b": "The 21:9 screen lets you keep two documents side by side, or a code editor next to a browser, without constantly switching — a wider workspace on your desk.",
+    "aud.a3t": "Film and series fans",
+    "aud.a3b": "The 1500R curve and the high resolution give an immersive picture, with richer colours from HDR 10 support and a 4000:1 contrast ratio.",
+    "aud.a4t": "Anyone who wants a distinctive desk",
+    "aud.a4b": "RGB backlighting, thin bezels and a well-known brand add a distinctive look that completes any gaming or work setup.",
+    "hero.cta2": "Buying & delivery details",
+    "offer.today": "See today's price and live offers directly on the product page at Amazon",
+    "offer.payTitle": "Payment & instalments",
+    "offer.paySub": "Amazon offers multiple payment methods and instalment options depending on the item and your card - every price, instalment, discount and deal detail appears on Amazon's own page at checkout.",
+    "offer.payNote": "The price, instalments and any current offers - all of it lives on Amazon's page only.",
+    "nav.all": "All Products"
+  }
+};
+
+let lang = 'ar';
+
+/* ---------- i18n ---------- */
+function t(key) {
+  return (dict[lang] && dict[lang][key]) ?? (dict.ar[key] ?? key);
+}
+
+function applyLang(next) {
+  lang = next;
+  localStorage.setItem(STORE_KEY, lang);
+
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  document.title = lang === 'ar'
+    ? 'Xiaomi G34WQi — شاشة ألعاب منحنية 34 بوصة بدقة WQHD و180Hz'
+    : 'Xiaomi G34WQi — 34" WQHD 180Hz Ultrawide Curved Gaming Monitor';
+
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(',').forEach((pair) => {
+      const [attr, key] = pair.split(':').map((s) => s.trim());
+      if (attr && key) el.setAttribute(attr, t(key));
+    });
+  });
+
+  document.getElementById('langLabel').textContent = lang === 'ar' ? 'EN' : 'ع';
+  renderMode(currentMode);
+  renderGallery();
+  renderLive();
+}
+
+/* ---------- live data (price.json) ----------
+   price.json is written by scripts/update-price.mjs on a cron
+   (see .github/workflows/price.yml). The page only reads it,
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
+
+const PRICE_URL = 'price.json';
+const LIVE_KEY = 'xiaomi-g34wqi-live';
+const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
+
+let live = null; // last known good data, or null if price.json has never loaded
+
+/* substitutes {n} reviews / {r} rating inside i18n strings */
+function applyTokens() {
+  if (!live) return;
+  // A string that interpolates the rating is only meaningful when there is one
+  // to interpolate. Substituting 0 instead printed "0 reviews - 0.0 out of 5"
+  // on every product whose rating the scraper could not read, which reads as a
+  // broken page rather than as an absent rating. Hide the element instead; it
+  // comes back with renderLive's data-needs-rating pass when a rating lands.
+  const hasRating = live.rating != null;
+  const n = Number(live.reviews) || 0;
+  const r = Number(live.rating) || 0;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const raw = t(el.dataset.i18n);
+    if (!raw.includes('{')) return;
+    if (!hasRating) { el.classList.add('hidden'); return; }
+    el.classList.remove('hidden');
+    el.textContent = raw
+      .replace(/\{n\}/g, n.toLocaleString('en-US'))
+      .replace(/\{r\}/g, r.toFixed(1));
+  });
+}
+
+function renderLive() {
+  if (!live) return;
+
+  if (live.rating != null) {
+    document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
+    document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
+  }
+  // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
+  // the markup, so every product that had no rating of its own quietly showed the
+  // G309 score. A product with no reviews should show no stars.
+
+  // stock badges
+  document.querySelectorAll('[data-bind="stock"]').forEach((el) => {
+    const out = live.inStock === false;
+    el.textContent = out
+      ? t(el.dataset.stockOut || 'hero.outOfStock')
+      : t(el.dataset.stockIn || 'hero.stock');
+    el.classList.toggle('border-emerald-400/30', !out);
+    el.classList.toggle('bg-emerald-500/10', !out);
+    el.classList.toggle('text-emerald-300', !out);
+    el.classList.toggle('border-rose-400/30', out);
+    el.classList.toggle('bg-rose-500/10', out);
+    el.classList.toggle('text-rose-300', out);
+  });
+
+  applyTokens();
+}
+
+function initLivePrice() {
+  // 1) show the cached rating/review/stock data immediately, then refresh
+  try {
+    const cached = JSON.parse(localStorage.getItem(LIVE_KEY) || 'null');
+    if (cached && Date.now() - new Date(cached.checkedAt).getTime() < LIVE_TTL) {
+      live = cached;
+      renderLive();
+    }
+  } catch { /* ignore bad cache */ }
+
+  // 2) then refresh from price.json
+  fetch(PRICE_URL, { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
+    .then((data) => {
+      if (!data || data.price == null) return;
+      live = data;
+      localStorage.setItem(LIVE_KEY, JSON.stringify(data));
+      renderLive();
+    })
+    .catch(() => { /* keep whatever we already had */ });
+}
+
+/* ---------- connectivity demo ---------- */
+let currentMode = 'ls';
+const MODES = {
+  ls: ['conn.m1Ls', 'conn.m2Ls', 'conn.m3Ls', 'conn.noteLs'],
+  bt: ['conn.m1Bt', 'conn.m2Bt', 'conn.m3Bt', 'conn.noteBt'],
+};
+
+function renderMode(mode) {
+  currentMode = mode;
+  const keys = MODES[mode];
+
+  document.querySelectorAll('.modeBtn').forEach((btn) => {
+    const active = btn.dataset.mode === mode;
+    btn.className = 'modeBtn rounded-lg px-5 py-2.5 text-sm font-extrabold transition ' +
+      (active ? 'bg-white text-ink-950' : 'text-slate-400 hover:text-white');
+  });
+
+  ['m1', 'm2', 'm3'].forEach((id, i) => {
+    document.getElementById(id).textContent = t(keys[i]);
+  });
+  document.getElementById('connNote').textContent = t(keys[3]);
+
+  // animation speed follows the mode
+  const fast = document.getElementById('packetGroup');
+  const slow = document.getElementById('pulseGroup');
+  const cur = document.getElementById('cursorGroup');
+  [fast, slow, cur].forEach((g) => {
+    g.style.display = 'none';
+    g.style.animation = 'none';
+  });
+  const show = mode === 'ls' ? fast : slow;
+  const curDur = mode === 'ls' ? '0.6s' : '2.2s';
+  show.style.display = '';
+  show.style.animation = `marquee ${curDur} linear infinite`;
+  cur.style.display = '';
+  cur.style.animation = `marquee ${curDur} linear infinite`;
+  cur.style.opacity = mode === 'ls' ? '1' : '.25';
+}
+
+/* ---------- count up ---------- */
+function countUp(el) {
+  const target = Number(el.dataset.count);
+  const duration = 1400;
+  const start = performance.now();
+  const fmt = (v) => (el.dataset.format === 'comma' ? Math.round(v).toLocaleString('en-US') : String(Math.round(v)));
+
+  const step = (now) => {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(target * eased) + (el.dataset.suffix || '') + (el.dataset.prefix || '');
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function initCounters() {
+  const els = [...document.querySelectorAll('[data-count]')];
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        countUp(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  els.forEach((el) => io.observe(el));
+}
+
+/* ---------- buy links ---------- */
+function initBuy() {
+  document.querySelectorAll('[data-buy]').forEach((a) => { a.href = PRODUCT_URL; });
+}
+
+/* ---------- smooth scroll offset for the fixed nav ---------- */
+function initScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      const y = el.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+}
+
+/* ---------- gallery ----------
+   Real product shots pulled from the Amazon listing and served from ./img, so
+   the page never hotlinks Amazon. Amazon hands these over in the order the
+   seller listed them, so the order is kept as-is. */
+const GAL_FILES = ["img/xiaomi-g34wqi-00.jpg","img/xiaomi-g34wqi-01.jpg","img/xiaomi-g34wqi-02.jpg","img/xiaomi-g34wqi-03.jpg"];
+let galItems = [];
+
+function renderGallery() {
+  galItems.forEach((b, k) => {
+    b.setAttribute('aria-label', `${t('gal.label')} ${k + 1}`);
+  });
+}
+
+function initGallery() {
+  const grid = document.querySelector('[data-gal-grid]');
+  if (!grid) return;
+
+  const total = GAL_FILES.length;
+  const box = document.querySelector('[data-gal-box]');
+  const boxImg = box?.querySelector('[data-gal-box-img]');
+  let i = 0;
+  let opener = null;
+
+  galItems = GAL_FILES.map((src, n) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className =
+      'group relative overflow-hidden rounded-2xl border border-white/10 bg-white shadow-lg shadow-black/30 ' +
+      'transition duration-300 hover:-translate-y-1 hover:border-cyan-400/60 hover:shadow-2xl ' +
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400';
+    b.innerHTML =
+      `<img src="${src}" alt="" width="1200" height="1200" loading="lazy" decoding="async" ` +
+      'class="aspect-square w-full select-none object-contain">' +
+      '<span class="pointer-events-none absolute inset-0 grid place-items-center bg-ink-950/0 ' +
+      'opacity-0 transition duration-300 group-hover:bg-ink-950/25 group-hover:opacity-100">' +
+      '<span class="grid h-11 w-11 place-items-center rounded-full bg-white/90 text-ink-950 shadow-lg">' +
+      '<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+      'stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg>' +
+      '</span></span>';
+    b.addEventListener('click', () => { i = n; openBox(); });
+    grid.appendChild(b);
+    return b;
+  });
+
+  function show(n) {
+    i = (n + total) % total;
+    if (boxImg) boxImg.src = GAL_FILES[i];
+  }
+
+  function openBox() {
+    if (!box) return;
+    opener = document.activeElement;
+    show(i);
+    box.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    box.querySelector('[data-gal-box-close]')?.focus();
+  }
+  function closeBox() {
+    if (!box) return;
+    box.classList.add('hidden');
+    document.body.style.overflow = '';
+    opener?.focus();
+  }
+
+  box?.querySelector('[data-gal-box-close]')?.addEventListener('click', closeBox);
+  box?.querySelector('[data-gal-box-prev]')?.addEventListener('click', () => show(i - 1));
+  box?.querySelector('[data-gal-box-next]')?.addEventListener('click', () => show(i + 1));
+  box?.addEventListener('click', (e) => { if (e.target === box) closeBox(); });
+
+  document.addEventListener('keydown', (e) => {
+    const open = box && !box.classList.contains('hidden');
+    if (!open) return;
+    if (e.key === 'Escape') closeBox();
+    else if (e.key === 'ArrowLeft') show(i - 1);
+    else if (e.key === 'ArrowRight') show(i + 1);
+  });
+
+  renderGallery();
+}
+
+/* ---------- init ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang(localStorage.getItem(STORE_KEY) || 'ar');
+
+  document.getElementById('langBtn').addEventListener('click', () => {
+    applyLang(lang === 'ar' ? 'en' : 'ar');
+  });
+
+  document.querySelectorAll('.modeBtn').forEach((btn) => {
+    btn.addEventListener('click', () => renderMode(btn.dataset.mode));
+  });
+
+  initBuy();
+  initCounters();
+  initScroll();
+  initGallery();
+  initLivePrice();
+});

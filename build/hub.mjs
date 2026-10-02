@@ -108,6 +108,7 @@ const CATEGORIES = [
   { id: 'mouse', label: 'ماوس' },
   { id: 'keyboard', label: 'كيبورد' },
   { id: 'audio', label: 'سماعات' },
+  { id: 'monitor', label: 'شاشات' },
 ];
 const catOf = (p) => (p.category && CATEGORIES.some((c) => c.id === p.category) ? p.category : 'other');
 // The chip on a card shows the plain category name, not the product's hero
