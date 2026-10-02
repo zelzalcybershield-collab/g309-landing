@@ -23,6 +23,7 @@ Add-Type -AssemblyName System.Drawing
 $root = Split-Path -Parent (Split-Path -Parent $PSCommandPath)
 $inbox = Join-Path $root 'brand\inbox'
 $logoOut = Join-Path $root 'brand\logo.png'
+$coverOut = Join-Path $root 'brand\cover.jpg'
 
 if (-not (Test-Path $inbox)) { Write-Output "no inbox at $inbox"; exit 0 }
 
@@ -106,7 +107,29 @@ if ($logo) {
 }
 
 if ($cover) {
+  # The cover becomes the catalogue's hero backdrop, so it ships rather than
+  # only being measured. JPEG at quality 82 and capped at 1600px wide: it sits
+  # behind a dark overlay at low opacity, so it never needs to be sharp, and the
+  # source PNG is 1.2MB.
+  $cw = [int][Math]::Min($cover.Width, 1600)
+  $ch = [int][Math]::Ceiling($cover.Height * $cw / $cover.Width)
+  $cOut = New-Object System.Drawing.Bitmap $cw, $ch, ([System.Drawing.Imaging.PixelFormat]::Format24bppRgb)
+  $g2 = [System.Drawing.Graphics]::FromImage($cOut)
+  $g2.InterpolationMode = 'HighQualityBicubic'
+  $g2.PixelOffsetMode = 'HighQuality'
+  $g2.DrawImage($cover, 0, 0, $cw, $ch)
+  $g2.Dispose()
+  # Encoder quality via the JPEG codec parameters; a plain Save() would sit at
+  # the default 75.
+  $codec = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Object { $_.MimeType -eq 'image/jpeg' }
+  $ep = New-Object System.Drawing.Imaging.EncoderParameters 1
+  $ep.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter ([System.Drawing.Imaging.Encoder]::Quality), 82
+  $cOut.Save($coverOut, $codec, $ep)
+  $cOut.Dispose(); $ep.Dispose()
+
   Write-Output ''
+  Write-Output ("cover -> {0}  ({1}x{2} jpg q82, {3} KB)" -f $coverOut, $cw, $ch, [int]((Get-Item $coverOut).Length / 1KB))
+
   Write-Output 'cover palette, most common first:'
   $i = 0
   foreach ($c in (Get-Rank $cover)) {
@@ -114,11 +137,11 @@ if ($cover) {
     if ($i -gt 12) { break }
     $hex = '#' + $c.Key
     $r = [Convert]::ToInt32($c.Key.Substring(0,2),16)
-    $g2 = [Convert]::ToInt32($c.Key.Substring(2,2),16)
+    $g2v = [Convert]::ToInt32($c.Key.Substring(2,2),16)
     $b = [Convert]::ToInt32($c.Key.Substring(4,2),16)
     # Rough perceived brightness, to tell an accent apart from a dark base.
-    $lum = [int](0.299*$r + 0.587*$g2 + 0.114*$b)
-    Write-Output ('  {0,2}. {1}  rgb({2,3},{3,3},{4,3})  lum {5,3}' -f $i, $hex, $r, $g2, $b, $lum)
+    $lum = [int](0.299*$r + 0.587*$g2v + 0.114*$b)
+    Write-Output ('  {0,2}. {1}  rgb({2,3},{3,3},{4,3})  lum {5,3}' -f $i, $hex, $r, $g2v, $b, $lum)
   }
   $cover.Dispose()
 } else {

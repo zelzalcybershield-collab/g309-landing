@@ -1,4 +1,4 @@
-/* Generates the site root: a hub listing every product page.
+﻿/* Generates the site root: a hub listing every product page.
  *
  *   node build/hub.mjs
  *
@@ -132,11 +132,13 @@ rows.sort((a, b) =>
   String(a.p.meta.brand).localeCompare(String(b.p.meta.brand), 'ar')
   || String(a.p.meta.model).localeCompare(String(b.p.meta.model), 'ar'));
 
-const card = ({ p, rating, reviews, inStock }, i) => {
+const card = ({ p, rating, reviews, inStock }) => {
   const cat = catOf(p);
-  const flags = [];
-  if (inStock === false) flags.push('<span class="rounded-full border border-rose-400/30 bg-rose-500/10 px-2.5 py-1 text-[11px] font-bold text-rose-300">غير متوفر حالياً</span>');
-  else if (inStock === true) flags.push('<span class="rounded-full border border-emerald-400/30 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">متوفر</span>');
+  // The stock badge sits on the media panel rather than in the meta row, so the
+  // row below reads as one thing instead of two competing pills.
+  let flag = '';
+  if (inStock === false) flag = '<span class="absolute start-3 top-3 rounded-full border border-rose-500/40 bg-rose-500/90 px-2.5 py-1 text-[11px] font-bold text-white shadow-lg">غير متوفر حالياً</span>';
+  else if (inStock === true) flag = '<span class="absolute start-3 top-3 rounded-full border border-emerald-400/40 bg-ink-950/80 px-2.5 py-1 text-[11px] font-bold text-emerald-300 shadow-lg backdrop-blur">متوفر</span>';
 
   const rate = rating === null
     ? ''
@@ -153,22 +155,34 @@ const card = ({ p, rating, reviews, inStock }, i) => {
   const thumb = p.meta.heroImg ? `${p.dir}/img/${p.meta.heroImg}` : null;
   const shot = thumb
     ? `<img src="${esc(thumb)}" alt="${esc(p.meta.brand + ' ' + p.meta.model)}" loading="lazy" decoding="async"
-           class="aspect-[4/3] w-full object-contain p-4">`
+           class="aspect-[4/3] w-full object-contain p-4 transition-transform duration-500 group-hover:scale-[1.05]">`
     : '';
 
+  /* Three zones, so every card reads the same way at a glance: a light media
+   * panel, an identity row, then the action row. The media panel is LIGHT on
+   * purpose - every Amazon hero shot is a pure-white-background product photo, so
+   * on the dark panel this card used to have, each product rendered as a harsh
+   * white rectangle floating in a black box. A white-to-emerald-tint ground lets
+   * the shot dissolve into its frame and ties the brand in at the same time. */
   return `
-        <a href="${esc(p.dir)}/" data-cat="${esc(cat)}" class="hub-card group relative flex flex-col overflow-hidden rounded-[26px] border border-white/10 bg-ink-850/80 p-5 backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/40 hover:shadow-[0_24px_60px_-28px_rgba(34,211,238,.55)]">
-          <span aria-hidden="true" class="absolute inset-x-6 top-0 h-px brand-grad opacity-0 transition duration-300 group-hover:opacity-100"></span>
-          <div class="mb-4 overflow-hidden rounded-2xl border border-white/[.07] bg-white/[.04]">${shot}</div>
-          <div class="mb-2.5 flex flex-wrap items-center gap-2">
-            <span class="rounded-full border border-cyan-400/25 bg-cyan-500/10 px-2.5 py-1 text-[11px] font-bold text-cyan-300">${esc(catLabel(cat))}</span>
-            ${flags.join('')}
+        <a href="${esc(p.dir)}/" data-cat="${esc(cat)}" class="hub-card group relative flex flex-col overflow-hidden rounded-[28px] border border-white/[.09] bg-ink-850/70 backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-emerald-400/45 hover:shadow-[0_30px_70px_-32px_rgba(0,232,120,.55)]">
+          <span aria-hidden="true" class="pointer-events-none absolute -end-16 -top-16 h-40 w-40 rounded-full bg-emerald-400/10 blur-3xl transition duration-500 group-hover:bg-emerald-400/25"></span>
+          <div class="relative m-3 overflow-hidden rounded-[20px] border border-white/60 bg-gradient-to-b from-white via-white to-emerald-50 shadow-[0_2px_14px_-6px_rgba(0,0,0,.5)]">
+            ${shot}
+            ${flag}
           </div>
-          <h2 class="text-lg font-black leading-tight text-white">${esc(p.meta.brand)}</h2>
-          <p class="mt-1 text-sm text-slate-400">${esc(p.meta.model)}</p>
-          <div class="mt-4 flex items-center justify-between gap-3 border-t border-white/[.07] pt-3.5">
-            <span class="flex items-center gap-1.5">${rate}</span>
-            <span class="text-xs font-extrabold text-cyan-300 transition group-hover:gap-2">التفاصيل <span aria-hidden="true">←</span></span>
+          <div class="flex flex-1 flex-col p-5 pt-4">
+            <span class="self-start rounded-full border border-emerald-400/25 bg-emerald-500/10 px-2.5 py-1 text-[11px] font-bold text-emerald-300">${esc(catLabel(cat))}</span>
+            <div class="mt-3.5">
+              <h2 class="text-lg font-black leading-tight text-white">${esc(p.meta.brand)}</h2>
+              <p class="mt-1 text-sm text-slate-400">${esc(p.meta.model)}</p>
+            </div>
+            <div class="mt-auto flex items-center justify-between gap-3 border-t border-white/[.07] pt-4">
+              <span class="flex items-center gap-1.5">${rate}</span>
+              <span class="inline-flex items-center gap-1 text-xs font-extrabold text-emerald-300">
+                التفاصيل <span aria-hidden="true" class="transition-transform duration-300 group-hover:-translate-x-1">←</span>
+              </span>
+            </div>
           </div>
         </a>`;
 };
@@ -182,8 +196,8 @@ const countOf = (id) => (id === 'all' ? rows.length : rows.filter(({ p }) => cat
 // Kept in sync by hand with the class string in the markup above; the filter
 // script rewrites the whole className when a tab is pressed, so these two have
 // to agree or the pressed tab loses its highlight.
-const FILTER_ON = 'hub-filter rounded-full border border-cyan-400/50 bg-cyan-500/15 px-4 py-2 text-sm font-bold text-cyan-300 transition';
-const FILTER_OFF = 'hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-cyan-400/40 hover:text-white';
+const FILTER_ON = 'hub-filter rounded-full border border-emerald-400/50 bg-emerald-500/15 px-4 py-2 text-sm font-bold text-emerald-300 transition shadow-[0_0_20px_-8px_rgba(0,232,120,.7)]';
+const FILTER_OFF = 'hub-filter rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-bold text-slate-300 transition hover:border-emerald-400/40 hover:text-white';
 
 const html = `<!DOCTYPE html>
 <html lang="ar" dir="rtl">
@@ -266,6 +280,18 @@ ${(() => {
     mask-image: linear-gradient(to bottom, #000 0, transparent 68%);
     -webkit-mask-image: linear-gradient(to bottom, #000 0, transparent 68%);
   }
+  /* The Facebook cover, used as the hero backdrop so the page opens on the same
+   * artwork the brand already runs on. It is a background-image rather than an
+   * image tag because verify.mjs requires exactly one image element per product
+   * on the root, and a 16th one for decoration would fail that count. It sits
+   * under an 82% ink scrim, so it reads as texture, not as a competing photo.
+   * (Note: do not spell out the image tag in this comment - the string lands in
+   * the served HTML and the verifier counts it as a product image.) */
+  .cover-bg {
+    background-image: url('brand/cover.jpg');
+    background-size: cover;
+    background-position: center 30%;
+  }
   ::selection { background: var(--nz-3); color: #fff; }
   @media (prefers-reduced-motion: reduce) {
     .hub-card, .brand-aura { transition: none !important; }
@@ -283,13 +309,13 @@ ${(() => {
       <a href="#top" class="flex items-center gap-3" aria-label="${esc(SITE.name)} — أعلى الصفحة">${mark('a', 40)}
         <span class="leading-none">
           <span class="block text-base font-black text-white">${esc(SITE.name)}</span>
-          <span class="num mt-1.5 block text-[9px] font-bold tracking-[0.3em] text-cyan-400/70">${esc(SITE.latin)}</span>
+          <span class="num mt-1.5 block text-[9px] font-bold tracking-[0.3em] text-emerald-400/70">${esc(SITE.latin)}</span>
         </span>
       </a>
       <div class="flex items-center gap-2 sm:gap-3">
         <span class="num hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-300 sm:inline-block">${rows.length} منتج</span>
         <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer" aria-label="صفحة ${esc(SITE.name)} على فيسبوك"
-           class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-400/25 bg-cyan-500/10 text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
+           class="inline-flex h-9 w-9 items-center justify-center rounded-xl border border-emerald-400/25 bg-emerald-500/10 text-emerald-300 transition hover:border-emerald-400/50 hover:bg-emerald-500/20">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
         </a>
       </div>
@@ -298,38 +324,58 @@ ${(() => {
 
   <main id="top" class="relative">
     <div class="mx-auto max-w-6xl px-5 pb-4 pt-12 sm:px-8 sm:pt-20">
-      <div class="max-w-3xl">
-        <span class="inline-flex items-center gap-2 rounded-full border border-cyan-400/25 bg-cyan-500/10 px-3.5 py-1.5 text-[11px] font-bold text-cyan-300">
-          <span aria-hidden="true" class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
-          كتالوج كامل — كل التفاصيل من أمازون مصر
-        </span>
-        <h1 class="mt-6 text-4xl font-black leading-[1.14] text-white sm:text-6xl">
-          كل المنتجات في <span class="brand-text">مكان واحد</span>
-        </h1>
-        <p class="mt-5 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
-          مش هنقولك «اشتري ده» وخلاص. هنخليك تعرف مواصفات المنتج، تشوف تقييماته، وتقارن اختياراتك… وبعدها القرار قرارك.
-        </p>
+      <div class="relative overflow-hidden rounded-[32px] border border-white/[.09] bg-ink-900/60">
+        <span aria-hidden="true" class="cover-bg absolute inset-0"></span>
+        <span aria-hidden="true" class="absolute inset-0 bg-ink-950/82"></span>
+        <span aria-hidden="true" class="absolute inset-0 bg-gradient-to-l from-emerald-500/12 via-transparent to-transparent"></span>
+        <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink-950/90 to-transparent"></span>
+        <div class="relative px-6 py-14 sm:px-12 sm:py-20">
+        <div class="max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-emerald-400/25 bg-emerald-500/10 px-3.5 py-1.5 text-[11px] font-bold text-emerald-300">
+            <span aria-hidden="true" class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+            كتالوج كامل — كل التفاصيل من أمازون مصر
+          </span>
+          <h1 class="mt-6 text-4xl font-black leading-[1.14] text-white sm:text-6xl">
+            كل المنتجات في <span class="brand-text">مكان واحد</span>
+          </h1>
+          <p class="mt-5 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
+            مش هنقولك «اشتري ده» وخلاص. هنخليك تعرف مواصفات المنتج، تشوف تقييماته، وتقارن اختياراتك… وبعدها القرار قرارك.
+          </p>
+        </div>
+        </div>
       </div>
 
-      <div class="mt-10 grid gap-3 sm:grid-cols-3">
+      <div class="mt-5 grid gap-3 sm:grid-cols-3">
         <div class="rounded-2xl border border-white/10 bg-ink-850/60 p-5">
+          <div aria-hidden="true" class="mb-3.5 grid h-9 w-9 place-items-center rounded-xl border border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
+            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6M9 11h2"/></svg>
+          </div>
           <p class="text-sm font-extrabold text-white">صفحة تفصيلية لكل منتج</p>
           <p class="mt-1.5 text-xs leading-relaxed text-slate-400">مواصفات وصور وأسئلة شائعة — مش سطر واحد بس.</p>
         </div>
         <div class="rounded-2xl border border-white/10 bg-ink-850/60 p-5">
+          <div aria-hidden="true" class="mb-3.5 grid h-9 w-9 place-items-center rounded-xl border border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
+            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
           <p class="text-sm font-extrabold text-white">السعر من أمازون نفسه</p>
           <p class="mt-1.5 text-xs leading-relaxed text-slate-400">مفيش سعر مخزّن عندنا؛ كل صفحة بتوديك لعرض السعر الحالي.</p>
         </div>
         <div class="rounded-2xl border border-white/10 bg-ink-850/60 p-5">
+          <div aria-hidden="true" class="mb-3.5 grid h-9 w-9 place-items-center rounded-xl border border-emerald-400/20 bg-emerald-500/10 text-emerald-300">
+            <svg class="h-4.5 w-4.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M3 6h13v13H3zM16 9h4l3 3v7h-7z"/><circle cx="7" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/></svg>
+          </div>
           <p class="text-sm font-extrabold text-white">الشراء والاسترجاع من أمازون</p>
           <p class="mt-1.5 text-xs leading-relaxed text-slate-400">الدفع عند الاستلام والاسترجاع بيتمّان داخل صفحة أمازون.</p>
         </div>
       </div>
 
-      <div class="mt-12 mb-7 flex flex-wrap items-center gap-2" role="group" aria-label="تصفية حسب الفئة">
-${filters.map((c, i) => `        <button type="button" data-filter="${esc(c.id)}" aria-pressed="${i === 0 ? 'true' : 'false'}" class="${i === 0 ? FILTER_ON : FILTER_OFF}">
-          ${esc(c.label)} <span class="num opacity-60">${countOf(c.id)}</span>
-        </button>`).join('\n')}
+      <div class="mt-12 mb-7 flex flex-wrap items-center justify-between gap-4">
+        <h2 class="text-lg font-black text-white">المنتجات</h2>
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="تصفية حسب الفئة">
+${filters.map((c, i) => `          <button type="button" data-filter="${esc(c.id)}" aria-pressed="${i === 0 ? 'true' : 'false'}" class="${i === 0 ? FILTER_ON : FILTER_OFF}">
+            ${esc(c.label)} <span class="num opacity-60">${countOf(c.id)}</span>
+          </button>`).join('\n')}
+        </div>
       </div>
 
       <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -346,11 +392,11 @@ ${rows.map(card).join('\n')}
         <div class="flex items-center gap-3">${mark('b', 34)}
           <span class="leading-none">
             <span class="block text-sm font-black text-white">${esc(SITE.name)}</span>
-            <span class="num mt-1.5 block text-[9px] font-bold tracking-[0.3em] text-cyan-400/60">${esc(SITE.latin)}</span>
+            <span class="num mt-1.5 block text-[9px] font-bold tracking-[0.3em] text-emerald-400/60">${esc(SITE.latin)}</span>
           </span>
         </div>
         <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer"
-           class="inline-flex items-center gap-2.5 rounded-2xl border border-cyan-400/25 bg-cyan-500/10 px-5 py-3 text-sm font-extrabold text-cyan-300 transition hover:border-cyan-400/50 hover:bg-cyan-500/20">
+           class="inline-flex items-center gap-2.5 rounded-2xl border border-emerald-400/25 bg-emerald-500/10 px-5 py-3 text-sm font-extrabold text-emerald-300 transition hover:border-emerald-400/50 hover:bg-emerald-500/20">
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.7 4.53-4.7 1.31 0 2.68.24 2.68.24v2.97h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
           تابعنا على فيسبوك
         </a>
@@ -361,7 +407,7 @@ ${rows.map(card).join('\n')}
   والسعرية بتظهر هناك.
       </p>
       <p class="mt-3 max-w-3xl text-xs leading-relaxed text-slate-500">
-  الموقع ده من إعداد <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer" class="font-bold text-cyan-400 transition hover:text-cyan-300">${esc(SITE.name)}</a>.
+  الموقع ده من إعداد <a href="${esc(SITE.facebook)}" target="_blank" rel="noopener noreferrer" class="font-bold text-emerald-400 transition hover:text-emerald-300">${esc(SITE.name)}</a>.
   المنتجات المعروضة من أمازون مصر، وأنا مش مسؤول عن أي بيعة بتتم على أمازون.
       </p>
     </div>
