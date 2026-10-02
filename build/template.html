@@ -18,10 +18,7 @@ tailwind.config = {
     extend: {
       fontFamily: { sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'] },
       colors: {
-        ink: {
-          950: '#07070D', 900: '#0B0B13', 850: '#11111C',
-          800: '#171725', 700: '#1F1F31',
-        },
+{{BRAND_COLORS}}
       },
       keyframes: {
         floaty:   { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
@@ -49,6 +46,7 @@ tailwind.config = {
   }
   ::selection { background: #0e7490; color: #fff; }
   summary::-webkit-details-marker { display: none; }
+{{BRAND_CSS}}
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: #0B0B13; }
   ::-webkit-scrollbar-thumb { background: #26263c; border-radius: 99px; }
@@ -63,9 +61,7 @@ tailwind.config = {
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <nav class="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-ink-900/75 px-4 py-3 backdrop-blur-xl">
       <a href="#top" class="flex shrink-0 items-center gap-2.5">
-        <span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-cyan-400 shadow-lg shadow-violet-600/25">
-          <svg class="h-4.5 w-4.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg>
-        </span>
+{{BRAND_LOGO_NAV}}
         <span class="leading-tight">
           <span class="block text-sm font-extrabold tracking-tight text-white">{{BRAND}}</span>
           <span class="block text-[10px] font-bold uppercase tracking-widest text-slate-500" data-i18n="nav.tagline"></span>
@@ -725,9 +721,7 @@ tailwind.config = {
     <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
       <div>
         <div class="flex items-center gap-2.5">
-          <span class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400">
-            <svg style="width:16px;height:16px" class="text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg>
-          </span>
+{{BRAND_LOGO_FOOT}}
           <span class="font-extrabold text-white">{{BRAND}}</span>
         </div>
         <p class="mt-4 max-w-xs text-sm leading-relaxed text-slate-500" data-i18n="footer.about"></p>

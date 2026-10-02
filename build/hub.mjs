@@ -46,21 +46,50 @@ const SITE = {
   tagline: 'صفحات تفصيلية لمنتجات على أمازون مصر — المواصفات والتقييمات والمخزون من صفحة أمازون نفسها.',
 };
 
-/* The logo, inline so it costs no request and stays crisp at any size.
- * The gradient needs an id, and two SVGs on one page cannot share one, so each
- * call takes a suffix to keep the two instances (header, footer) independent. */
-const mark = (id, size = 40) => `
+/* The palette is the one in build/brand-colors.json, measured off the real logo
+ * and cover art, and shared with every product page through build.mjs. Read it
+ * rather than repeating the hex here, because a second copy of a palette in a
+ * second file is a drift bug waiting to happen. */
+const BRAND = JSON.parse(readFileSync('build/brand-colors.json', 'utf8'));
+const A = BRAND.accent;
+
+/* THE LOGO. The brand's mark is the page's own Facebook profile picture, not a
+ * drawn shape — the picture and the palette are what people already recognise,
+ * and a second invented mark sitting next to them splits the identity in two.
+ *
+ * Two constraints shaped how it is applied:
+ *   1. verify.mjs requires the root to carry exactly one <img> per product, so
+ *      the logo cannot be an <img> tag or it breaks that count. It is a
+ *      background-image on a sized span instead, which also gives the rounded
+ *      crop the source image wants.
+ *   2. Facebook cannot be scraped from here (it 400s on every host, and the
+ *      proxy only ever gets the login wall), so the picture is dropped into
+ *      brand/ by hand rather than fetched at build time.
+ *
+ * HAS_LOGO makes the swap a no-op: drop the file in, re-run the build, and the
+ * real picture takes over the header, the footer and the favicon. Until then the
+ * drawn mark holds the slot so the site is never shipped with a broken image. */
+const LOGO_FILE = 'brand/logo.png';
+const HAS_LOGO = existsSync(LOGO_FILE);
+
+// Two instances of the drawn mark on one page cannot share a gradient id, so
+// the suffix keeps the header and footer copies independent. The drawn mark is
+// only a fallback: once brand/logo.png exists the real picture is used instead
+// and this stops rendering at all.
+const mark = (id, size = 40) => (HAS_LOGO
+  ? `<span class="logo-slot" style="--logo-size:${size}px" aria-hidden="true"></span>`
+  : `
       <svg viewBox="0 0 96 96" width="${size}" height="${size}" fill="none" aria-hidden="true" class="shrink-0">
         <defs>
           <linearGradient id="nz${id}" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#67E8F9"/><stop offset=".5" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/>
+            <stop offset="0" stop-color="${A['1']}"/><stop offset=".5" stop-color="${A['3']}"/><stop offset="1" stop-color="${A['6']}"/>
           </linearGradient>
         </defs>
         <rect x="2" y="2" width="92" height="92" rx="26" fill="url(#nz${id})"/>
         <rect x="2" y="2" width="92" height="92" rx="26" stroke="#fff" stroke-opacity=".28" stroke-width="2"/>
         <path d="M27 49c0 14 9 22 21 22s21-8 21-22" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
         <path d="M48 18l3.6 7.4 7.4 3.6-7.4 3.6L48 40l-3.6-7.4L37 29l7.4-3.6z" fill="#fff"/>
-      </svg>`;
+      </svg>`);
 
 const files = readdirSync('products').filter((f) => f.endsWith('.json'));
 const products = files.map((f) => JSON.parse(readFileSync(`products/${f}`, 'utf8')));
@@ -163,25 +192,31 @@ const html = `<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>كل المنتجات — صفحات تفصيلية على أمازون مصر | ${esc(SITE.name)}</title>
 <meta name="description" content="${esc(SITE.tagline)}">
-<meta name="theme-color" content="#07070D">
-<link rel="icon" type="image/svg+xml" href="brand/mark.svg">
+<meta name="theme-color" content="${BRAND.ink['950']}">
+<link rel="icon" type="image/png" href="${HAS_LOGO ? LOGO_FILE : 'brand/mark.svg'}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  // The ink scale is the dark base every product page is built on, so the hub
-  // has to define the same ramp or its bg-ink-* classes resolve to nothing and
-  // the page falls back to a white background with white text on it.
+  // Same palette the product pages get from build/brand-colors.json, and for the
+  // same reason: the stock accent names are overridden in one map so a retheme is
+  // a data edit and no markup has to be touched. extend merges per key, so
+  // slate/amber/rose keep their stock values — amber carries the review stars and
+  // rose marks out-of-stock, neither of which should follow the brand colour.
   tailwind.config = {
     theme: {
       extend: {
         fontFamily: { sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'] },
         colors: {
-          ink: {
-            950: '#07070D', 900: '#0B0B13', 850: '#11111C',
-            800: '#171725', 700: '#1F1F31',
-          },
+${(() => {
+  const shade = (o) => Object.entries(o).map(([k, v]) => `${+k}: '${v}'`).join(', ');
+  return [
+    `          ink: { ${shade(BRAND.ink)} },`,
+    ...Object.entries(BRAND.remap).filter(([k]) => !k.startsWith('_'))
+      .map(([k, v]) => `          ${k}: { ${shade(v)} },`),
+  ].join('\n');
+})()}
         },
       },
     },
@@ -192,12 +227,25 @@ const html = `<!DOCTYPE html>
    * the identity survives the CDN build without depending on the config script
    * having run before first paint. */
   :root {
-    --nz-1: #67E8F9;
-    --nz-2: #22D3EE;
-    --nz-3: #2563EB;
+    --nz-1: ${A['1']};
+    --nz-2: ${A['2']};
+    --nz-3: ${A['3']};
+    --nz-6: ${A['6']};
   }
   [dir="rtl"] body { font-family: 'Cairo', system-ui, sans-serif; }
   .num { font-feature-settings: 'tnum'; direction: ltr; unicode-bidi: isolate; display: inline-block; }
+  /* The logo slot. Sized by a custom property so the header (40px) and the
+   * footer (34px) share one rule, with a gradient ring to lift the picture off
+   * the dark background and cover:hidden to crop it to the rounded shape. */
+  .logo-slot {
+    flex: none;
+    width: var(--logo-size); height: var(--logo-size);
+    border-radius: 26%;
+    background-image: url('${LOGO_FILE}');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.20), 0 10px 30px -12px ${A['3']}88;
+  }
   .brand-grad { background-image: linear-gradient(90deg, var(--nz-1), var(--nz-2) 45%, var(--nz-3)); }
   .brand-text {
     background-image: linear-gradient(100deg, var(--nz-1), var(--nz-2) 50%, var(--nz-3));
@@ -207,8 +255,8 @@ const html = `<!DOCTYPE html>
    * page does not stretch a 560px div down the whole document. */
   .brand-aura {
     background:
-      radial-gradient(760px 320px at 78% -8%, rgba(34,211,238,.20), transparent 70%),
-      radial-gradient(560px 300px at 12% 0%, rgba(37,99,235,.18), transparent 70%);
+      radial-gradient(760px 320px at 78% -8%, ${A['2']}33, transparent 70%),
+      radial-gradient(560px 300px at 12% 0%, ${A['6']}2E, transparent 70%);
   }
   .gridlines {
     background-image:

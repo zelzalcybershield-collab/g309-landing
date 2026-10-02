@@ -5,25 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>كل المنتجات — صفحات تفصيلية على أمازون مصر | نظبطهالك</title>
 <meta name="description" content="صفحات تفصيلية لمنتجات على أمازون مصر — المواصفات والتقييمات والمخزون من صفحة أمازون نفسها.">
-<meta name="theme-color" content="#07070D">
-<link rel="icon" type="image/svg+xml" href="brand/mark.svg">
+<meta name="theme-color" content="#05080A">
+<link rel="icon" type="image/png" href="brand/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-  // The ink scale is the dark base every product page is built on, so the hub
-  // has to define the same ramp or its bg-ink-* classes resolve to nothing and
-  // the page falls back to a white background with white text on it.
+  // Same palette the product pages get from build/brand-colors.json, and for the
+  // same reason: the stock accent names are overridden in one map so a retheme is
+  // a data edit and no markup has to be touched. extend merges per key, so
+  // slate/amber/rose keep their stock values — amber carries the review stars and
+  // rose marks out-of-stock, neither of which should follow the brand colour.
   tailwind.config = {
     theme: {
       extend: {
         fontFamily: { sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'] },
         colors: {
-          ink: {
-            950: '#07070D', 900: '#0B0B13', 850: '#11111C',
-            800: '#171725', 700: '#1F1F31',
-          },
+          ink: { 700: '#1D272E', 800: '#151D22', 850: '#0F1519', 900: '#0A0F12', 950: '#05080A' },
+          cyan: { 300: '#6FFFB8', 400: '#22F79C', 500: '#00E878', 600: '#00C866', 700: '#00A854' },
+          sky: { 300: '#8EFFCB', 400: '#3DFBA8', 500: '#16E18A', 600: '#00B96F', 700: '#00945A' },
+          emerald: { 300: '#6FFFB8', 400: '#00E878', 500: '#00C866', 600: '#00A854', 700: '#007030' },
+          violet: { 300: '#3DE8A0', 400: '#16C97F', 500: '#00A854', 600: '#008544', 700: '#006838' },
+          fuchsia: { 300: '#3DFBA8', 400: '#16E18A', 500: '#00C866', 600: '#00A854', 700: '#007030' },
         },
       },
     },
@@ -34,12 +38,25 @@
    * the identity survives the CDN build without depending on the config script
    * having run before first paint. */
   :root {
-    --nz-1: #67E8F9;
-    --nz-2: #22D3EE;
-    --nz-3: #2563EB;
+    --nz-1: #5CFFC0;
+    --nz-2: #22F79C;
+    --nz-3: #00E878;
+    --nz-6: #007030;
   }
   [dir="rtl"] body { font-family: 'Cairo', system-ui, sans-serif; }
   .num { font-feature-settings: 'tnum'; direction: ltr; unicode-bidi: isolate; display: inline-block; }
+  /* The logo slot. Sized by a custom property so the header (40px) and the
+   * footer (34px) share one rule, with a gradient ring to lift the picture off
+   * the dark background and cover:hidden to crop it to the rounded shape. */
+  .logo-slot {
+    flex: none;
+    width: var(--logo-size); height: var(--logo-size);
+    border-radius: 26%;
+    background-image: url('brand/logo.png');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.20), 0 10px 30px -12px #00E87888;
+  }
   .brand-grad { background-image: linear-gradient(90deg, var(--nz-1), var(--nz-2) 45%, var(--nz-3)); }
   .brand-text {
     background-image: linear-gradient(100deg, var(--nz-1), var(--nz-2) 50%, var(--nz-3));
@@ -49,8 +66,8 @@
    * page does not stretch a 560px div down the whole document. */
   .brand-aura {
     background:
-      radial-gradient(760px 320px at 78% -8%, rgba(34,211,238,.20), transparent 70%),
-      radial-gradient(560px 300px at 12% 0%, rgba(37,99,235,.18), transparent 70%);
+      radial-gradient(760px 320px at 78% -8%, #22F79C33, transparent 70%),
+      radial-gradient(560px 300px at 12% 0%, #0070302E, transparent 70%);
   }
   .gridlines {
     background-image:
@@ -74,18 +91,7 @@
 <div class="relative z-10">
   <header class="sticky top-0 z-40 border-b border-white/[.07] bg-ink-950/80 backdrop-blur-xl">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
-      <a href="#top" class="flex items-center gap-3" aria-label="نظبطهالك — أعلى الصفحة">
-      <svg viewBox="0 0 96 96" width="40" height="40" fill="none" aria-hidden="true" class="shrink-0">
-        <defs>
-          <linearGradient id="nza" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#67E8F9"/><stop offset=".5" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/>
-          </linearGradient>
-        </defs>
-        <rect x="2" y="2" width="92" height="92" rx="26" fill="url(#nza)"/>
-        <rect x="2" y="2" width="92" height="92" rx="26" stroke="#fff" stroke-opacity=".28" stroke-width="2"/>
-        <path d="M27 49c0 14 9 22 21 22s21-8 21-22" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
-        <path d="M48 18l3.6 7.4 7.4 3.6-7.4 3.6L48 40l-3.6-7.4L37 29l7.4-3.6z" fill="#fff"/>
-      </svg>
+      <a href="#top" class="flex items-center gap-3" aria-label="نظبطهالك — أعلى الصفحة"><span class="logo-slot" style="--logo-size:40px" aria-hidden="true"></span>
         <span class="leading-none">
           <span class="block text-base font-black text-white">نظبطهالك</span>
           <span class="num mt-1.5 block text-[9px] font-bold tracking-[0.3em] text-cyan-400/70">NEZABTHALAK</span>
@@ -405,18 +411,7 @@
   <footer class="relative mt-16 border-t border-white/[.07]">
     <div class="mx-auto max-w-6xl px-5 py-10 sm:px-8">
       <div class="flex flex-wrap items-center justify-between gap-6">
-        <div class="flex items-center gap-3">
-      <svg viewBox="0 0 96 96" width="34" height="34" fill="none" aria-hidden="true" class="shrink-0">
-        <defs>
-          <linearGradient id="nzb" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#67E8F9"/><stop offset=".5" stop-color="#22D3EE"/><stop offset="1" stop-color="#2563EB"/>
-          </linearGradient>
-        </defs>
-        <rect x="2" y="2" width="92" height="92" rx="26" fill="url(#nzb)"/>
-        <rect x="2" y="2" width="92" height="92" rx="26" stroke="#fff" stroke-opacity=".28" stroke-width="2"/>
-        <path d="M27 49c0 14 9 22 21 22s21-8 21-22" stroke="#fff" stroke-width="8.5" stroke-linecap="round"/>
-        <path d="M48 18l3.6 7.4 7.4 3.6-7.4 3.6L48 40l-3.6-7.4L37 29l7.4-3.6z" fill="#fff"/>
-      </svg>
+        <div class="flex items-center gap-3"><span class="logo-slot" style="--logo-size:34px" aria-hidden="true"></span>
           <span class="leading-none">
             <span class="block text-sm font-black text-white">نظبطهالك</span>
             <span class="num mt-1.5 block text-[9px] font-bold tracking-[0.3em] text-cyan-400/60">NEZABTHALAK</span>

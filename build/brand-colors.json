@@ -1,0 +1,36 @@
+{
+  "_comment": "The brand palette, measured off the real artwork rather than picked by eye. build/brand.ps1 reports the sampled colours; the values recorded under 'measured' are what it found, and everything in 'accent'/'ink'/'remap' is derived from them by hand so the hub and all fifteen product pages cannot drift apart. 'remap' overrides the stock tailwind colour names that the templates already use, which is why a retheme is a data edit here and a zero-line diff in template.html.",
+
+  "measured": {
+    "profilePicture": ["#00F888", "#00E858", "#00D850"],
+    "coverAccent": ["#007030", "#005828", "#004820"],
+    "coverBase": ["#000000", "#000808", "#081010"],
+    "note": "profile is a vivid emerald on black; the cover carries the same green in its deep end over near-black. The identity is emerald on black, so the base stays dark and the accent is the bright green."
+  },
+
+  "accent": {
+    "1": "#5CFFC0",
+    "2": "#22F79C",
+    "3": "#00E878",
+    "4": "#00C866",
+    "5": "#00A854",
+    "6": "#007030"
+  },
+
+  "ink": {
+    "950": "#05080A",
+    "900": "#0A0F12",
+    "850": "#0F1519",
+    "800": "#151D22",
+    "700": "#1D272E"
+  },
+
+  "remap": {
+    "cyan":    { "300": "#6FFFB8", "400": "#22F79C", "500": "#00E878", "600": "#00C866", "700": "#00A854" },
+    "sky":     { "300": "#8EFFCB", "400": "#3DFBA8", "500": "#16E18A", "600": "#00B96F", "700": "#00945A" },
+    "emerald": { "300": "#6FFFB8", "400": "#00E878", "500": "#00C866", "600": "#00A854", "700": "#007030" },
+    "violet":  { "300": "#3DE8A0", "400": "#16C97F", "500": "#00A854", "600": "#008544", "700": "#006838" },
+    "fuchsia": { "300": "#3DFBA8", "400": "#16E18A", "500": "#00C866", "600": "#00A854", "700": "#007030" },
+    "_keep": "amber and rose are deliberately NOT remapped. amber-300 carries the review stars, which read as gold because that is what a rating is supposed to look like, and rose marks the out-of-stock badge, which has to stay red or it stops meaning anything."
+  }
+}

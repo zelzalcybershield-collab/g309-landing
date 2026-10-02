@@ -18,10 +18,12 @@ tailwind.config = {
     extend: {
       fontFamily: { sans: ['Cairo', 'Inter', 'system-ui', 'sans-serif'] },
       colors: {
-        ink: {
-          950: '#07070D', 900: '#0B0B13', 850: '#11111C',
-          800: '#171725', 700: '#1F1F31',
-        },
+        ink: { 700: '#1D272E', 800: '#151D22', 850: '#0F1519', 900: '#0A0F12', 950: '#05080A' },
+        cyan: { 300: '#6FFFB8', 400: '#22F79C', 500: '#00E878', 600: '#00C866', 700: '#00A854' },
+        sky: { 300: '#8EFFCB', 400: '#3DFBA8', 500: '#16E18A', 600: '#00B96F', 700: '#00945A' },
+        emerald: { 300: '#6FFFB8', 400: '#00E878', 500: '#00C866', 600: '#00A854', 700: '#007030' },
+        violet: { 300: '#3DE8A0', 400: '#16C97F', 500: '#00A854', 600: '#008544', 700: '#006838' },
+        fuchsia: { 300: '#3DFBA8', 400: '#16E18A', 500: '#00C866', 600: '#00A854', 700: '#007030' },
       },
       keyframes: {
         floaty:   { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-14px)' } },
@@ -49,6 +51,14 @@ tailwind.config = {
   }
   ::selection { background: #0e7490; color: #fff; }
   summary::-webkit-details-marker { display: none; }
+  /* the profile picture, cropped to a rounded square by the class */
+  .logo-slot {
+    flex: none; width: var(--logo-size); height: var(--logo-size);
+    border-radius: 26%;
+    background-image: url('../brand/logo.png');
+    background-size: cover; background-position: center;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.20), 0 10px 30px -12px #00E87888;
+  }
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: #0B0B13; }
   ::-webkit-scrollbar-thumb { background: #26263c; border-radius: 99px; }
@@ -63,9 +73,7 @@ tailwind.config = {
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <nav class="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-ink-900/75 px-4 py-3 backdrop-blur-xl">
       <a href="#top" class="flex shrink-0 items-center gap-2.5">
-        <span class="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-violet-500 to-cyan-400 shadow-lg shadow-violet-600/25">
-          <svg class="h-4.5 w-4.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg>
-        </span>
+<span class="logo-slot" style="--logo-size:36px" aria-hidden="true"></span>
         <span class="leading-tight">
           <span class="block text-sm font-extrabold tracking-tight text-white">Redragon M711</span>
           <span class="block text-[10px] font-bold uppercase tracking-widest text-slate-500" data-i18n="nav.tagline"></span>
@@ -752,9 +760,7 @@ tailwind.config = {
     <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
       <div>
         <div class="flex items-center gap-2.5">
-          <span class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-violet-500 to-cyan-400">
-            <svg style="width:16px;height:16px" class="text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z"/></svg>
-          </span>
+<span class="logo-slot" style="--logo-size:32px" aria-hidden="true"></span>
           <span class="font-extrabold text-white">Redragon M711</span>
         </div>
         <p class="mt-4 max-w-xs text-sm leading-relaxed text-slate-500" data-i18n="footer.about"></p>

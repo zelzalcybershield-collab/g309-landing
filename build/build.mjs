@@ -24,6 +24,64 @@ const jsStr = (s) => String(s)
   .replace(/\\/g, '\\\\').replace(/'/g, "\\'")
   .replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
 
+/* ---- brand theme -------------------------------------------------------
+ * The palette lives in build/brand-colors.json, measured off the real logo and
+ * cover art, and is injected into both the hub and every product page from
+ * here. Two reasons it is data and not hand-written hex in the template:
+ *
+ *   - the stock tailwind names the templates already use (cyan-400,
+ *     from-violet-600, via-fuchsia-400 ...) are overridden in one map, so a
+ *     retheme is a data edit and the markup never has to be touched. Chasing
+ *     those class names by hand is exactly how half a page ends up the old
+ *     colour.
+ *   - hub.mjs renders its own chrome and needs the same numbers, and a second
+ *     copy of the palette in a second file is a drift bug waiting to happen.
+ *
+ * The logo is the page's own profile picture. It is a background-image on a
+ * span rather than an <img> because verify.mjs counts images per page and a
+ * logo tag would push that count over; a background also gives the rounded
+ * crop the source image already has.
+ */
+const BRAND = JSON.parse(readFileSync('build/brand-colors.json', 'utf8'));
+const LOGO_FILE = 'brand/logo.png';
+const HAS_LOGO = existsSync(LOGO_FILE);
+
+const brandColors = () => {
+  const shade = (o) => Object.entries(o)
+    .map(([k, v]) => `${+k}: '${v}'`).join(', ');
+  const lines = [
+    `        ink: { ${shade(BRAND.ink)} },`,
+    // extend merges per key, so slate/amber/rose keep their stock values and
+    // only the accent families below are replaced.
+    ...Object.entries(BRAND.remap)
+      .filter(([k]) => !k.startsWith('_'))
+      .map(([k, v]) => `        ${k}: { ${shade(v)} },`),
+  ];
+  return lines.join('\n');
+};
+
+const brandCss = () => (HAS_LOGO
+  ? `  /* the profile picture, cropped to a rounded square by the class */
+  .logo-slot {
+    flex: none; width: var(--logo-size); height: var(--logo-size);
+    border-radius: 26%;
+    background-image: url('../${LOGO_FILE}');
+    background-size: cover; background-position: center;
+    box-shadow: 0 0 0 1px rgba(255,255,255,.20), 0 10px 30px -12px ${BRAND.accent['3']}88;
+  }`
+  : '  /* no brand/logo.png yet, so the drawn mark stays in the nav */');
+
+/* The nav and footer badges. Two hooks rather than one because the two
+ * instances are different sizes, and the fallback has to keep the original
+ * gradient bolt: a bare empty span would leave a hole in the header on a
+ * checkout with no brand/logo.png committed. */
+const BOLT = 'M13 2 3 14h8l-1 8 10-12h-8l1-8Z';
+const brandLogo = (px, radius) => (HAS_LOGO
+  ? `<span class="logo-slot" style="--logo-size:${px}px" aria-hidden="true"></span>`
+  : `<span class="grid ${px === 36 ? 'h-9 w-9 rounded-xl' : 'h-8 w-8 rounded-lg'} place-items-center bg-gradient-to-br from-violet-500 to-cyan-400">
+            <svg style="width:${px === 36 ? 18 : 16}px;height:${px === 36 ? 18 : 16}px" class="text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="${BOLT}"/></svg>
+          </span>`);
+
 // The coupon card used to be hardcoded into the template with two NBE codes
 // that nothing in this repo can verify. A discount that does not work at
 // checkout is worse than no discount, so a product only gets a card when its
@@ -174,7 +232,11 @@ function render(p) {
     // links, which the anchors now carry.
     .replaceAll('{{BUY_URL}}', esc(url))
     .replaceAll('{{HUB_URL}}', esc('../'))
-    .replaceAll('{{BOX_ITEM_4}}', boxItem4(p));
+    .replaceAll('{{BOX_ITEM_4}}', boxItem4(p))
+    .replaceAll('{{BRAND_COLORS}}', brandColors())
+    .replaceAll('{{BRAND_CSS}}', brandCss())
+    .replaceAll('{{BRAND_LOGO_NAV}}', brandLogo(36, 'rounded-xl'))
+    .replaceAll('{{BRAND_LOGO_FOOT}}', brandLogo(32, 'rounded-lg'));
 
 // The box list is a fixed three slots plus an optional fourth. TWL earbuds ship
 // with the buds, the case and the manual, and the Amazon page states "Built-In
