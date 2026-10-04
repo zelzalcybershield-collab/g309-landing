@@ -1,0 +1,668 @@
+﻿/* ============================================================
+ * Product landing page - one dictionary per product, injected from the data file.
+   · i18n (ar / en) with RTL <-> LTR switching
+ * Two-up comparison section
+   · Count-up numbers
+   ============================================================ */
+
+const PRODUCT_URL = 'https://www.amazon.eg/dp/B0C4V2H238?tag=zoq-21';
+const STORE_KEY = 'hiksemi-ssd-512-lang';
+
+const dict = {
+  "ar": {
+    "nav.tagline": "512GB · 530MB/s",
+    "nav.specs": "المواصفات",
+    "nav.connect": "SSD ولا HDD",
+    "nav.aud": "مين ليه",
+    "nav.offer": "السعر والشراء",
+    "nav.faq": "أسئلة شائعة",
+    "nav.buy": "اشترِ الآن",
+    "hero.eyebrow": "ذاكرة SSD · 512GB",
+    "hero.stock": "متوفر في المخزون",
+    "hero.outOfStock": "غير متوفر حالياً",
+    "hero.title1": "HIKSEMI WAVE(S)",
+    "hero.title2": "SSD · 512GB",
+    "hero.sub": "ذاكرة صلبة ساتا ترفع سرعة جهازك: قراءة حتى 530 ميقا/ثانية وتركيب جاهز في أي لابتوب أو كمبيوتر",
+    "hero.reviews": "من {n} تقييم على أمازون",
+    "hero.rank": "من HIKSEMI — علامة الذواكر من عائلة Hikvision — متوفر على أمازون مصر",
+    "hero.buy": "للشراء ومعرفة سعره اليوم — اضغط هنا",
+    "hero.chip1l": "السعة",
+    "hero.chip1v": "512GB",
+    "hero.chip2l": "القراءة",
+    "hero.chip2v": "530MB/s",
+    "gal.eyebrow": "من المنتج",
+    "gal.title": "شوفها عن قرب",
+    "gal.sub": "الصور من صفحة المنتج الرسمية على أمازون مصر",
+    "gal.prev": "الصورة السابقة",
+    "gal.next": "الصورة التالية",
+    "gal.close": "إغلاق",
+    "gal.label": "صورة من المنتج",
+    "trust.cod": "الدفع عند الاستلام متاح",
+    "trust.codSub": "لكل عملية شراء على أمازون مصر",
+    "trust.delivery": "متوفر على أمازون مصر",
+    "trust.deliverySub": "مواعيد التوصيل على صفحة المنتج",
+    "trust.returns": "استرجاع 15–30 يوم",
+    "trust.returnsSub": "حسب سياسة أمازون المطبّقة على المنتج",
+    "trust.prime": "ضمان 3 سنوات",
+    "trust.primeSub": "مذكور في صفحة المنتج الرسمية",
+    "k.weight": "السعة",
+    "k.weightSub": "512 جيجا بتكفي ملفاتك ومشاريعك",
+    "k.dpi": "القراءة",
+    "k.dpiSub": "حتى 530 ميقا/ثانية",
+    "k.batt": "الواجهة",
+    "k.battSub": "ساتا 3 بسرعة 6 جيجا/ثانية",
+    "k.btns": "الضمان",
+    "k.btnsSub": "3 سنوات حسب المذكور",
+    "specs.eyebrow": "المواصفات",
+    "specs.title": "المواصفات بالأرقام الحقيقية",
+    "specs.sub": "من صفحة المنتج على أمازون مصر",
+    "specs.table": "الورقة التقنية الكاملة",
+    "s1.t": "سرعة تقلب الجهاز",
+    "s1.b": "قراءة حتى 530 ميقا/ثانية وكتابة حتى 450 ميقا/ثانية — نظامك يفتح أسرع والملفات تتنقل بدون انتظار مثل الهاردات القديمة.",
+    "s2.t": "ساتا III قياسية",
+    "s2.b": "واجهة ساتا 3 بسرعة 6 جيجا/ثانية ومتوافقة أيضاً مع ساتا 2 — تشتغل على أي جهاز بيتقل فيه ساتا من نفس الحجم 2.5 بوصة.",
+    "s3.t": "مقاومة للهالات والطبيعة",
+    "s3.b": "مفيش أجزاء متحركة — تقاوم الاهتزازات والطبيعة الحارة أكثر من الهاردات الميكانيكية، وتشتغل بضوضاء الصفر تقريباً.",
+    "s4.t": "يصلح للابتوب والمكتبي",
+    "s4.b": "فعّل مواصفات زي الألعاب والعمل اليومي لسطح المكتب أو اللابتوب — تركيب داخلي مباشر في مكان الهارد.",
+    "s5.t": "ذواكر 3D NAND",
+    "s5.b": "تعتمد على ذاكرة تخزين من نوع 3D NAND الحديثة، وهي مواصفة شائعة في ذواكر اليوم لاستقرار الأداء.",
+    "s6.t": "ضمان وهدوء بال",
+    "s6.b": "مدرج عليها ضمان 3 سنوات حسب صفحة اللستنغ، وفي العلبة دليل التركيب لتتمكن من تجهيزها بنفسك.",
+    "t.brand": "الماركة",
+    "t.model": "الموديل",
+    "t.color": "السعة",
+    "t.colorV": "512GB",
+    "t.sensor": "النوع",
+    "t.sensorV": "سوليد ستيت 2.5 بوصة",
+    "t.switch": "الواجهة",
+    "t.switchV": "ساتا 3 · 6 جيجا/ثانية",
+    "t.weight": "القراءة",
+    "t.weightV": "حتى 530 ميقا/ثانية",
+    "t.size": "الكتابة",
+    "t.conn": "التوافق",
+    "t.connV": "لابتوب · كمبيوتر مكتبي",
+    "t.batt": "الذاكرة",
+    "t.battV": "3D NAND · 512GB",
+    "t.os": "الضمان",
+    "t.osV": "3 سنوات حسب المذكور",
+    "t.hand": "بلد الصنع",
+    "t.handV": "الصين",
+    "t.inbox": "في العلبة",
+    "t.inboxV": "الذاكرة + دليل التركيب",
+    "conn.eyebrow": "SSD ولا HDD",
+    "conn.title": "الفرق اللي بيفرق معاك",
+    "conn.sub": "ترقية من هارد ميكانيكي لسوليد ستيت — الفرق واضح اليوم الأول",
+    "conn.btnLs": "SSD (دي)",
+    "conn.btnBt": "HDD تقليدي",
+    "conn.m1l": "السرعة",
+    "conn.m1Ls": "قراءة/كتابة حتى 530/450 ميقا/ثانية تقريباً",
+    "conn.m1Bt": "100 ميقا/ثانية تقريباً وأقل بالملفات الصغيرة",
+    "conn.m2l": "الضوضاء والحرارة",
+    "conn.m2Ls": "مفيش أجزاء متحركة — أهدأ وأبرد",
+    "conn.m2Bt": "أقراص دوارة بتسمعها وتسلخ الحرارة أكتر",
+    "conn.m3l": "الأنسب لـ",
+    "conn.m3Ls": "نظام التشغيل والبرامج والألعاب",
+    "conn.m3Bt": "أرشفة الملفات الكبيرة والنسخ الاحتياطي",
+    "conn.vizTitle": "خلاصة الفرق",
+    "conn.noteLs": "السوليد ستيت بياخد السرعة لمرحلة مختلفة: الجهاز يقلب في ثواني، والبرامج ثقيلة تفتح لحظياً. لو جهازك بيبطأ على الهارد القديم، إنها أول ترقية تعملها وبتثبت الفرق من أول دقيقة.",
+    "conn.noteBt": "الهارد الميكانيكي فيه أجزاء متحركة ورخيص في السعر لكل جيجا — ممتاز للتخزين البارد والنسخ الاحتياطي، لكنه مش مناسب لنظام التشغيل لو عايز سرعة فعلية. كثيرون يستخدموا الاثنين مع بعض: SSD للنظام وHDD للأرشفة.",
+    "box.title": "اللي هيوصلك",
+    "box.sub": "ذاكرة أصلية جاهزة للتركيب، متوفرة على أمازون مصر",
+    "box.i1": "HIKSEMI SSD 512GB",
+    "box.i2": "دليل التركيب",
+    "box.i3": "ضمان 3 سنوات",
+    "box.i4": "غلاف ألمونتوم",
+    "offer.eyebrow": "السعر والعروض",
+    "offer.title": "اشترِ من أمازون مصر",
+    "offer.productName": "HIKSEMI WAVE(S) 512GB — SSD ساتا 2.5 بوصة",
+    "offer.seller": "متوفر على أمازون مصر",
+    "offer.inStock": "متوفر",
+    "offer.inStockOut": "غير متوفر",
+    "offer.ship": "موعد التوصيل",
+    "offer.shipV": "بتشوف الموعد على صفحة المنتج",
+    "offer.ret": "مدة الاسترجاع",
+    "offer.retV": "15–30 يوم حسب سياسة أمازون",
+    "offer.buyNow": "للشراء ومعرفة سعره اليوم — اضغط هنا",
+    "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
+    "rev.eyebrow": "ليه تختارها",
+    "rev.title": "أسباب تخليك تختارها",
+    "rev.sub": "مواصفات الذاكرة وتقييم 4.1 من 5 على أمازون مصر",
+    "rev.count": "{n} تقييم · {r} من 5",
+    "rev.q1": "قراءة حتى 530 ميقا/ث",
+    "rev.n1": "السرعة",
+    "rev.v1": "فرق محسوس",
+    "rev.q2": "512GB سعة",
+    "rev.n2": "المساحة",
+    "rev.v2": "تكفي شغلك",
+    "rev.q3": "ضمان 3 سنوات",
+    "rev.n3": "الضمان",
+    "rev.v3": "من اللستنغ",
+    "faq.eyebrow": "أسئلة شائعة",
+    "faq.title": "أسئلة يسألها المشترين",
+    "faq.q1": "بتشتغل على أي جهاز؟",
+    "faq.a1": "على أي لابتوب أو كمبيوتر مكتبي بيتقل فيه ذاكرة داخلية بنفس مقاس 2.5 بوصة وواجهة ساتا — وده أغلب الأجهزة في السوق.",
+    "faq.q2": "هحتاج أدوات معينة للتركيب؟",
+    "faq.a2": "التركيب بيتمد غالباً بمفك صغير بس، وبعض اللابتوبات تحتاج فتح باب الوصول بهيكل ساتا. شيّف دليل التركيب المرفق والشرح على الإنترنت حسب موديل جهازك.",
+    "faq.q3": "بتتفرق في الحجم عن الهارد القديم؟",
+    "faq.a3": "لا — نفس المقاس 2.5 بوصة، فبتتركب في المكان نفسه وتوصل بنفس الكابل ساتا. مشكلة الملفات مكانها منقدمة.",
+    "faq.q4": "الضمان بيشمل إيه؟",
+    "faq.a4": "صفحة اللستنغ بتذكر ضمان 3 سنوات للنسخة المطروحة في أمازون مصر — راجع شروط الضمان على صفحة المنتج الرسمية.",
+    "faq.q5": "أقدر أدفع كاش عند الاستلام؟",
+    "faq.a5": "أيوة — الدفع عند الاستلام متاح لهذا المنتج على أمازون مصر، وفي طرق دفع تانية على صفحة أمازون وقت الدفع.",
+    "faq.q6": "أقدر أرجّعها لو مش مناسبة؟",
+    "faq.a6": "المفروض في معظم المنتجات فترة استرجاع من 15–30 يوم حسب سياسة أمازون. راجع تفاصيل الاسترجاع على صفحة المنتج قبل ما تشتري.",
+    "cta.title": "جاهز تسرّع جهازك؟",
+    "cta.sub": "اطلب HIKSEMI SSD 512GB من أمازون مصر — 2.5 بوصة ساتا",
+    "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
+    "cta.questions": "عايز تسأل أكتر؟",
+    "footer.about": "صفحة هبوط لذاكرة HIKSEMI SSD. الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون.",
+    "footer.h1": "الصفحة",
+    "footer.h2": "المنتج",
+    "footer.h3": "تابعنا",
+    "footer.l1": "شراء من أمازون",
+    "footer.l2": "محتويات العلبة",
+    "footer.l3": "لماذا HIKSEMI",
+    "footer.disclaimer": "الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون. المواصفات كما وردت في صفحة المنتج.",
+    "footer.madeBy": "صفحة هبوط · AR / EN",
+    "aud.eyebrow": "الذاكرة دي ليه",
+    "aud.title": "اللي هيستفيد منها",
+    "aud.sub": "ترقية صغيرة بسعر معقول تخلي أي جهاز طبيعي يرجع أسرع من يوم ما كان جديد",
+    "aud.a1t": "أصحاب الأجهزة القديمة",
+    "aud.a1b": "اللابتوب اللي بيفتح ببطء والكمبيوتر اللي بيعلق — النقل لنظام التشغيل عالسوليد ستيت بيفرق بشكل واضح من أول دقيقة.",
+    "aud.a2t": "الموظفين والعاملين عن بُعد",
+    "aud.a2b": "فتح الملفات والعروض الضخمة والبرامج الثقيلة بسرعة، فمش بتضيع وقت على طفرات الهارد القديم.",
+    "aud.a3t": "الطلاب والمحررين",
+    "aud.a3b": "تصدير الفيديوهات والمشاريع بتتعمل أسرع، ومساحة 512GB تكفي مكتبة دوسا ومنشورات كبيرة.",
+    "aud.a4t": "اللي بيفكر في حماية بياناته",
+    "aud.a4b": "مفيش أجزاء متحركة يعني مقاومة أفضل للاهتزازات بين التنقّلات — وضمان 3 سنوات يبعث طمأنة إضافية.",
+    "hero.cta2": "تفاصيل الشراء والتوصيل",
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون",
+    "offer.payTitle": "الدفع والتقسيط",
+    "offer.paySub": "أمازون بيوفر طرق دفع متعددة وخيارات تقسيط حسب المنتج والبطاقة، والدفع عند الاستلام متاح — وكل تفاصيل السعر والخصومات والعروض بتظهر على صفحة أمازون نفسها لحظة الشراء.",
+    "offer.payNote": "السعر وأي عروض حالية — كل ده على صفحة أمازون بس.",
+    "nav.all": "كل المنتجات"
+  },
+  "en": {
+    "nav.tagline": "512GB · 530MB/s",
+    "nav.specs": "Specs",
+    "nav.connect": "SSD vs HDD",
+    "nav.aud": "Who for",
+    "nav.offer": "Price & Buy",
+    "nav.faq": "FAQ",
+    "nav.buy": "Buy Now",
+    "hero.eyebrow": "SSD drive · 512GB",
+    "hero.stock": "In stock",
+    "hero.outOfStock": "Currently unavailable",
+    "hero.title1": "HIKSEMI WAVE(S)",
+    "hero.title2": "SSD · 512GB",
+    "hero.sub": "A SATA solid-state drive that speeds up your machine: reads up to 530MB/s and slots into any laptop or desktop",
+    "hero.reviews": "{n} ratings on Amazon",
+    "hero.rank": "From HIKSEMI — the storage brand from the Hikvision family — available on Amazon.eg",
+    "hero.buy": "Buy & see today's price — click here",
+    "hero.chip1l": "Capacity",
+    "hero.chip1v": "512GB",
+    "hero.chip2l": "Read",
+    "hero.chip2v": "530MB/s",
+    "gal.eyebrow": "From the product",
+    "gal.title": "See it up close",
+    "gal.sub": "Photos from the official product listing on amazon.eg",
+    "gal.prev": "Previous image",
+    "gal.next": "Next image",
+    "gal.close": "Close",
+    "gal.label": "Product photo",
+    "trust.cod": "Cash on delivery available",
+    "trust.codSub": "For your purchase on Amazon.eg",
+    "trust.delivery": "Available on Amazon.eg",
+    "trust.deliverySub": "Delivery dates on the product page",
+    "trust.returns": "15–30 day returns",
+    "trust.returnsSub": "Per Amazon's policy for this item",
+    "trust.prime": "3-year warranty",
+    "trust.primeSub": "As stated on the official listing",
+    "k.weight": "Capacity",
+    "k.weightSub": "512GB, enough for your files and projects",
+    "k.dpi": "Read",
+    "k.dpiSub": "Up to 530MB/s",
+    "k.batt": "Interface",
+    "k.battSub": "SATA III at 6Gb/s",
+    "k.btns": "Warranty",
+    "k.btnsSub": "3 years as stated",
+    "specs.eyebrow": "Specs",
+    "specs.title": "The real numbers, straight from the listing",
+    "specs.sub": "From the amazon.eg product page",
+    "specs.table": "Full technical sheet",
+    "s1.t": "Speed that flips your machine",
+    "s1.b": "Reads up to 530MB/s and writes up to 450MB/s — your system boots faster and files move without the waits of an old hard drive.",
+    "s2.t": "Standard SATA III",
+    "s2.b": "A SATA 3 interface at 6Gb/s, also compatible with SATA 2 — it works in any machine that takes the same 2.5-inch SATA drive.",
+    "s3.t": "Built to shrug off shocks",
+    "s3.b": "There are no moving parts — it resists vibration and heat better than mechanical hard drives, and runs almost silent.",
+    "s4.t": "Fits laptops and desktops",
+    "s4.b": "Specified for gaming and general personal computing on a desktop or notebook — an internal install that drops straight into the drive bay.",
+    "s5.t": "3D NAND flash",
+    "s5.b": "It relies on modern 3D NAND storage, a common spec in today's drives for steady, consistent performance.",
+    "s6.t": "Warranty and peace of mind",
+    "s6.b": "Covered by a 3-year warranty per the listing, and the box includes an installation guide so you can set it up yourself.",
+    "t.brand": "Brand",
+    "t.model": "Model",
+    "t.color": "Capacity",
+    "t.colorV": "512GB",
+    "t.sensor": "Type",
+    "t.sensorV": "2.5\" solid state",
+    "t.switch": "Interface",
+    "t.switchV": "SATA III · 6Gb/s",
+    "t.weight": "Read",
+    "t.weightV": "Up to 530MB/s",
+    "t.size": "Write",
+    "t.conn": "Compatibility",
+    "t.connV": "Laptop · Desktop",
+    "t.batt": "Flash",
+    "t.battV": "3D NAND · 512GB",
+    "t.os": "Warranty",
+    "t.osV": "3 years as stated",
+    "t.hand": "Country of origin",
+    "t.handV": "China",
+    "t.inbox": "In the box",
+    "t.inboxV": "Drive + installation guide",
+    "conn.eyebrow": "SSD vs HDD",
+    "conn.title": "The difference that matters",
+    "conn.sub": "Moving from a mechanical drive to solid state — you feel it on day one",
+    "conn.btnLs": "SSD (this one)",
+    "conn.btnBt": "Traditional HDD",
+    "conn.m1l": "Speed",
+    "conn.m1Ls": "Up to ~530/450MB/s read/write",
+    "conn.m1Bt": "~100MB/s and less on small files",
+    "conn.m2l": "Noise & heat",
+    "conn.m2Ls": "No moving parts — quieter and cooler",
+    "conn.m2Bt": "Spinning platters you hear and more heat",
+    "conn.m3l": "Best for",
+    "conn.m3Ls": "OS, applications and games",
+    "conn.m3Bt": "Big-file archives and backups",
+    "conn.vizTitle": "The difference in short",
+    "conn.noteLs": "Solid state takes speed to another level: the machine boots within seconds and heavy apps open instantly. If your device lags on an old drive, it's the first upgrade you make and you'll notice it in the first minute.",
+    "conn.noteBt": "A mechanical drive has moving parts and costs less per gigabyte — ideal for cold storage and backups, but not for running the OS if you want real speed. Many people run both: an SSD for the system and an HDD for archiving.",
+    "box.title": "What arrives",
+    "box.sub": "An original drive, ready to install, available on Amazon.eg",
+    "box.i1": "HIKSEMI SSD 512GB",
+    "box.i2": "Installation guide",
+    "box.i3": "3-year warranty",
+    "box.i4": "Aluminium casing",
+    "offer.eyebrow": "Price & offers",
+    "offer.title": "Buy on Amazon.eg",
+    "offer.productName": "HIKSEMI WAVE(S) 512GB — 2.5\" SATA SSD",
+    "offer.seller": "Available on Amazon.eg",
+    "offer.inStock": "In stock",
+    "offer.inStockOut": "Out of stock",
+    "offer.ship": "Delivery",
+    "offer.shipV": "See the date on the product page",
+    "offer.ret": "Returns",
+    "offer.retV": "15–30 days per Amazon's policy",
+    "offer.buyNow": "Buy & see today's price — click here",
+    "offer.checkout": "Checkout and payment happen on Amazon.eg",
+    "rev.eyebrow": "Why choose it",
+    "rev.title": "Reasons to pick this one",
+    "rev.sub": "Drive specs and a 4.1 out of 5 rating on amazon.eg",
+    "rev.count": "{n} ratings · {r} of 5",
+    "rev.q1": "Reads up to 530MB/s",
+    "rev.n1": "Speed",
+    "rev.v1": "Noticeable jump",
+    "rev.q2": "512GB capacity",
+    "rev.n2": "Space",
+    "rev.v2": "Handles your work",
+    "rev.q3": "3-year warranty",
+    "rev.n3": "Warranty",
+    "rev.v3": "From the listing",
+    "faq.eyebrow": "FAQ",
+    "faq.title": "Questions buyers ask",
+    "faq.q1": "Does it work in any machine?",
+    "faq.a1": "Any laptop or desktop that takes an internal drive in the same 2.5-inch size with a SATA interface — which covers most machines on the market.",
+    "faq.q2": "Do I need special tools to install it?",
+    "faq.a2": "Installation usually needs a small screwdriver only, and some laptops require opening a SATA access bay. Check the included guide and online instructions for your model.",
+    "faq.q3": "Is it a different size from my old drive?",
+    "faq.a3": "No — the same 2.5-inch size, so it mounts in the same place and plugs into the same SATA cable.",
+    "faq.q4": "What does the warranty cover?",
+    "faq.a4": "The listing mentions a 3-year warranty for the version sold on Amazon Egypt — review the official product page for the exact warranty terms.",
+    "faq.q5": "Can I pay cash on delivery?",
+    "faq.a5": "Yes — cash on delivery is available for this item on Amazon Egypt, and other payment methods appear on the Amazon page at checkout.",
+    "faq.q6": "Can I return it if it's not right for me?",
+    "faq.a6": "Most products enjoy a 15–30 day return window per Amazon's policy. Check the return details on the product page before you buy.",
+    "cta.title": "Ready to speed up your machine?",
+    "cta.sub": "Order the HIKSEMI SSD 512GB on Amazon.eg — 2.5-inch SATA",
+    "cta.buy": "Order on Amazon & see today's price",
+    "cta.questions": "More questions?",
+    "footer.about": "Landing page for the HIKSEMI SSD. Prices and figures can change with availability on Amazon.",
+    "footer.h1": "Page",
+    "footer.h2": "Product",
+    "footer.h3": "Follow",
+    "footer.l1": "Buy on Amazon",
+    "footer.l2": "In the box",
+    "footer.l3": "Why HIKSEMI",
+    "footer.disclaimer": "Prices and figures can change with availability on Amazon. Specifications as listed on the product page.",
+    "footer.madeBy": "Landing page · AR / EN",
+    "aud.eyebrow": "Who it is for",
+    "aud.title": "Who gets the most from it",
+    "aud.sub": "A small, affordable upgrade that makes an ordinary machine feel new again",
+    "aud.a1t": "Owners of older machines",
+    "aud.a1b": "The laptop that boots slowly and the desktop that stutters — moving the OS onto solid state makes a clear difference from the first minute.",
+    "aud.a2t": "Office and remote workers",
+    "aud.a2b": "Heavy files, large presentations and big apps open quickly, so you save time fighting an old drive's delays.",
+    "aud.a3t": "Students and editors",
+    "aud.a3b": "Exporting videos and projects finishes faster, and 512GB holds a large study library and big files.",
+    "aud.a4t": "People who care about their data",
+    "aud.a4b": "No moving parts means better resistance to bumps during travel — and the 3-year warranty adds peace of mind.",
+    "hero.cta2": "Buying & delivery details",
+    "offer.today": "See today's price and live offers directly on the product page at Amazon",
+    "offer.payTitle": "Payment & instalments",
+    "offer.paySub": "Amazon offers multiple payment methods and instalment options depending on the item and your card, and cash on delivery is available - every price, discount and deal detail appears on Amazon's own page at checkout.",
+    "offer.payNote": "The price and any current offers - all of it lives on Amazon's page only.",
+    "nav.all": "All Products"
+  }
+};
+
+let lang = 'ar';
+
+/* ---------- i18n ---------- */
+function t(key) {
+  return (dict[lang] && dict[lang][key]) ?? (dict.ar[key] ?? key);
+}
+
+function applyLang(next) {
+  lang = next;
+  localStorage.setItem(STORE_KEY, lang);
+
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  document.title = lang === 'ar'
+    ? 'HIKSEMI SSD 512GB — ساتا 2.5 بوصة، قراءة حتى 530 ميقا/ثانية'
+    : 'HIKSEMI SSD 512GB — 2.5" SATA, up to 530MB/s read';
+
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(',').forEach((pair) => {
+      const [attr, key] = pair.split(':').map((s) => s.trim());
+      if (attr && key) el.setAttribute(attr, t(key));
+    });
+  });
+
+  document.getElementById('langLabel').textContent = lang === 'ar' ? 'EN' : 'ع';
+  renderMode(currentMode);
+  renderGallery();
+  renderLive();
+}
+
+/* ---------- live data (price.json) ----------
+   price.json is written by scripts/update-price.mjs on a cron
+   (see .github/workflows/price.yml). The page only reads it,
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
+
+const PRICE_URL = 'price.json';
+const LIVE_KEY = 'hiksemi-ssd-512-live';
+const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
+
+let live = null; // last known good data, or null if price.json has never loaded
+
+/* substitutes {n} reviews / {r} rating inside i18n strings */
+function applyTokens() {
+  if (!live) return;
+  // A string that interpolates the rating is only meaningful when there is one
+  // to interpolate. Substituting 0 instead printed "0 reviews - 0.0 out of 5"
+  // on every product whose rating the scraper could not read, which reads as a
+  // broken page rather than as an absent rating. Hide the element instead; it
+  // comes back with renderLive's data-needs-rating pass when a rating lands.
+  const hasRating = live.rating != null;
+  const n = Number(live.reviews) || 0;
+  const r = Number(live.rating) || 0;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const raw = t(el.dataset.i18n);
+    if (!raw.includes('{')) return;
+    if (!hasRating) { el.classList.add('hidden'); return; }
+    el.classList.remove('hidden');
+    el.textContent = raw
+      .replace(/\{n\}/g, n.toLocaleString('en-US'))
+      .replace(/\{r\}/g, r.toFixed(1));
+  });
+}
+
+function renderLive() {
+  if (!live) return;
+
+  if (live.rating != null) {
+    document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
+    document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
+  }
+  // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
+  // the markup, so every product that had no rating of its own quietly showed the
+  // G309 score. A product with no reviews should show no stars.
+
+  // stock badges
+  document.querySelectorAll('[data-bind="stock"]').forEach((el) => {
+    const out = live.inStock === false;
+    el.textContent = out
+      ? t(el.dataset.stockOut || 'hero.outOfStock')
+      : t(el.dataset.stockIn || 'hero.stock');
+    el.classList.toggle('border-emerald-400/30', !out);
+    el.classList.toggle('bg-emerald-500/10', !out);
+    el.classList.toggle('text-emerald-300', !out);
+    el.classList.toggle('border-rose-400/30', out);
+    el.classList.toggle('bg-rose-500/10', out);
+    el.classList.toggle('text-rose-300', out);
+  });
+
+  applyTokens();
+}
+
+function initLivePrice() {
+  // 1) show the cached rating/review/stock data immediately, then refresh
+  try {
+    const cached = JSON.parse(localStorage.getItem(LIVE_KEY) || 'null');
+    if (cached && Date.now() - new Date(cached.checkedAt).getTime() < LIVE_TTL) {
+      live = cached;
+      renderLive();
+    }
+  } catch { /* ignore bad cache */ }
+
+  // 2) then refresh from price.json
+  fetch(PRICE_URL, { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
+    .then((data) => {
+      if (!data || data.price == null) return;
+      live = data;
+      localStorage.setItem(LIVE_KEY, JSON.stringify(data));
+      renderLive();
+    })
+    .catch(() => { /* keep whatever we already had */ });
+}
+
+/* ---------- connectivity demo ---------- */
+let currentMode = 'ls';
+const MODES = {
+  ls: ['conn.m1Ls', 'conn.m2Ls', 'conn.m3Ls', 'conn.noteLs'],
+  bt: ['conn.m1Bt', 'conn.m2Bt', 'conn.m3Bt', 'conn.noteBt'],
+};
+
+function renderMode(mode) {
+  currentMode = mode;
+  const keys = MODES[mode];
+
+  document.querySelectorAll('.modeBtn').forEach((btn) => {
+    const active = btn.dataset.mode === mode;
+    btn.className = 'modeBtn rounded-lg px-5 py-2.5 text-sm font-extrabold transition ' +
+      (active ? 'bg-white text-ink-950' : 'text-slate-400 hover:text-white');
+  });
+
+  ['m1', 'm2', 'm3'].forEach((id, i) => {
+    document.getElementById(id).textContent = t(keys[i]);
+  });
+  document.getElementById('connNote').textContent = t(keys[3]);
+
+  // animation speed follows the mode
+  const fast = document.getElementById('packetGroup');
+  const slow = document.getElementById('pulseGroup');
+  const cur = document.getElementById('cursorGroup');
+  [fast, slow, cur].forEach((g) => {
+    g.style.display = 'none';
+    g.style.animation = 'none';
+  });
+  const show = mode === 'ls' ? fast : slow;
+  const curDur = mode === 'ls' ? '0.6s' : '2.2s';
+  show.style.display = '';
+  show.style.animation = `marquee ${curDur} linear infinite`;
+  cur.style.display = '';
+  cur.style.animation = `marquee ${curDur} linear infinite`;
+  cur.style.opacity = mode === 'ls' ? '1' : '.25';
+}
+
+/* ---------- count up ---------- */
+function countUp(el) {
+  const target = Number(el.dataset.count);
+  const duration = 1400;
+  const start = performance.now();
+  const fmt = (v) => (el.dataset.format === 'comma' ? Math.round(v).toLocaleString('en-US') : String(Math.round(v)));
+
+  const step = (now) => {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(target * eased) + (el.dataset.suffix || '') + (el.dataset.prefix || '');
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function initCounters() {
+  const els = [...document.querySelectorAll('[data-count]')];
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        countUp(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  els.forEach((el) => io.observe(el));
+}
+
+/* ---------- buy links ---------- */
+function initBuy() {
+  document.querySelectorAll('[data-buy]').forEach((a) => { a.href = PRODUCT_URL; });
+}
+
+/* ---------- smooth scroll offset for the fixed nav ---------- */
+function initScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      const y = el.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+}
+
+/* ---------- gallery ----------
+   Real product shots pulled from the Amazon listing and served from ./img, so
+   the page never hotlinks Amazon. Amazon hands these over in the order the
+   seller listed them, so the order is kept as-is. */
+const GAL_FILES = ["img/hiksemi-ssd-512-01.jpg","img/hiksemi-ssd-512-02.jpg"];
+let galItems = [];
+
+function renderGallery() {
+  galItems.forEach((b, k) => {
+    b.setAttribute('aria-label', `${t('gal.label')} ${k + 1}`);
+  });
+}
+
+function initGallery() {
+  const grid = document.querySelector('[data-gal-grid]');
+  if (!grid) return;
+
+  const total = GAL_FILES.length;
+  const box = document.querySelector('[data-gal-box]');
+  const boxImg = box?.querySelector('[data-gal-box-img]');
+  let i = 0;
+  let opener = null;
+
+  galItems = GAL_FILES.map((src, n) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className =
+      'group relative overflow-hidden rounded-2xl border border-white/10 bg-white shadow-lg shadow-black/30 ' +
+      'transition duration-300 hover:-translate-y-1 hover:border-cyan-400/60 hover:shadow-2xl ' +
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400';
+    b.innerHTML =
+      `<img src="${src}" alt="" width="1200" height="1200" loading="lazy" decoding="async" ` +
+      'class="aspect-square w-full select-none object-contain">' +
+      '<span class="pointer-events-none absolute inset-0 grid place-items-center bg-ink-950/0 ' +
+      'opacity-0 transition duration-300 group-hover:bg-ink-950/25 group-hover:opacity-100">' +
+      '<span class="grid h-11 w-11 place-items-center rounded-full bg-white/90 text-ink-950 shadow-lg">' +
+      '<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+      'stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg>' +
+      '</span></span>';
+    b.addEventListener('click', () => { i = n; openBox(); });
+    grid.appendChild(b);
+    return b;
+  });
+
+  function show(n) {
+    i = (n + total) % total;
+    if (boxImg) boxImg.src = GAL_FILES[i];
+  }
+
+  function openBox() {
+    if (!box) return;
+    opener = document.activeElement;
+    show(i);
+    box.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    box.querySelector('[data-gal-box-close]')?.focus();
+  }
+  function closeBox() {
+    if (!box) return;
+    box.classList.add('hidden');
+    document.body.style.overflow = '';
+    opener?.focus();
+  }
+
+  box?.querySelector('[data-gal-box-close]')?.addEventListener('click', closeBox);
+  box?.querySelector('[data-gal-box-prev]')?.addEventListener('click', () => show(i - 1));
+  box?.querySelector('[data-gal-box-next]')?.addEventListener('click', () => show(i + 1));
+  box?.addEventListener('click', (e) => { if (e.target === box) closeBox(); });
+
+  document.addEventListener('keydown', (e) => {
+    const open = box && !box.classList.contains('hidden');
+    if (!open) return;
+    if (e.key === 'Escape') closeBox();
+    else if (e.key === 'ArrowLeft') show(i - 1);
+    else if (e.key === 'ArrowRight') show(i + 1);
+  });
+
+  renderGallery();
+}
+
+/* ---------- init ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang(localStorage.getItem(STORE_KEY) || 'ar');
+
+  document.getElementById('langBtn').addEventListener('click', () => {
+    applyLang(lang === 'ar' ? 'en' : 'ar');
+  });
+
+  document.querySelectorAll('.modeBtn').forEach((btn) => {
+    btn.addEventListener('click', () => renderMode(btn.dataset.mode));
+  });
+
+  initBuy();
+  initCounters();
+  initScroll();
+  initGallery();
+  initLivePrice();
+});
