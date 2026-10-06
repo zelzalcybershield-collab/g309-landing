@@ -1,15 +1,15 @@
 ﻿{
     "asin":  "B08D11MN1M",
     "url":  "https://www.amazon.eg/dp/B08D11MN1M?tag=zoq-21",
-    "price":  97,
+    "price":  null,
     "currency":  "EGP",
-    "inStock":  true,
-    "rating":  3.9,
-    "reviews":  7850,
+    "inStock":  null,
+    "rating":  null,
+    "reviews":  null,
     "title":  null,
     "availability":  null,
-    "updatedAt":  "2026-10-05T07:03:36.327Z",
-    "checkedAt":  "2026-10-05T07:03:36.327Z",
-    "stale":  false,
-    "lastError":  null
+    "updatedAt":  null,
+    "checkedAt":  null,
+    "stale":  true,
+    "lastError":  "not fetched yet"
 }
