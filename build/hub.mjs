@@ -114,6 +114,7 @@ const CATEGORIES = [
   { id: 'cameras', label: 'كاميرات' },
   { id: 'storage', label: 'تخزين' },
   { id: 'cases', label: 'كيسات' },
+  { id: 'accessories', label: 'إكسسوارات' },
 ];
 const catOf = (p) => (p.category && CATEGORIES.some((c) => c.id === p.category) ? p.category : 'other');
 // The chip on a card shows the plain category name, not the product's hero
