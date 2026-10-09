@@ -1,0 +1,666 @@
+﻿/* ============================================================
+ * Product landing page - one dictionary per product, injected from the data file.
+   · i18n (ar / en) with RTL <-> LTR switching
+ * Two-up comparison section
+   · Count-up numbers
+   ============================================================ */
+
+const PRODUCT_URL = 'https://www.amazon.eg/dp/B0H6K3WZMN?tag=zoq-21';
+const STORE_KEY = 'oraimo-watch6-lite-lang';
+
+const dict = {
+  "ar": {
+    "nav.tagline": "2.01 بوصة · 300mAh · اتصال",
+    "nav.specs": "المواصفات",
+    "nav.connect": "ساعة اتصال ولا سوار",
+    "nav.aud": "مين ليه",
+    "nav.offer": "السعر والشراء",
+    "nav.faq": "أسئلة شائعة",
+    "nav.buy": "اشترِ الآن",
+    "hero.eyebrow": "ساعة ذكية بالاتصال",
+    "hero.stock": "متوفر في المخزون",
+    "hero.outOfStock": "غير متوفر حالياً",
+    "hero.title1": "Oraimo",
+    "hero.title2": "Watch 6 Lite",
+    "hero.sub": "ساعة ذكية OSW-809 بشاشة 2.01 بوصة وبطارية 300 مللي أمبير تكفيك 7 أيام — وحديث عبر البلوتوث",
+    "hero.reviews": "من {n} تقييم على أمازون",
+    "hero.rank": "#2 في الساعات الذكية على أمازون مصر",
+    "hero.buy": "للشراء ومعرفة سعرها اليوم — اضغط هنا",
+    "hero.chip1l": "الشاشة",
+    "hero.chip1v": "2.01 بوصة",
+    "hero.chip2l": "البطارية",
+    "hero.chip2v": "300 mAh",
+    "gal.eyebrow": "من المنتج",
+    "gal.title": "شوفها عن قرب",
+    "gal.sub": "الصور من صفحة المنتج الرسمية على أمازون مصر",
+    "gal.prev": "الصورة السابقة",
+    "gal.next": "الصورة التالية",
+    "gal.close": "إغلاق",
+    "gal.label": "صورة من المنتج",
+    "trust.cod": "الدفع عند الاستلام متاح",
+    "trust.codSub": "لكل عملية شراء على أمازون مصر",
+    "trust.delivery": "متوفر على أمازون مصر",
+    "trust.deliverySub": "مواعيد التوصيل على صفحة المنتج",
+    "trust.returns": "استرجاع 15 يوم",
+    "trust.returnsSub": "وإرجاع مجاني حسب سياسة أمازون المطبّقة على المنتج",
+    "trust.prime": "ماركة صوتية معروفة",
+    "trust.primeSub": "تقييم 4.4 من 5 من 33 عميل على أمازون",
+    "k.weight": "الشاشة",
+    "k.weightSub": "TFT 2.01 بوصة بدقة 240×296",
+    "k.dpi": "البطارية",
+    "k.dpiSub": "ليثيوم بوليمر 300mAh — شحنة 3 ساعات",
+    "k.batt": "الاستخدام",
+    "k.battSub": "استخدام عادي حتى 7 أيام",
+    "k.btns": "الوزن",
+    "k.btnsSub": "42 جرام — مريحة على المعصم",
+    "specs.eyebrow": "المواصفات",
+    "specs.title": "المواصفات بالأرقام الحقيقية",
+    "specs.sub": "من صفحة المنتج على أمازون مصر",
+    "specs.table": "الورقة التقنية الكاملة",
+    "s1.t": "شاشة 2.01 بوصة بدقة واضحة",
+    "s1.b": "شاشة TFT مقاس 2.01 بوصة بدقة 240×296 وسطوع حتى 450 نيت — صورة واضحة في الشمس والقاعة.",
+    "s2.t": "اتصالات ببلوتوث 5.3",
+    "s2.b": "النسخة اللاسلكية V5.3 والاتصال عبر البلوتوث (Bluetooth) — الرد والكلام من المعصم من غير ما تخرج موبايلك.",
+    "s3.t": "بطارية 300 مللي أمبير",
+    "s3.b": "ليثيوم بوليمر 300mAh، وقت الشحن 3 ساعات، استخدام عادي 7 أيام واستعداد حتى 30 يوم — زي ما مكتوب في معلمات المنتج.",
+    "s4.t": "صحة ولياقة",
+    "s4.b": "قياس معدل ضربات القلب (Heart Rate Monitor) وتتبع الجري (Sport Type: Running) وتطبيقات اللياقة — بتعرف يومك وقلبك.",
+    "s5.t": "GPS مدمج",
+    "s5.b": "الصفحة بتشاور على GPS Geotagging مدمج وGPS Satellite Navigation — متابعة مكانك ومساراتك وأنت خارج التمرين.",
+    "s6.t": "خفيفة وبتتحمل مية",
+    "s6.b": "سوار سيليكون وحزام بعرض 2.2 سم ووزن 42 جرام، مع مقاومة للمية حتى 1 متر على حسب الورقة التقنية.",
+    "t.brand": "الماركة",
+    "t.model": "الموديل",
+    "t.color": "اللون",
+    "t.colorV": "أسود (Aether Black)",
+    "t.sensor": "النوع",
+    "t.sensorV": "ساعة ذكية بالاتصال",
+    "t.switch": "رقم الموديل",
+    "t.switchV": "OSW-809",
+    "t.weight": "الوزن",
+    "t.weightV": "42 جرام",
+    "t.size": "الأبعاد",
+    "t.conn": "الاتصال",
+    "t.connV": "بلوتوث 5.3",
+    "t.batt": "البطارية",
+    "t.battV": "300mAh ليثيوم بوليمر · 7 أيام استخدام",
+    "t.os": "التوافق",
+    "t.osV": "هواتف أندرويد · لمس",
+    "t.hand": "الضمان",
+    "t.handV": "حسب صفحة المنتج",
+    "t.inbox": "في العلبة",
+    "t.inboxV": "الساعة الذكية (Smart Watch)",
+    "conn.eyebrow": "ساعة اتصال ولا سوار",
+    "conn.title": "واحد على المعصم، قدرتان مختلفان",
+    "conn.sub": "ساعة ذكية بتتكلم وتبقى شوية، وسوار لياقة بسيط — الاتنين في الرياضة والمتابعة",
+    "conn.btnLs": "ساعة Oraimo 6 Lite (زي دي)",
+    "conn.btnBt": "سوار لياقة بسيط",
+    "conn.m1l": "التكلفة",
+    "conn.m1Ls": "سعر أعلى شوية مقابل شاشة أكبر وبلوتوث",
+    "conn.m1Bt": "أرخص ومخصص للياقة بس",
+    "conn.m2l": "الأفضل لـ",
+    "conn.m2Ls": "اللي عايز يرد على المكالمات من المعصم وهو بيجرّي أو شغال",
+    "conn.m2Bt": "اللي متابع خطواته ونومه وبس",
+    "conn.m3l": "اللي بيتغير",
+    "conn.m3Ls": "شاشة 2.01 وعرض اتصال وميكروفون وسماعة — ساعة شبه كاملة",
+    "conn.m3Bt": "شاشة صغيرة عداد وخطوات — من غير اتصال ولا سماعة",
+    "conn.vizTitle": "خلاصة الفرق",
+    "conn.noteLs": "لو اتصالات الموبايل جزء من يومك، الساعة بيقتطع الرد من المعصم — وشاشتها تكفي لعرض الإشعارات والرياضة في حتة واحدة.",
+    "conn.noteBt": "السوار البسيط أصغر وأرخص لو الهدف يخطوات ونوم، بس هتظل وحش تخرج موبايلك للمكالمات.",
+    "box.title": "اللي هيوصلك",
+    "box.sub": "المحتوى حسب Built-In Media على صفحة أمازون مصر",
+    "box.i1": "ساعة Oraimo الذكية",
+    "box.i2": "سوار سيليكون أسود",
+    "box.i3": "قدرات اللياقة وجهاز تحديد المواقع والحساب",
+    "offer.eyebrow": "السعر والعروض",
+    "offer.title": "اشترِ من أمازون مصر",
+    "offer.productName": "Oraimo Watch 6 Lite — ساعة ذكية بالاتصال OSW-809 — أسود",
+    "offer.seller": "متوفر على أمازون مصر",
+    "offer.inStock": "متوفر",
+    "offer.inStockOut": "غير متوفر",
+    "offer.ship": "موعد التوصيل",
+    "offer.shipV": "بتشوف الموعد على صفحة المنتج",
+    "offer.ret": "مدة الاسترجاع",
+    "offer.retV": "15 يوم وإرجاع مجاني حسب سياسة أمازون",
+    "offer.buyNow": "للشراء ومعرفة سعرها اليوم — اضغط هنا",
+    "offer.checkout": "بتتم عملية الشراء والدفع على أمازون مصر",
+    "rev.eyebrow": "ليه تختارها",
+    "rev.title": "أسباب تخليك تختارها",
+    "rev.sub": "مواصفات المنتج وتقييم 4.4 من 5 بناءً على 33 تقييم على أمازون",
+    "rev.count": "{n} تقييم · {r} من 5",
+    "rev.q1": "7 أيام",
+    "rev.n1": "البطارية",
+    "rev.v1": "استخدام عادي بهرت النبض",
+    "rev.q2": "5.3",
+    "rev.n2": "البلوتوث",
+    "rev.v2": "اتصال ثابت للمكالمات",
+    "rev.q3": "42 g",
+    "rev.n3": "الوزن",
+    "rev.v3": "سوار سيليكون مريح",
+    "faq.eyebrow": "أسئلة شائعة",
+    "faq.title": "أسئلة يسألها المشترين",
+    "faq.q1": "بتشتغل مع موبايل إزاي؟",
+    "faq.a1": "عبر البلوتوث 5.3، وورقة التوافق بتشاور على هواتف أندرويد — صلة إلى الموبايل وتلقي الإشعارات والمكالمات.",
+    "faq.q2": "بطاريتها بتعيش قد إيه؟",
+    "faq.a2": "300 مللي أمبير، الاستخدام العادي حتى 7 أيام والاستعداد حتى 30 يوم، والشحنة من الصفر بتاخد حوالي 3 ساعات حسب معلمات المنتج.",
+    "faq.q3": "بتقيس نبض القلب؟",
+    "faq.a3": "أيوه — Additional Features و Metrics Measured بتشاور على Heart Rate Monitor، مع تتبع جري (Running) كمادة رياضية.",
+    "faq.q4": "مقاومة للمية؟",
+    "faq.a4": "الورقة التقنية بتديك Water Resistance Depth = 1 متر — يعني تقاوم البلل الخفيف مش الغطس.",
+    "faq.q5": "أقدر أدفع كاش عند الاستلام؟",
+    "faq.a5": "أيوة — الدفع عند الاستلام متاح لهذا المنتج على أمازون مصر، وفي طرق دفع تانية على صفحة أمازون وقت الدفع.",
+    "faq.q6": "أقدر أرجّعها لو مش مناسبة؟",
+    "faq.a6": "الصفحة بتشاور على إرجاع مجاني واسترجاع خلال 15 يوم حسب سياسة أمازون. راجع التفاصيل على صفحة المنتج قبل ما تشتري.",
+    "cta.title": "جاهز ترد على مكالماتك من معصمك؟",
+    "cta.sub": "اطلب Oraimo Watch 6 Lite من أمازون مصر — شاشة 2.01 وبلوتوث 5.3 و300mAh وبدفع عند الاستلام",
+    "cta.buy": "اطلب من أمازون وشوف سعر اليوم",
+    "cta.questions": "عايز تسأل أكتر؟",
+    "footer.about": "صفحة هبوط لساعة Oraimo Watch 6 Lite الذكية. الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون.",
+    "footer.h1": "الصفحة",
+    "footer.h2": "المنتج",
+    "footer.h3": "تابعنا",
+    "footer.l1": "شراء من أمازون",
+    "footer.l2": "محتويات العلبة",
+    "footer.l3": "ليه Oraimo",
+    "footer.disclaimer": "الأسعار والأرقام قابلة للتغيير حسب التوفر على أمازون. المواصفات كما وردت في صفحة المنتج.",
+    "footer.madeBy": "صفحة هبوط · AR / EN",
+    "aud.eyebrow": "الساعة دي ليه",
+    "aud.title": "اللي هتفيد معاهم Oraimo",
+    "aud.sub": "مكالمات من المعصم ولياقة كل يوم — ساعة واحدة في الشغل والرياضة",
+    "aud.a1t": "اللي شغالين بأيديهم",
+    "aud.a1b": "في الشغل أو السواقة، بتلفت للمعصم بدل الجيب — مكالمة أو إشعار من غير ما توقف.",
+    "aud.a2t": "اللي بيجرّي أو بيمشوا",
+    "aud.a2b": "GPS مدمج وتتبع جري وقياس نبض — بتعرف بعد ومساراتك من معصمك.",
+    "aud.a3t": "اللي عايز ساعة شيك بسعر معقول",
+    "aud.a3b": "كشك قوي بشاشة 2.01 ولون أسود هادي — شكل ساعة ذكية من غير سعر الفخامة.",
+    "aud.a4t": "اللي بيدوّر على هدية عملية",
+    "aud.a4b": "سوار سيليكون مريح وبلوتوث 5.3 حديث — هدية مكتب وسفر ينفع أي حد يومياً.",
+    "hero.cta2": "تفاصيل الشراء والتوصيل",
+    "offer.today": "معرفة سعر اليوم والخصومات النشطة مباشرةً من صفحة المنتج على أمازون",
+    "offer.payTitle": "الدفع والتقسيط",
+    "offer.paySub": "أمازون بيوفر طرق دفع متعددة وخيارات تقسيط حسب المنتج والبطاقة، والدفع عند الاستلام متاح — وكل تفاصيل السعر والخصومات والعروض بتظهر على صفحة أمازون نفسها لحظة الشراء.",
+    "offer.payNote": "السعر وأي عروض حالية — كل ده على صفحة أمازون بس.",
+    "nav.all": "كل المنتجات"
+  },
+  "en": {
+    "nav.tagline": "2.01″ · 300mAh · Calling",
+    "nav.specs": "Specs",
+    "nav.connect": "Calling watch vs band",
+    "nav.aud": "Who for",
+    "nav.offer": "Price & Buy",
+    "nav.faq": "FAQ",
+    "nav.buy": "Buy Now",
+    "hero.eyebrow": "HD calling smart watch",
+    "hero.stock": "In stock",
+    "hero.outOfStock": "Currently unavailable",
+    "hero.title1": "Oraimo",
+    "hero.title2": "Watch 6 Lite",
+    "hero.sub": "Smart watch OSW-809 with a 2.01-inch screen, a 300 mAh battery that lasts 7 days, and Bluetooth calling",
+    "hero.reviews": "{n} ratings on Amazon",
+    "hero.rank": "#2 in smartwatches on Amazon.eg",
+    "hero.buy": "Buy & see today's price — click here",
+    "hero.chip1l": "Screen",
+    "hero.chip1v": "2.01-inch",
+    "hero.chip2l": "Battery",
+    "hero.chip2v": "300 mAh",
+    "gal.eyebrow": "From the product",
+    "gal.title": "See it up close",
+    "gal.sub": "Photos from the official listing on amazon.eg",
+    "gal.prev": "Previous image",
+    "gal.next": "Next image",
+    "gal.close": "Close",
+    "gal.label": "Product photo",
+    "trust.cod": "Cash on delivery available",
+    "trust.codSub": "For your purchase on Amazon.eg",
+    "trust.delivery": "Available on Amazon.eg",
+    "trust.deliverySub": "Delivery dates on the product page",
+    "trust.returns": "15-day returns",
+    "trust.returnsSub": "Free returns under Amazon's policy for this item",
+    "trust.prime": "Know and trusted brand",
+    "trust.primeSub": "Rated 4.4 out of 5 by 33 customers on Amazon",
+    "k.weight": "Screen",
+    "k.weightSub": "a 2.01-inch TFT at 240×296",
+    "k.dpi": "Battery",
+    "k.dpiSub": "300 mAh lithium polymer - 3 h charge",
+    "k.batt": "Usage",
+    "k.battSub": "up to 7 days of normal use",
+    "k.btns": "Weight",
+    "k.btnsSub": "42 g - light on the wrist",
+    "specs.eyebrow": "Specs",
+    "specs.title": "The real numbers, straight from the listing",
+    "specs.sub": "From the amazon.eg product page",
+    "specs.table": "Full technical sheet",
+    "s1.t": "A clear 2.01-inch screen",
+    "s1.b": "A 2.01-inch TFT at 240×296 with up to 450 nits - readable in sunlight and indoors.",
+    "s2.t": "Bluetooth 5.3 calling",
+    "s2.b": "Wireless version 5.3 and Bluetooth connectivity - answer and talk from the wrist without reaching for the phone.",
+    "s3.t": "A 300 mAh battery",
+    "s3.b": "300 mAh lithium polymer, 3 hours to charge, 7 days of normal use and up to 30 days standby - per the product parameters.",
+    "s4.t": "Health and fitness",
+    "s4.b": "Heart-rate monitoring, running as a named sport type and fitness tracking - you keep an eye on both your day and your pulse.",
+    "s5.t": "Built-in GPS",
+    "s5.b": "The sheet lists built-in GPS geotagging and GPS satellite navigation - so routes log while you train outdoors.",
+    "s6.t": "Light and water-enabled",
+    "s6.b": "A silicone band, a 22 mm strap and 42 g, with water resistance to 1 m per the spec sheet.",
+    "t.brand": "Brand",
+    "t.model": "Model",
+    "t.color": "Color",
+    "t.colorV": "Aether Black",
+    "t.sensor": "Type",
+    "t.sensorV": "HD calling smart watch",
+    "t.switch": "Model number",
+    "t.switchV": "OSW-809",
+    "t.weight": "Weight",
+    "t.weightV": "42 g",
+    "t.size": "Dimensions",
+    "t.conn": "Connectivity",
+    "t.connV": "Bluetooth 5.3",
+    "t.batt": "Battery",
+    "t.battV": "300 mAh lithium polymer · 7-day use",
+    "t.os": "Compatibility",
+    "t.osV": "Android phones · touch",
+    "t.hand": "Warranty",
+    "t.handV": "per the product page",
+    "t.inbox": "In the box",
+    "t.inboxV": "The smart watch",
+    "conn.eyebrow": "Calling watch or band",
+    "conn.title": "One wrist, two different jobs",
+    "conn.sub": "A smart watch that also calls, and a plain fitness band - both track fitness, one does more",
+    "conn.btnLs": "Oraimo Watch 6 Lite (this one)",
+    "conn.btnBt": "A basic fitness band",
+    "conn.m1l": "Cost",
+    "conn.m1Ls": "A bit more for the bigger screen and calling",
+    "conn.m1Bt": "Cheaper and fitness-oriented only",
+    "conn.m2l": "Best for",
+    "conn.m2Ls": "Anyone who wants to answer calls from the wrist while running or working",
+    "conn.m2Bt": "Anyone who only tracks steps and sleep",
+    "conn.m3l": "What changes",
+    "conn.m3Ls": "A 2.01-inch screen, call alerts, mic and speaker - a fuller watch",
+    "conn.m3Bt": "A small step-counter screen - no calling, no speaker",
+    "conn.vizTitle": "The difference in short",
+    "conn.noteLs": "If phone calls are part of your day, the watch cuts replies down to the wrist - and its screen covers notifications and workouts in one place.",
+    "conn.noteBt": "A simple band is smaller and cheaper if your goal is steps and sleep, but you still reach for the phone for calls.",
+    "box.title": "What arrives",
+    "box.sub": "Content per the Built-In Media field on the amazon.eg product page",
+    "box.i1": "The Oraimo smart watch",
+    "box.i2": "A black silicone strap",
+    "box.i3": "Fitness, GPS and tracking capability",
+    "offer.eyebrow": "Price & offers",
+    "offer.title": "Buy on Amazon.eg",
+    "offer.productName": "Oraimo Watch 6 Lite - HD calling smart watch OSW-809 - black",
+    "offer.seller": "Available on Amazon.eg",
+    "offer.inStock": "In stock",
+    "offer.inStockOut": "Out of stock",
+    "offer.ship": "Delivery",
+    "offer.shipV": "See the date on the product page",
+    "offer.ret": "Returns",
+    "offer.retV": "15 days and free returns per Amazon's policy",
+    "offer.buyNow": "Buy & see today's price — click here",
+    "offer.checkout": "Checkout and payment happen on Amazon.eg",
+    "rev.eyebrow": "Why choose it",
+    "rev.title": "Reasons to pick this one",
+    "rev.sub": "Product specs and a 4.4 out of 5 rating from 33 ratings on Amazon",
+    "rev.count": "{n} ratings · {r} of 5",
+    "rev.q1": "7 days",
+    "rev.n1": "Battery",
+    "rev.v1": "normal use with HR tracking",
+    "rev.q2": "5.3",
+    "rev.n2": "Bluetooth",
+    "rev.v2": "stable calling link",
+    "rev.q3": "42 g",
+    "rev.n3": "Weight",
+    "rev.v3": "a comfy silicone band",
+    "faq.eyebrow": "FAQ",
+    "faq.title": "Questions buyers ask",
+    "faq.q1": "How does it pair with a phone?",
+    "faq.a1": "Over Bluetooth 5.3, with the compatibility sheet naming Android phones - it pairs to the phone for notifications and calls.",
+    "faq.q2": "How long does the battery last?",
+    "faq.a2": "300 mAh runs about 7 days of normal use and up to 30 standby, charging fully in roughly 3 hours per the product parameters.",
+    "faq.q3": "Does it measure heart rate?",
+    "faq.a3": "Yes - additional features and measured metrics call out a heart rate monitor, with running named as the sport type.",
+    "faq.q4": "Is it water resistant?",
+    "faq.a4": "The sheet gives a water resistance depth of 1 metre - it handles light wetness, not submersion.",
+    "faq.q5": "Can I pay cash on delivery?",
+    "faq.a5": "Yes - cash on delivery is available for this item on Amazon Egypt, and other payment methods appear on the Amazon page at checkout.",
+    "faq.q6": "Can I return it if it's not right for me?",
+    "faq.a6": "The listing points to free returns and a 15-day return window per Amazon’s policy. Check the details on the product page before you buy.",
+    "cta.title": "Ready to take calls from your wrist?",
+    "cta.sub": "Order the Oraimo Watch 6 Lite on Amazon.eg - a 2.01-inch screen, Bluetooth 5.3 and 300 mAh, on cash on delivery",
+    "cta.buy": "Order on Amazon & see today’s price",
+    "cta.questions": "More questions?",
+    "footer.about": "Landing page for the Oraimo Watch 6 Lite smart watch. Prices and figures can change with availability on Amazon.",
+    "footer.h1": "Page",
+    "footer.h2": "Product",
+    "footer.h3": "Follow",
+    "footer.l1": "Buy on Amazon",
+    "footer.l2": "In the box",
+    "footer.l3": "Why Oraimo",
+    "footer.disclaimer": "Prices and figures can change with availability on Amazon. Specifications as listed on the product page.",
+    "footer.madeBy": "Landing page · AR / EN",
+    "aud.eyebrow": "Who it is for",
+    "aud.title": "Who the Oraimo suits",
+    "aud.sub": "Wrist calls and daily fitness - one watch for work and workouts",
+    "aud.a1t": "People with busy hands",
+    "aud.a1b": "At work or driving, a glance at the wrist instead of the pocket - a call or alert without stopping.",
+    "aud.a2t": "Runners and walkers",
+    "aud.a2b": "Built-in GPS, running tracking and heart rate - distance and routes from the wrist.",
+    "aud.a3t": "Anyone after smart looks, a fair price",
+    "aud.a3b": "A sturdy case with a 2.01-inch display in plain black - a smart-watch look without the premium price.",
+    "aud.a4t": "Anyone after a practical gift",
+    "aud.a4b": "A comfy silicone band and a quick 5.3 Bluetooth - a desk-and-travel gift anyone can wear.",
+    "hero.cta2": "Buying & delivery details",
+    "offer.today": "See today's price and live offers directly on the product page at Amazon",
+    "offer.payTitle": "Payment & instalments",
+    "offer.paySub": "Amazon offers multiple payment methods and instalment options depending on the item and your card, and cash on delivery is available - every price, discount and deal detail appears on Amazon’s own page at checkout.",
+    "offer.payNote": "The price and any current offers - all of it lives on Amazon’s page only.",
+    "nav.all": "All Products"
+  }
+};
+
+let lang = 'ar';
+
+/* ---------- i18n ---------- */
+function t(key) {
+  return (dict[lang] && dict[lang][key]) ?? (dict.ar[key] ?? key);
+}
+
+function applyLang(next) {
+  lang = next;
+  localStorage.setItem(STORE_KEY, lang);
+
+  const html = document.documentElement;
+  html.lang = lang;
+  html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+  document.title = lang === 'ar'
+    ? 'ساعة Oraimo Watch 6 Lite ذكية بالاتصال OSW-809 | أمازون مصر'
+    : 'Oraimo Watch 6 Lite HD Calling Smart Watch OSW-809 | Amazon Egypt';
+
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(',').forEach((pair) => {
+      const [attr, key] = pair.split(':').map((s) => s.trim());
+      if (attr && key) el.setAttribute(attr, t(key));
+    });
+  });
+
+  document.getElementById('langLabel').textContent = lang === 'ar' ? 'EN' : 'ع';
+  renderMode(currentMode);
+  renderGallery();
+  renderLive();
+}
+
+/* ---------- live data (price.json) ----------
+   price.json is written by scripts/update-price.mjs on a cron
+   (see .github/workflows/price.yml). The page only reads it,
+   so no secret ever ships to the browser. The pages no longer
+   render prices — price.json now feeds the rating and stock
+   badges only.                                            */
+
+const PRICE_URL = 'price.json';
+const LIVE_KEY = 'oraimo-watch6-lite-live';
+const LIVE_TTL = 8 * 60 * 60 * 1000; // 8h — keep a copy a bit longer than the cron
+
+let live = null; // last known good data, or null if price.json has never loaded
+
+/* substitutes {n} reviews / {r} rating inside i18n strings */
+function applyTokens() {
+  if (!live) return;
+  // A string that interpolates the rating is only meaningful when there is one
+  // to interpolate. Substituting 0 instead printed "0 reviews - 0.0 out of 5"
+  // on every product whose rating the scraper could not read, which reads as a
+  // broken page rather than as an absent rating. Hide the element instead; it
+  // comes back with renderLive's data-needs-rating pass when a rating lands.
+  const hasRating = live.rating != null;
+  const n = Number(live.reviews) || 0;
+  const r = Number(live.rating) || 0;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const raw = t(el.dataset.i18n);
+    if (!raw.includes('{')) return;
+    if (!hasRating) { el.classList.add('hidden'); return; }
+    el.classList.remove('hidden');
+    el.textContent = raw
+      .replace(/\{n\}/g, n.toLocaleString('en-US'))
+      .replace(/\{r\}/g, r.toFixed(1));
+  });
+}
+
+function renderLive() {
+  if (!live) return;
+
+  if (live.rating != null) {
+    document.querySelectorAll('[data-bind="rating"]').forEach((el) => { el.textContent = Number(live.rating).toFixed(1); });
+    document.querySelectorAll('[data-needs-rating]').forEach((el) => { el.classList.remove('hidden'); });
+  }
+  // No rating -> the star rows stay hidden. They used to be hardcoded to 4.9 in
+  // the markup, so every product that had no rating of its own quietly showed the
+  // G309 score. A product with no reviews should show no stars.
+
+  // stock badges
+  document.querySelectorAll('[data-bind="stock"]').forEach((el) => {
+    const out = live.inStock === false;
+    el.textContent = out
+      ? t(el.dataset.stockOut || 'hero.outOfStock')
+      : t(el.dataset.stockIn || 'hero.stock');
+    el.classList.toggle('border-emerald-400/30', !out);
+    el.classList.toggle('bg-emerald-500/10', !out);
+    el.classList.toggle('text-emerald-300', !out);
+    el.classList.toggle('border-rose-400/30', out);
+    el.classList.toggle('bg-rose-500/10', out);
+    el.classList.toggle('text-rose-300', out);
+  });
+
+  applyTokens();
+}
+
+function initLivePrice() {
+  // 1) show the cached rating/review/stock data immediately, then refresh
+  try {
+    const cached = JSON.parse(localStorage.getItem(LIVE_KEY) || 'null');
+    if (cached && Date.now() - new Date(cached.checkedAt).getTime() < LIVE_TTL) {
+      live = cached;
+      renderLive();
+    }
+  } catch { /* ignore bad cache */ }
+
+  // 2) then refresh from price.json
+  fetch(PRICE_URL, { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
+    .then((data) => {
+      if (!data || data.price == null) return;
+      live = data;
+      localStorage.setItem(LIVE_KEY, JSON.stringify(data));
+      renderLive();
+    })
+    .catch(() => { /* keep whatever we already had */ });
+}
+
+/* ---------- connectivity demo ---------- */
+let currentMode = 'ls';
+const MODES = {
+  ls: ['conn.m1Ls', 'conn.m2Ls', 'conn.m3Ls', 'conn.noteLs'],
+  bt: ['conn.m1Bt', 'conn.m2Bt', 'conn.m3Bt', 'conn.noteBt'],
+};
+
+function renderMode(mode) {
+  currentMode = mode;
+  const keys = MODES[mode];
+
+  document.querySelectorAll('.modeBtn').forEach((btn) => {
+    const active = btn.dataset.mode === mode;
+    btn.className = 'modeBtn rounded-lg px-5 py-2.5 text-sm font-extrabold transition ' +
+      (active ? 'bg-white text-ink-950' : 'text-slate-400 hover:text-white');
+  });
+
+  ['m1', 'm2', 'm3'].forEach((id, i) => {
+    document.getElementById(id).textContent = t(keys[i]);
+  });
+  document.getElementById('connNote').textContent = t(keys[3]);
+
+  // animation speed follows the mode
+  const fast = document.getElementById('packetGroup');
+  const slow = document.getElementById('pulseGroup');
+  const cur = document.getElementById('cursorGroup');
+  [fast, slow, cur].forEach((g) => {
+    g.style.display = 'none';
+    g.style.animation = 'none';
+  });
+  const show = mode === 'ls' ? fast : slow;
+  const curDur = mode === 'ls' ? '0.6s' : '2.2s';
+  show.style.display = '';
+  show.style.animation = `marquee ${curDur} linear infinite`;
+  cur.style.display = '';
+  cur.style.animation = `marquee ${curDur} linear infinite`;
+  cur.style.opacity = mode === 'ls' ? '1' : '.25';
+}
+
+/* ---------- count up ---------- */
+function countUp(el) {
+  const target = Number(el.dataset.count);
+  const duration = 1400;
+  const start = performance.now();
+  const fmt = (v) => (el.dataset.format === 'comma' ? Math.round(v).toLocaleString('en-US') : String(Math.round(v)));
+
+  const step = (now) => {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmt(target * eased) + (el.dataset.suffix || '') + (el.dataset.prefix || '');
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function initCounters() {
+  const els = [...document.querySelectorAll('[data-count]')];
+  if (!els.length) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        countUp(e.target);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  els.forEach((el) => io.observe(el));
+}
+
+/* ---------- buy links ---------- */
+function initBuy() {
+  document.querySelectorAll('[data-buy]').forEach((a) => { a.href = PRODUCT_URL; });
+}
+
+/* ---------- smooth scroll offset for the fixed nav ---------- */
+function initScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length < 2) return;
+      const el = document.querySelector(id);
+      if (!el) return;
+      e.preventDefault();
+      const y = el.getBoundingClientRect().top + window.scrollY - 96;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    });
+  });
+}
+
+/* ---------- gallery ----------
+   Real product shots pulled from the Amazon listing and served from ./img, so
+   the page never hotlinks Amazon. Amazon hands these over in the order the
+   seller listed them, so the order is kept as-is. */
+const GAL_FILES = ["img/ow-00.jpg","img/ow-01.jpg","img/ow-02.jpg","img/ow-03.jpg","img/ow-04.jpg","img/ow-05.jpg","img/ow-06.jpg","img/ow-07.jpg","img/ow-08.jpg"];
+let galItems = [];
+
+function renderGallery() {
+  galItems.forEach((b, k) => {
+    b.setAttribute('aria-label', `${t('gal.label')} ${k + 1}`);
+  });
+}
+
+function initGallery() {
+  const grid = document.querySelector('[data-gal-grid]');
+  if (!grid) return;
+
+  const total = GAL_FILES.length;
+  const box = document.querySelector('[data-gal-box]');
+  const boxImg = box?.querySelector('[data-gal-box-img]');
+  let i = 0;
+  let opener = null;
+
+  galItems = GAL_FILES.map((src, n) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className =
+      'group relative overflow-hidden rounded-2xl border border-white/10 bg-white shadow-lg shadow-black/30 ' +
+      'transition duration-300 hover:-translate-y-1 hover:border-cyan-400/60 hover:shadow-2xl ' +
+      'focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400';
+    b.innerHTML =
+      `<img src="${src}" alt="" width="1200" height="1200" loading="lazy" decoding="async" ` +
+      'class="aspect-square w-full select-none object-contain">' +
+      '<span class="pointer-events-none absolute inset-0 grid place-items-center bg-ink-950/0 ' +
+      'opacity-0 transition duration-300 group-hover:bg-ink-950/25 group-hover:opacity-100">' +
+      '<span class="grid h-11 w-11 place-items-center rounded-full bg-white/90 text-ink-950 shadow-lg">' +
+      '<svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+      'stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v6M8 11h6"/></svg>' +
+      '</span></span>';
+    b.addEventListener('click', () => { i = n; openBox(); });
+    grid.appendChild(b);
+    return b;
+  });
+
+  function show(n) {
+    i = (n + total) % total;
+    if (boxImg) boxImg.src = GAL_FILES[i];
+  }
+
+  function openBox() {
+    if (!box) return;
+    opener = document.activeElement;
+    show(i);
+    box.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    box.querySelector('[data-gal-box-close]')?.focus();
+  }
+  function closeBox() {
+    if (!box) return;
+    box.classList.add('hidden');
+    document.body.style.overflow = '';
+    opener?.focus();
+  }
+
+  box?.querySelector('[data-gal-box-close]')?.addEventListener('click', closeBox);
+  box?.querySelector('[data-gal-box-prev]')?.addEventListener('click', () => show(i - 1));
+  box?.querySelector('[data-gal-box-next]')?.addEventListener('click', () => show(i + 1));
+  box?.addEventListener('click', (e) => { if (e.target === box) closeBox(); });
+
+  document.addEventListener('keydown', (e) => {
+    const open = box && !box.classList.contains('hidden');
+    if (!open) return;
+    if (e.key === 'Escape') closeBox();
+    else if (e.key === 'ArrowLeft') show(i - 1);
+    else if (e.key === 'ArrowRight') show(i + 1);
+  });
+
+  renderGallery();
+}
+
+/* ---------- init ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  applyLang(localStorage.getItem(STORE_KEY) || 'ar');
+
+  document.getElementById('langBtn').addEventListener('click', () => {
+    applyLang(lang === 'ar' ? 'en' : 'ar');
+  });
+
+  document.querySelectorAll('.modeBtn').forEach((btn) => {
+    btn.addEventListener('click', () => renderMode(btn.dataset.mode));
+  });
+
+  initBuy();
+  initCounters();
+  initScroll();
+  initGallery();
+  initLivePrice();
+});
