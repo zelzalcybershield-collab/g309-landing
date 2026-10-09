@@ -112,6 +112,7 @@ const CATEGORIES = [
   { id: 'mousepad', label: 'مصائد' },
   { id: 'power', label: 'كهرباء' },
   { id: 'cameras', label: 'كاميرات' },
+  { id: 'lighting', label: 'إضاءة' },
   { id: 'storage', label: 'تخزين' },
   { id: 'cases', label: 'كيسات' },
   { id: 'accessories', label: 'إكسسوارات' },
