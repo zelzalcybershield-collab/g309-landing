@@ -114,6 +114,7 @@ const CATEGORIES = [
   { id: 'cameras', label: 'كاميرات' },
   { id: 'lighting', label: 'إضاءة' },
   { id: 'sports', label: 'رياضة' },
+  { id: 'kitchen', label: 'مطبخ' },
   { id: 'storage', label: 'تخزين' },
   { id: 'cases', label: 'كيسات' },
   { id: 'accessories', label: 'إكسسوارات' },
